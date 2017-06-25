@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E4F986B-3DE3-418A-8736-76A793EE7BC9}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>citPOINT.eNeg.Common</RootNamespace>
+    <AssemblyName>citPOINT.eNeg.Common</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <LinkedServerProject>
+    </LinkedServerProject>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Debug\citPOINT.eNeg.Common.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.SL4">
+      <HintPath>..\Assemblies\GalaSoft.MvvmLight.Extras.SL4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.SL4">
+      <HintPath>..\Assemblies\GalaSoft.MvvmLight.SL4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Assemblies\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="silverPDF">
+      <HintPath>..\Assemblies\silverPDF.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Client.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceModel.Web.Extensions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Controls">
+      <HintPath>..\Assemblies\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Toolkit">
+      <HintPath>..\Assemblies\System.Windows.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\Assemblies\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\GridFilterRaw\ColumnFilterCell.cs" />
+    <Compile Include="Controls\GridFilterRaw\ColumnFilterCellFactory.cs" />
+    <Compile Include="Controls\eNegTabControl\eNegTabControl.cs" />
+    <Compile Include="Controls\eNegTabControl\TabItem.cs" />
+    <Compile Include="Controls\GridFilterRaw\CustomFilterRow.cs" />
+    <Compile Include="Controls\GridFilterRaw\DateTimeColumnHeader.xaml.cs">
+      <DependentUpon>DateTimeColumnHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="eNegApps\ApplicationChange.cs" />
+    <Compile Include="eNegApps\eNegApplication.cs" />
+    <Compile Include="eNegApps\MainHandleException.cs" />
+    <Compile Include="eNegApps\MainPlatformInfo.cs" />
+    <Compile Include="eNegApps\TrackChanges.cs" />
+    <Compile Include="Controls\GridFilterRaw\FilteringRow.xaml.cs">
+      <DependentUpon>FilteringRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\LoadingQueue.cs" />
+    <Compile Include="Helpers\NotBooleanToVisibilityConverter.cs" />
+    <Compile Include="Controls\AlphabeticFilter.xaml.cs">
+      <DependentUpon>AlphabeticFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\eNegMessageControl.xaml.cs">
+      <DependentUpon>eNegMessageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\eNegPaggingControls.xaml.cs">
+      <DependentUpon>eNegPaggingControls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\eNegPaging.cs" />
+    <Compile Include="Controls\FlipControl.cs" />
+    <Compile Include="Controls\MainPageControl.cs" />
+    <Compile Include="Controls\PDFGenerator.cs" />
+    <Compile Include="Controls\PendingWindow.xaml.cs">
+      <DependentUpon>PendingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Custom EventArgs\EditableImageErrorEventArgs.cs" />
+    <Compile Include="Controls\Custom EventArgs\eNegBaseResultArgs.cs" />
+    <Compile Include="Controls\Custom EventArgs\eNegEntityResultArgs.cs" />
+    <Compile Include="ModelHelpers\ControlTypes.cs" />
+    <Compile Include="Helpers\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Helpers\BooleanToColorConverter.cs" />
+    <Compile Include="Helpers\eNegNavigation.cs" />
+    <Compile Include="Helpers\NullableToVisibilityConverter.cs" />
+    <Compile Include="Helpers\NegAppCustomSelector.cs" />
+    <Compile Include="Helpers\HashHelper.cs" />
+    <Compile Include="Helpers\NegConvCustomSelector.cs" />
+    <Compile Include="Helpers\NotOperatorValueConverter.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Controls\ManageTreeDragDrop.cs" />
+    <Compile Include="Messages &amp; Types\eNegMessage.cs" />
+    <Compile Include="Models\IApplicationModel.cs" />
+    <Compile Include="Models\IConfirmMailModel.cs" />
+    <Compile Include="Models\IManageOrganizationModel.cs" />
+    <Compile Include="Models\IPublishedNegotiationModel.cs" />
+    <Compile Include="Models\IPublishedProfileDetailsModel.cs" />
+    <Compile Include="Models\IManageUserOrganizationModel.cs" />
+    <Compile Include="Models\IUserBaseModel.cs" />
+    <Compile Include="Models\IUpdateUserProfileModel.cs" />
+    <Compile Include="Messages &amp; Types\eNegRightsName.cs" />
+    <Compile Include="ModelHelpers\eNegConstant.cs" />
+    <Compile Include="Models\INegotiationModel.cs" />
+    <Compile Include="Models\IRegisterModel.cs" />
+    <Compile Include="Controls\Custom EventArgs\LoadUserOperationEventArgs.cs" />
+    <Compile Include="Controls\Custom EventArgs\LoginOperationEventArgs.cs" />
+    <Compile Include="Controls\Custom EventArgs\LogoutOperationEventArgs.cs" />
+    <Compile Include="Controls\Custom EventArgs\SubmitOperationEventArgs.cs" />
+    <Compile Include="Helpers\EditableImage.cs" />
+    <Compile Include="Helpers\PngEncoder.cs" />
+    <Compile Include="Messages &amp; Types\eNegMessanger.cs" />
+    <Compile Include="Messages &amp; Types\eNegNotifications.cs" />
+    <Compile Include="ModelHelpers\ViewModelTypes.cs" />
+    <Compile Include="ModelHelpers\ViewTypes.cs" />
+    <Compile Include="ModelHelpers\WebContext.cs" />
+    <Compile Include="Models\ILogInModel.cs" />
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\IModelBase.cs" />
+    <Compile Include="Helpers\NullableToTextCoverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resources1.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Controls\WaterMarkTextBox.xaml.cs">
+      <DependentUpon>WaterMarkTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WaterMarkPasswordBox.xaml.cs">
+      <DependentUpon>WaterMarkPasswordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GridFilterRaw\TextColumnHeader.xaml.cs">
+      <DependentUpon>TextColumnHeader.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\AlphabeticFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\eNegMessageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\eNegPaggingControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PendingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GridFilterRaw\DateTimeColumnHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GridFilterRaw\FilteringRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GridFilterRaw\TextColumnHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WaterMarkTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WaterMarkPasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\citPOINT.eNeg.Apps.Common\citPOINT.eNeg.Apps.Common.csproj">
+      <Project>{AD707C64-ECE7-4DDE-BB52-C62F1137DB03}</Project>
+      <Name>citPOINT.eNeg.Apps.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPoint.eNeg.Data\citPOINT.eNeg.Data.csproj">
+      <Project>{62636134-77C8-46B5-A04F-CD3C3D76496D}</Project>
+      <Name>citPOINT.eNeg.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MoveFirst.png" />
+    <Resource Include="Images\MoveLast.png" />
+    <Resource Include="Images\MoveNext.png" />
+    <Resource Include="Images\MovePrevious.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Collapse.png" />
+    <Resource Include="Images\Expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Error.png" />
+    <Resource Include="Images\Info.png" />
+    <Resource Include="Images\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>citPOINT.eNeg.ViewModel</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

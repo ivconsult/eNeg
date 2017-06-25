@@ -1,0 +1,81 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dragDrop="clr-namespace:Telerik.Windows.Controls.DragDrop;assembly=Telerik.Windows.Controls"
+        xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls">
+
+    <!--<telerik:ResourceDictionary.MergedDictionaries>
+        <telerik:ResourceDictionary Keys="
+                                    DragDrop_VisualCueBackground
+                                    DragDrop_VisualCueBorder
+                                    DragDrop_VisualCueForeground
+                                    "
+                Source="/Telerik.Windows.Controls;component/Themes/Common.xaml" />
+    </telerik:ResourceDictionary.MergedDictionaries>-->
+
+	<?BODY BEGIN?>
+    <!-- DragVisualCue Style -->
+    <Style TargetType="dragDrop:DragVisualCue">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dragDrop:DragVisualCue">
+                    <Border Background="{StaticResource DragDrop_VisualCueBackground}"
+                            BorderBrush="{StaticResource DragDrop_VisualCueBorder}"
+                            BorderThickness="1">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="{StaticResource DragDrop_VisualCueForeground}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+
+    <!--DragArrow Style-->
+    <Style TargetType="dragDrop:DragArrow">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dragDrop:DragArrow">
+                    <Grid>
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="15" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="1 1 0 1" Grid.Row="1" Grid.RowSpan="2"
+                                    Margin="0 0 -1 0">
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                            <Path Fill="{TemplateBinding Background}"
+                                    Stroke="{TemplateBinding BorderBrush}"
+                                    Data="M 0 1 L 0 0 2 2 0 4 0 3" Grid.Column="1" Grid.RowSpan="4"
+                                    Stretch="Fill" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="{StaticResource DragDrop_VisualCueForeground}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource DragDrop_VisualCueBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource DragDrop_VisualCueBorder}" />
+    </Style>
+
+	<?BODY END?>
+</ResourceDictionary>

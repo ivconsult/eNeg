@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.NegotiationsConversationDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="430"
+             d:DesignWidth="691"
+             Background="White"
+             xmlns:local="clr-namespace:citPOINT.eNeg.Client"
+             d:DataContext="{d:DesignInstance Type=local:MainViewModelDesignTime,IsDesignTimeCreatable=True}">
+
+    <ContentControl Name="uxNegotiationsContent"
+                    Background="White"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Stretch">
+
+    </ContentControl>
+</UserControl>

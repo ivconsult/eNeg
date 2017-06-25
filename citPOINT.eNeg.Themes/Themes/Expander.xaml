@@ -1,0 +1,738 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+	xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls"
+	xmlns:animation="clr-namespace:Telerik.Windows.Controls.Animation;assembly=Telerik.Windows.Controls"
+	xmlns:animationNavigation="clr-namespace:Telerik.Windows.Controls.Animation;assembly=Telerik.Windows.Controls.Navigation"
+	>
+
+	<?BODY BEGIN?>
+	<SolidColorBrush x:Key="HeaderElement_PressedColor1" Color="#FF00C3FF" />
+	<SolidColorBrush x:Key="HeaderElement_OverColor1" Color="#FF8EE3FF" />
+	
+	<!-- ToggleButoonTemplates ================================================================ -->
+	<ControlTemplate TargetType="ToggleButton" x:Key="DownToggleButoonTemplate">
+		<Grid Background="Transparent">
+			<?SILVERLIGHT BEGIN?>
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualStateGroup.Transitions>
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Normal" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Pressed" />
+					</VisualStateGroup.Transitions>
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="MouseOver">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_OverColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Pressed">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_PressedColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Disabled" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="CheckStates">
+					<VisualState x:Name="Checked">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetName="arrowRotation" Duration="0"
+									Storyboard.TargetProperty="Angle" To="0" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unchecked" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="FocusStates">
+					<VisualState x:Name="Focused">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="FocusVisual" To="1" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unfocused" />
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border x:Name="HeaderBorder" Grid.Row="0" Grid.ColumnSpan="2"
+					Background="{TemplateBinding Background}"
+					BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3,3,0,0"
+					BorderThickness="0" Padding="2,1,2,1" Margin="0">
+				<Grid x:Name="HeaderGrid" Background="Transparent">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<Grid Width="20" Height="20" Grid.Column="1">
+						<Path x:Name="arrow" HorizontalAlignment="Center" VerticalAlignment="Center"
+								StrokeThickness="2" Data="M 0.5,1.0 L 4.5,5 L 8.5,1.0">
+							<Path.RenderTransform>
+								<RotateTransform x:Name="arrowRotation" Angle="180" CenterX="4.8" CenterY="3.3" />
+							</Path.RenderTransform>
+							<Path.Stroke>
+								<SolidColorBrush x:Name="arrowStroke" Color="{StaticResource HeaderElement_NormalColor1}" />
+							</Path.Stroke>
+						</Path>
+					</Grid>
+					<ContentPresenter Margin="5,0" VerticalAlignment="Center" x:Name="HeaderHolder" Content="{TemplateBinding Content}" />
+				</Grid>
+			</Border>
+			<Rectangle x:Name="FocusVisual" Stroke="{StaticResource FocusBrush}" Opacity="0"
+					StrokeDashArray="1 2" StrokeThickness="1" Margin="2" RadiusX="2" RadiusY="2" />
+		</Grid>
+		</ControlTemplate>
+	
+	<ControlTemplate TargetType="ToggleButton" x:Key="UpToggleButoonTemplate">
+		<Grid Background="Transparent">
+			<?SILVERLIGHT BEGIN?>
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualStateGroup.Transitions>
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Normal" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Pressed" />
+					</VisualStateGroup.Transitions>
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="MouseOver">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_OverColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Pressed">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_PressedColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Disabled" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="CheckStates">
+					<VisualState x:Name="Checked">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetName="arrowRotation" Duration="0"
+									Storyboard.TargetProperty="Angle" To="180" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unchecked" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="FocusStates">
+					<VisualState x:Name="Focused">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="FocusVisual" To="1" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unfocused" />
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border x:Name="HeaderBorder" Grid.Row="0" Grid.ColumnSpan="2"
+					Background="{TemplateBinding Background}"
+					BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="0,0,3,3"
+					BorderThickness="0" Padding="2,1,2,1" Margin="0">
+				<Grid x:Name="HeaderGrid" Background="Transparent">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<Grid Width="20" Height="20" Grid.Column="1">
+						<Path x:Name="arrow" HorizontalAlignment="Center" VerticalAlignment="Center"
+								StrokeThickness="2" Data="M 0.5,1.0 L 4.5,5 L 8.5,1.0">
+							<Path.RenderTransform>
+								<RotateTransform x:Name="arrowRotation" Angle="0" CenterX="4.8" CenterY="3.3" />
+							</Path.RenderTransform>
+							<Path.Stroke>
+								<SolidColorBrush x:Name="arrowStroke" Color="{StaticResource HeaderElement_NormalColor1}" />
+							</Path.Stroke>
+						</Path>
+					</Grid>
+					<ContentPresenter Margin="5,0" VerticalAlignment="Center" x:Name="HeaderHolder" Content="{TemplateBinding Content}" />
+				</Grid>
+			</Border>
+			<Rectangle x:Name="FocusVisual" Stroke="{StaticResource FocusBrush}" Opacity="0"
+					StrokeDashArray="1 2" StrokeThickness="1" Margin="2" RadiusX="2" RadiusY="2" />
+		</Grid>
+		</ControlTemplate>
+
+	<ControlTemplate TargetType="ToggleButton" x:Key="LeftToggleButoonTemplate">
+		<Grid Background="Transparent">
+			<?SILVERLIGHT BEGIN?>
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualStateGroup.Transitions>
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Normal" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Pressed" />
+					</VisualStateGroup.Transitions>
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="MouseOver">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_OverColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Pressed">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_PressedColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Disabled" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="CheckStates">
+					<VisualState x:Name="Checked">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetName="arrowRotation" Duration="0"
+									Storyboard.TargetProperty="Angle" To="90" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unchecked" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="FocusStates">
+					<VisualState x:Name="Focused">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="FocusVisual" To="1" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unfocused" />
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border x:Name="HeaderBorder" Grid.Row="0" Grid.ColumnSpan="2"
+					Background="{TemplateBinding Background}"
+					BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="0,3,3,0"
+					BorderThickness="0" Padding="5,2,5,2" Margin="0">
+				<Grid x:Name="HeaderGrid" Background="Transparent">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<Grid Width="20" Height="20" Grid.Column="1">
+						<Path x:Name="arrow" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="2" Data="M 0.5,1.0 L 4.5,5 L 8.5,1.0">
+							<Path.RenderTransform>
+								<RotateTransform x:Name="arrowRotation" Angle="270" CenterX="4.8" CenterY="3.3" />
+							</Path.RenderTransform>
+							<Path.Stroke>
+								<SolidColorBrush x:Name="arrowStroke" Color="{StaticResource HeaderElement_NormalColor1}" />
+							</Path.Stroke>
+						</Path>
+					</Grid>
+					<ContentPresenter Margin="5,0" HorizontalAlignment="Center" x:Name="HeaderHolder" Content="{TemplateBinding Content}" />
+				</Grid>
+			</Border>
+			<Rectangle x:Name="FocusVisual" Stroke="{StaticResource FocusBrush}" Opacity="0"
+					StrokeDashArray="1 2" StrokeThickness="1" Margin="2" RadiusX="2" RadiusY="2" />
+		</Grid>
+		
+	</ControlTemplate>
+
+	<ControlTemplate TargetType="ToggleButton" x:Key="RightToggleButoonTemplate">
+		<Grid Background="Transparent">
+			<?SILVERLIGHT BEGIN?>
+			<VisualStateManager.VisualStateGroups>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualStateGroup.Transitions>
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Normal" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver" />
+						<VisualTransition GeneratedDuration="0:0:0.2" To="Pressed" />
+					</VisualStateGroup.Transitions>
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="MouseOver">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_OverColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Pressed">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="arrowStroke" Duration="0"
+									Storyboard.TargetProperty="Color"
+									To="{StaticResource HeaderElement_PressedColor}" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Disabled" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="CheckStates">
+					<VisualState x:Name="Checked">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetName="arrowRotation" Duration="0"
+									Storyboard.TargetProperty="Angle" To="270" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unchecked" />
+				</VisualStateGroup>
+				<VisualStateGroup x:Name="FocusStates">
+					<VisualState x:Name="Focused">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="FocusVisual" To="1" />
+						</Storyboard>
+					</VisualState>
+					<VisualState x:Name="Unfocused" />
+				</VisualStateGroup>
+			</VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border x:Name="HeaderBorder" Grid.Row="0" Grid.ColumnSpan="2"
+					Background="{TemplateBinding Background}"
+					BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3,0,0,3"
+					BorderThickness="0" Padding="5,2,5,2" Margin="0">
+				<Grid x:Name="HeaderGrid" Background="Transparent">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<Grid Width="20" Height="20" Grid.Column="1">
+						<Path x:Name="arrow" HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="2" Data="M 0.5,1.0 L 4.5,5 L 8.5,1.0">
+							<Path.RenderTransform>
+								<RotateTransform x:Name="arrowRotation" Angle="90" CenterX="4.8" CenterY="3.3" />
+							</Path.RenderTransform>
+							<Path.Stroke>
+								<SolidColorBrush x:Name="arrowStroke" Color="{StaticResource HeaderElement_NormalColor1}" />
+							</Path.Stroke>
+						</Path>
+					</Grid>
+					<ContentPresenter Margin="5,0" HorizontalAlignment="Center" x:Name="HeaderHolder" Content="{TemplateBinding Content}" />
+				</Grid>
+			</Border>
+			<Rectangle x:Name="FocusVisual" Stroke="{StaticResource FocusBrush}" Opacity="0"
+					StrokeDashArray="1 2" StrokeThickness="1" Margin="2" RadiusX="2" RadiusY="2" />
+		</Grid>
+		
+	</ControlTemplate>
+
+	<!-- DOWN ======================================================================= -->
+	<ControlTemplate TargetType="telerik:RadExpander" x:Key="ExpanderDownTemplate">
+		<Grid>
+			<?SILVERLIGHT BEGIN?>
+			<vsm:VisualStateManager.VisualStateGroups>
+				<vsm:VisualStateGroup x:Name="CommonStateGroup">
+					<vsm:VisualState x:Name="Normal" />
+					<vsm:VisualState x:Name="Disabled">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="HeaderButton" To="0.5" Duration="0:0:0.2" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+				<vsm:VisualStateGroup x:Name="ExpandStateGroup">
+					<VisualState x:Name="Expanded">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Visible</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="1" Duration="0:0:0.2" />
+						</Storyboard>
+					</VisualState>
+					<vsm:VisualState x:Name="Collapsed">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Collapsed</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="0.5"
+									Duration="0:0:0.1" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+			</vsm:VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border BorderBrush="{TemplateBinding BorderBrush}"
+					BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+				<Grid>
+					<!--Background -->
+					<Border
+						Grid.RowSpan="2" CornerRadius="2"
+						BorderBrush="{StaticResource BorderInnerBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						Background="{TemplateBinding Background}"
+						UseLayoutRounding="true"/>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
+						<!--Header background: -->
+						<Border CornerRadius="2 2 0 0" Background="{StaticResource HeaderBackgroundBrush}" />
+						<!-- Header DOWN ================================================== -->
+						<Grid x:Name="HeaderElement" Background="Transparent">
+							<ToggleButton
+								x:Name="HeaderButton"
+								Template="{StaticResource DownToggleButoonTemplate}"
+								Content="{TemplateBinding Header}"
+								ContentTemplate="{TemplateBinding HeaderTemplate}"
+								IsEnabled="{TemplateBinding IsEnabled}"
+								Background="{StaticResource HeaderBackgroundBrush}"
+								Foreground="{StaticResource HeaderForegroundBrush}"
+								BorderBrush="{StaticResource Header2BackgroundBrush}"
+								IsChecked="{TemplateBinding IsExpanded}"/>
+						</Grid>
+						<!-- Content DOWN ================================================= -->
+						<Grid
+							x:Name="ContentElement" Grid.Row="1" Visibility="Collapsed"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+							<ContentPresenter
+								x:Name="Content"
+								Content="{TemplateBinding Content}"
+								ContentTemplate="{TemplateBinding ContentTemplate}"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+								Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}" />
+						</Grid>
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+		
+	</ControlTemplate>
+
+	<!-- UP ========================================================================= -->
+	<ControlTemplate TargetType="telerik:RadExpander" x:Key="ExpanderUpTemplate">
+		<Grid x:Name="RootElement" Background="Transparent">
+			<?SILVERLIGHT BEGIN?>
+			<vsm:VisualStateManager.VisualStateGroups>
+				<vsm:VisualStateGroup x:Name="CommonStateGroup">
+					<vsm:VisualState x:Name="Normal" />
+					<vsm:VisualState x:Name="Disabled">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="HeaderButton" To="0.5" Duration="0:0:0.2" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+				<vsm:VisualStateGroup x:Name="ExpandStateGroup">
+					<VisualState x:Name="Expanded">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Visible</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="1" Duration="0:0:0.2" />
+						</Storyboard>
+					</VisualState>
+					<vsm:VisualState x:Name="Collapsed">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Collapsed</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="0.5"
+									Duration="0:0:0.1" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+			</vsm:VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border BorderBrush="{TemplateBinding BorderBrush}"
+					BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+				<Grid>
+					<!--Background -->
+					<Border
+						Grid.RowSpan="2" CornerRadius="2"
+						BorderBrush="{StaticResource BorderInnerBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						Background="{TemplateBinding Background}"
+						UseLayoutRounding="true"/>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<!--Header background: -->
+						<Border Grid.Row="1" CornerRadius="2 2 0 0" Background="{StaticResource HeaderBackgroundBrush}" />
+						<!-- Header UP ==================================================== -->
+						<Grid x:Name="HeaderElement" Grid.Row="1" Background="Transparent">
+							<ToggleButton
+								x:Name="HeaderButton"
+								Template="{StaticResource UpToggleButoonTemplate}"
+								Content="{TemplateBinding Header}"
+								ContentTemplate="{TemplateBinding HeaderTemplate}"
+								IsEnabled="{TemplateBinding IsEnabled}"
+								Background="{StaticResource HeaderBackgroundBrush}"
+								Foreground="{StaticResource HeaderForegroundBrush}"
+								BorderBrush="{StaticResource Header2BackgroundBrush}"
+								IsChecked="{TemplateBinding IsExpanded}"/>
+						</Grid>
+						<!-- Content UP =================================================== -->
+						<Grid
+							x:Name="ContentElement" Grid.Row="0" Visibility="Collapsed"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+							<ContentPresenter
+								x:Name="Content"
+								Content="{TemplateBinding Content}"
+								ContentTemplate="{TemplateBinding ContentTemplate}"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+								Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}" />
+						</Grid>
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+		
+	</ControlTemplate>
+
+	<!-- LEFT ======================================================================= -->
+	<ControlTemplate TargetType="telerik:RadExpander" x:Key="ExpanderLeftTemplate">
+		<Grid x:Name="RootElement" Background="Transparent">
+			<?SILVERLIGHT BEGIN?>
+			<vsm:VisualStateManager.VisualStateGroups>
+				<vsm:VisualStateGroup x:Name="CommonStateGroup">
+					<vsm:VisualState x:Name="Normal" />
+					<vsm:VisualState x:Name="Disabled">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="HeaderButton" To="0.5" Duration="0:0:0.2" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+				<vsm:VisualStateGroup x:Name="ExpandStateGroup">
+					<VisualState x:Name="Expanded">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Visible</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="1" Duration="0:0:0.2" />
+						</Storyboard>
+					</VisualState>
+					<vsm:VisualState x:Name="Collapsed">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Collapsed</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="0.5"
+									Duration="0:0:0.1" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+			</vsm:VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border BorderBrush="{TemplateBinding BorderBrush}"
+					BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+				<Grid>
+					<!--Background -->
+					<Border
+						Grid.RowSpan="2" CornerRadius="2"
+						BorderBrush="{StaticResource BorderInnerBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						Background="{TemplateBinding Background}"
+						UseLayoutRounding="true"/>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+						<!--Header background: -->
+						<Border Grid.Column="1" CornerRadius="2 2 0 0" Background="{StaticResource HeaderBackgroundBrush}" />
+						<!-- Header LEFT =================================================== -->
+						<Grid x:Name="HeaderElement" Grid.Column="1" Background="Transparent">
+							<ToggleButton
+								x:Name="HeaderButton"
+								Template="{StaticResource LeftToggleButoonTemplate}"
+								Content="{TemplateBinding Header}"
+								ContentTemplate="{TemplateBinding HeaderTemplate}"
+								IsEnabled="{TemplateBinding IsEnabled}"
+								Background="{StaticResource HeaderBackgroundBrush}"
+								Foreground="{StaticResource HeaderForegroundBrush}"
+								BorderBrush="{StaticResource Header2BackgroundBrush}"
+								IsChecked="{TemplateBinding IsExpanded}"/>
+						</Grid>
+						<!-- Content LEFT ================================================== -->
+						<Grid
+							x:Name="ContentElement" Visibility="Collapsed"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+							<ContentPresenter
+								x:Name="Content"
+								Content="{TemplateBinding Content}"
+								ContentTemplate="{TemplateBinding ContentTemplate}"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+								Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}" />
+						</Grid>
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+	</ControlTemplate>
+
+	<!-- RIGHT ====================================================================== -->
+	<ControlTemplate TargetType="telerik:RadExpander" x:Key="ExpanderRightTemplate">
+		<Grid x:Name="RootElement" Background="Transparent">
+			<?SILVERLIGHT BEGIN?>
+			<vsm:VisualStateManager.VisualStateGroups>
+				<vsm:VisualStateGroup x:Name="CommonStateGroup">
+					<vsm:VisualState x:Name="Normal" />
+					<vsm:VisualState x:Name="Disabled">
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="HeaderButton" To="0.5" Duration="0:0:0.2" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+				<vsm:VisualStateGroup x:Name="ExpandStateGroup">
+					<VisualState x:Name="Expanded">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Visible</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="1" Duration="0:0:0.2" />
+						</Storyboard>
+					</VisualState>
+					<vsm:VisualState x:Name="Collapsed">
+						<Storyboard>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
+									Storyboard.TargetProperty="Visibility">
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Collapsed</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+									Storyboard.TargetName="ContentElement" To="0.5"
+									Duration="0:0:0.1" />
+						</Storyboard>
+					</vsm:VisualState>
+				</vsm:VisualStateGroup>
+			</vsm:VisualStateManager.VisualStateGroups>
+			<?SILVERLIGHT END?>
+			<Border BorderBrush="{TemplateBinding BorderBrush}"
+					BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+				<Grid>
+					<!--Background -->
+					<Border
+						Grid.RowSpan="2" CornerRadius="2"
+						BorderBrush="{StaticResource BorderInnerBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						Background="{TemplateBinding Background}"
+						UseLayoutRounding="true"/>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<!--Header background: -->
+						<Border CornerRadius="2 2 0 0" Background="{StaticResource HeaderBackgroundBrush}" />
+						<!-- Header RIGHT =================================================== -->
+						<Grid x:Name="HeaderElement" Background="Transparent">
+							<ToggleButton
+								x:Name="HeaderButton"
+								Template="{StaticResource RightToggleButoonTemplate}"
+								Content="{TemplateBinding Header}"
+								ContentTemplate="{TemplateBinding HeaderTemplate}"
+								IsEnabled="{TemplateBinding IsEnabled}"
+								Background="{StaticResource HeaderBackgroundBrush}"
+								Foreground="{StaticResource HeaderForegroundBrush}"
+								BorderBrush="{StaticResource Header2BackgroundBrush}"
+								IsChecked="{TemplateBinding IsExpanded}"/>
+						</Grid>
+						<!-- Content RIGHT ================================================== -->
+						<Grid
+							x:Name="ContentElement" Grid.Column="1" Visibility="Collapsed"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+							<ContentPresenter
+								x:Name="Content"
+								Content="{TemplateBinding Content}"
+								ContentTemplate="{TemplateBinding ContentTemplate}"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+								Cursor="{TemplateBinding Cursor}" Margin="{TemplateBinding Padding}" />
+						</Grid>
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+	</ControlTemplate>
+
+	<!-- STYLE ====================================================================== -->
+	<Style TargetType="telerik:RadExpander">
+		<Setter Property="IsTabStop" Value="false" />
+		<Setter Property="IsEnabled" Value="true" />
+		<Setter Property="ExpandDirection" Value="Down" />
+		<Setter Property="IsExpanded" Value="false" />
+		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		<Setter Property="VerticalContentAlignment" Value="Stretch" />
+		<Setter Property="Background" Value="{StaticResource ContentBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="{StaticResource BorderOuterBrush}" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Padding" Value="2,2,2,2" />
+		<!-- Default Template -->
+		<Setter Property="Template" Value="{StaticResource ExpanderDownTemplate}" />
+		<Setter Property="TemplateDown" Value="{StaticResource ExpanderDownTemplate}" />
+		<Setter Property="TemplateUp" Value="{StaticResource ExpanderUpTemplate}" />
+		<Setter Property="TemplateLeft" Value="{StaticResource ExpanderLeftTemplate}" />
+		<Setter Property="TemplateRight" Value="{StaticResource ExpanderRightTemplate}" />
+		<!-- Animation -->
+		<!--
+		<?SILVERLIGHT BEGIN?>
+		<Setter Property="animation:AnimationManager.AnimationSelector">
+			<Setter.Value>
+				<animation:AnimationSelector>
+					<animation:ExpanderExpandCollapseAnimation
+						AnimationName="Expand" Direction="In" TargetName="ContentElement" />
+					<animation:ExpanderExpandCollapseAnimation
+						AnimationName="Collapse" Direction="Out" TargetName="ContentElement" />
+				</animation:AnimationSelector>
+			</Setter.Value>
+		</Setter>
+		<?SILVERLIGHT END?>
+		-->
+	</Style>
+
+	<?BODY END?>
+</ResourceDictionary>

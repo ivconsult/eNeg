@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.ConfirmMailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d"
+             d:DesignHeight="200"
+             d:DesignWidth="400"
+          
+             xmlns:eNegControls="clr-namespace:citPOINT.eNeg.Common;assembly=citPOINT.eNeg.Common">
+
+    <Grid x:Name="LayoutRoot"
+          Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <eNegControls:eNegMessageControl Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Grid.Row="0"
+                               x:Name="uxSPSucessMessage"
+                               Opacity="1"
+                               Height="40"
+                               MessageText="This is invalid confirmation mail or you have used it before."
+                               Visibility="Collapsed"
+                               HorizontalAlignment="Center" />
+
+        
+        
+        <telerik:RadBusyIndicator HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Grid.Row="1"
+                               IsBusy="True"
+                               Name="uxBsyProgress"
+                               BusyContent="Please wait... this process will take less than a minute" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C54CA09-E85B-4F29-9240-9379E5CCB8A7}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>citPOINT.eNeg.Client</RootNamespace>
+    <AssemblyName>citPOINT.eNeg.Client</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>citPOINT.eNeg.Client.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>citPOINT.eNeg.Client.App</SilverlightAppEntry>
+    <TestPageFileName>citPoint.eNeg.ClientTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>true</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>..\citPoint.eNeg.Web\citPOINT.eNeg.Web.csproj</LinkedServerProject>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Debug\citPOINT.eNeg.Client.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>8713D0F1A97B1DE873076A4D772F42A1EEF8921C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>citPOINT.eNeg.Client_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DanielVaughan">
+      <HintPath>..\Assemblies\LogginSilverlight\DanielVaughan.dll</HintPath>
+    </Reference>
+    <Reference Include="DanielVaughan.Logging.Silverlight">
+      <HintPath>..\Assemblies\DanielVaughan.Logging.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.SL4">
+      <HintPath>..\Assemblies\GalaSoft.MvvmLight.Extras.SL4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.SL4">
+      <HintPath>..\Assemblies\GalaSoft.MvvmLight.SL4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\Assemblies\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>..\Assemblies\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\Assemblies\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\Assemblies\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\Assemblies\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Silverlight">
+      <HintPath>..\Assemblies\Microsoft.Practices.Unity.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.Composition.Initialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=2.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.DomainServices.Client, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Client.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.Web.Extensions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls">
+      <HintPath>..\Assemblies\System.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data">
+      <HintPath>..\Assemblies\System.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Data.Input">
+      <HintPath>..\Assemblies\System.Windows.Controls.Data.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit">
+      <HintPath>..\Assemblies\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input">
+      <HintPath>..\Assemblies\System.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Navigation">
+      <HintPath>..\Assemblies\System.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Toolkit">
+      <HintPath>..\Assemblies\System.Windows.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Toolkit.Internals">
+      <HintPath>..\Assemblies\System.Windows.Controls.Toolkit.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\Assemblies\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Charting, Version=2010.2.812.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2010.2.812.1040, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonBar">
+      <HintPath>..\Assemblies\Telerik.Windows.Controls.RibbonBar.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\Assemblies\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Themes.Summer">
+      <HintPath>..\Assemblies\Telerik.Windows.Themes.Summer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Views\Addon\AddonNegotiationsPanel.xaml.cs">
+      <DependentUpon>AddonNegotiationsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\Profile\ChangeEmailAddressView.xaml.cs">
+      <DependentUpon>ChangeEmailAddressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\Profile\ChangePasswordView.xaml.cs">
+      <DependentUpon>ChangePasswordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\Profile\MasterMyProfileView.xaml.cs">
+      <DependentUpon>MasterMyProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\Profile\UserProfileView.xaml.cs">
+      <DependentUpon>UserProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\AddConversation.xaml.cs">
+      <DependentUpon>AddConversation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\NewNegotiation.xaml.cs">
+      <DependentUpon>NewNegotiation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\NegotiationDetails.xaml.cs">
+      <DependentUpon>NegotiationDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\IntializationAppIntegration.cs" />
+    <Compile Include="Views\MainWebPlatform.xaml.cs">
+      <DependentUpon>MainWebPlatform.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\NegotiationsPanel.xaml.cs">
+      <DependentUpon>NegotiationsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\SavePDFView.xaml.cs">
+      <DependentUpon>SavePDFView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\NegotiationApplicationSettings.xaml.cs">
+      <DependentUpon>NegotiationApplicationSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\RenamNegotiationConversation.xaml.cs">
+      <DependentUpon>RenamNegotiationConversation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\PublishNegotiationPopUp.xaml.cs">
+      <DependentUpon>PublishNegotiationPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\Published Negotiations\PublishedNegotiationsView.xaml.cs">
+      <DependentUpon>PublishedNegotiationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\MainViewModelDesignTime.cs" />
+    <Compile Include="NegotiatorItem.cs" />
+    <Compile Include="NegotiatorPanel.cs" />
+    <Compile Include="SampleData\DesignTimeMock.cs" />
+    <Compile Include="Views\WebPlatform\ManageOrganizationView.xaml.cs">
+      <DependentUpon>ManageOrganizationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\AddNewOrganization.xaml.cs">
+      <DependentUpon>AddNewOrganization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\Public Users\PublicUsers.xaml.cs">
+      <DependentUpon>PublicUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\Public Users\PublicUsersOverview.xaml.cs">
+      <DependentUpon>PublicUsersOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\Public Users\PublishedProfileDetailsView.xaml.cs">
+      <DependentUpon>PublishedProfileDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\ManageUserOrganizationView.xaml.cs">
+      <DependentUpon>ManageUserOrganizationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\MultiNegotiatorsPopUp.xaml.cs">
+      <DependentUpon>MultiNegotiatorsPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\DataMatchingPopUp.xaml.cs">
+      <DependentUpon>DataMatchingPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="eNegComboControl.cs" />
+    <Compile Include="Views\AuthenticationViews\LogOutAutomationTest.xaml.cs">
+      <DependentUpon>LogOutAutomationTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopUp Windows\PopUpWindow.xaml.cs">
+      <DependentUpon>PopUpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\ManageUsers.xaml.cs">
+      <DependentUpon>ManageUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\ApplicationItegrationShell.xaml.cs">
+      <DependentUpon>ApplicationItegrationShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\UsersOverview.xaml.cs">
+      <DependentUpon>UsersOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\NegotiationsConversationDetails.xaml.cs">
+      <DependentUpon>NegotiationsConversationDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\ConversationDetails.xaml.cs">
+      <DependentUpon>ConversationDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Addon\AddMessageView.xaml.cs">
+      <DependentUpon>AddMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Addon\NegotiationsView.xaml.cs">
+      <DependentUpon>NegotiationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Addon\ClosedNegotiations.xaml.cs">
+      <DependentUpon>ClosedNegotiations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Addon\OngoingNegotiations.xaml.cs">
+      <DependentUpon>OngoingNegotiations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Addon\AddonStaticPart.xaml.cs">
+      <DependentUpon>AddonStaticPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Addon\MainPageAddon.xaml.cs">
+      <DependentUpon>MainPageAddon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewsAdjustSize.cs" />
+    <Compile Include="Views\AuthenticationViews\ConfirmMailView.xaml.cs">
+      <DependentUpon>ConfirmMailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\ResetView.xaml.cs">
+      <DependentUpon>ResetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\Login_QuickRegisterView.xaml.cs">
+      <DependentUpon>Login_QuickRegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\LoadUserView.xaml.cs">
+      <DependentUpon>LoadUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\FullRegisterView.xaml.cs">
+      <DependentUpon>FullRegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\AuthenticationViews\QuickRegister.xaml.cs">
+      <DependentUpon>QuickRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthenticationViews\ResetRequestView.xaml.cs">
+      <DependentUpon>ResetRequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebPlatform\Main Negotiations\MainNegotiationView.xaml.cs">
+      <DependentUpon>MainNegotiationView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Assets\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Addon\AddonNegotiationsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AuthenticationViews\Profile\ChangeEmailAddressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\Profile\ChangePasswordView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AuthenticationViews\Profile\MasterMyProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AuthenticationViews\Profile\UserProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PopUp Windows\AddConversation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PopUp Windows\NewNegotiation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\NegotiationDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWebPlatform.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\NegotiationsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PopUp Windows\SavePDFView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUp Windows\NegotiationApplicationSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PopUp Windows\RenamNegotiationConversation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PopUp Windows\PublishNegotiationPopUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\Published Negotiations\PublishedNegotiationsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\ManageOrganizationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PopUp Windows\AddNewOrganization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WebPlatform\Public Users\PublicUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\Public Users\PublicUsersOverview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\Public Users\PublishedProfileDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AuthenticationViews\ManageUserOrganizationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUp Windows\MultiNegotiatorsPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUp Windows\DataMatchingPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\LogOutAutomationTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUp Windows\PopUpWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\ManageUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WebPlatform\ApplicationItegrationShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WebPlatform\UsersOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WebPlatform\NegotiationsConversationDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WebPlatform\ConversationDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Addon\ClosedNegotiations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Addon\AddMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Addon\NegotiationsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Addon\OngoingNegotiations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Addon\AddonStaticPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Addon\MainPageAddon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\ConfirmMailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\ResetView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AuthenticationViews\Login_QuickRegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\LoadUserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AuthenticationViews\FullRegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\QuickRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthenticationViews\ResetRequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WebPlatform\Main Negotiations\MainNegotiationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add-icon.png" />
+    <Resource Include="Images\Rename-icon.png" />
+    <Resource Include="Images\search-icon.png" />
+    <Resource Include="Images\email_envelope.png" />
+    <Resource Include="Images\open_icon.png" />
+    <Content Include="icons\128x128.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\32x32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\48x48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\Close.png" />
+    <Resource Include="Images\Open.png" />
+    <Resource Include="Images\user.png" />
+    <Resource Include="Images\key.png" />
+    <Resource Include="Images\AddContact.png" />
+    <Resource Include="Images\Delete-icon.png" />
+    <Resource Include="Images\Edit_Receivers.png" />
+    <Resource Include="Images\check-mark-th.png" />
+    <Resource Include="Images\settings_32.png" />
+    <Resource Include="Images\lock.png" />
+    <Resource Include="Images\gdm_login_photo.png" />
+    <Resource Include="Images\email.png" />
+    <Resource Include="Images\changepassword.jpg" />
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\Logo.png" />
+    <Content Include="Properties\AppManifest.xml" />
+    <Content Include="ServiceReferences.ClientConfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="citPOINT.eNeg.Data.Web.eNegContext3.datasource" />
+    <None Include="Properties\OutOfBrowserSettings.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\citPOINT.eNeg.Apps.Common\citPOINT.eNeg.Apps.Common.csproj">
+      <Project>{AD707C64-ECE7-4DDE-BB52-C62F1137DB03}</Project>
+      <Name>citPOINT.eNeg.Apps.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPOINT.eNeg.Common\citPOINT.eNeg.Common.csproj">
+      <Project>{7E4F986B-3DE3-418A-8736-76A793EE7BC9}</Project>
+      <Name>citPOINT.eNeg.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPoint.eNeg.Data\citPOINT.eNeg.Data.csproj">
+      <Project>{62636134-77C8-46B5-A04F-CD3C3D76496D}</Project>
+      <Name>citPOINT.eNeg.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CitPoint.eNeg.Infrastructure.ClientSide\citPOINT.eNeg.Infrastructure.ClientSide.csproj">
+      <Project>{CA9E9BC4-33F6-4A2B-A109-C979D5FFEB3C}</Project>
+      <Name>citPOINT.eNeg.Infrastructure.ClientSide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPoint.eNeg.Infrastructure.Common\citPOINT.eNeg.Infrastructure.Common.csproj">
+      <Project>{1464ADC3-0B30-4C7B-88C0-F542DAD992C5}</Project>
+      <Name>citPOINT.eNeg.Infrastructure.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPoint.eNeg.Model\citPOINT.eNeg.Model.csproj">
+      <Project>{425BC86C-8DAB-424B-A78A-8A6D7CC75722}</Project>
+      <Name>citPOINT.eNeg.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPOINT.eNeg.Themes\citPOINT.eNeg.Themes.csproj">
+      <Project>{93710FBE-A6FA-42B8-A60F-195371B91850}</Project>
+      <Name>citPOINT.eNeg.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPoint.eNeg.ViewModel\citPOINT.eNeg.ViewModel.csproj">
+      <Project>{BDEDFAF5-6964-4699-B4E3-6E8C4C25FAB3}</Project>
+      <Name>citPOINT.eNeg.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\citPOINT.eNeg.Themes\citPOINT.eNeg.Themes.csproj">
+      <Project>{6BD9FF78-C6D6-49FD-B9B1-736326D94685}</Project>
+      <Name>citPOINT.eNeg.Themes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

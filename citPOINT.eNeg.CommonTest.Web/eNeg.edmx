@@ -1,0 +1,1524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="eNegModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="eNegModelStoreContainer">
+          <EntitySet Name="AccountType" EntityType="eNegModel.Store.AccountType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ActionType" EntityType="eNegModel.Store.ActionType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Application" EntityType="eNegModel.Store.Application" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Attachement" EntityType="eNegModel.Store.Attachement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Channel" EntityType="eNegModel.Store.Channel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ChannelType" EntityType="eNegModel.Store.ChannelType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Conversation" EntityType="eNegModel.Store.Conversation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="eNegModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="History" EntityType="eNegModel.Store.History" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Message" EntityType="eNegModel.Store.Message" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Negotiation" EntityType="eNegModel.Store.Negotiation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NegotiationApplicationStatus" EntityType="eNegModel.Store.NegotiationApplicationStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NegotiationStatus" EntityType="eNegModel.Store.NegotiationStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PreferedLanguage" EntityType="eNegModel.Store.PreferedLanguage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Profile" EntityType="eNegModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Right" EntityType="eNegModel.Store.Right" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="eNegModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoleRight" EntityType="eNegModel.Store.RoleRight" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecurityQuestion" EntityType="eNegModel.Store.SecurityQuestion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="eNegModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserRole" EntityType="eNegModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Attacheme__Messa__5070F446" Association="eNegModel.Store.FK__Attacheme__Messa__5070F446">
+            <End Role="Message" EntitySet="Message" />
+            <End Role="Attachement" EntitySet="Attachement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Channel__Channel__5165187F" Association="eNegModel.Store.FK__Channel__Channel__5165187F">
+            <End Role="ChannelType" EntitySet="ChannelType" />
+            <End Role="Channel" EntitySet="Channel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__Delet__534D60F1" Association="eNegModel.Store.FK__Conversat__Delet__534D60F1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Conversation" EntitySet="Conversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__Negot__52593CB8" Association="eNegModel.Store.FK__Conversat__Negot__52593CB8">
+            <End Role="Negotiation" EntitySet="Negotiation" />
+            <End Role="Conversation" EntitySet="Conversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__ActionT__5441852A" Association="eNegModel.Store.FK__History__ActionT__5441852A">
+            <End Role="ActionType" EntitySet="ActionType" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__UserID__5535A963" Association="eNegModel.Store.FK__History__UserID__5535A963">
+            <End Role="User" EntitySet="User" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Channel__571DF1D5" Association="eNegModel.Store.FK__Message__Channel__571DF1D5">
+            <End Role="Channel" EntitySet="Channel" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Convers__5629CD9C" Association="eNegModel.Store.FK__Message__Convers__5629CD9C">
+            <End Role="Conversation" EntitySet="Conversation" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Deleted__5812160E" Association="eNegModel.Store.FK__Message__Deleted__5812160E">
+            <End Role="User" EntitySet="User" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__Appli__59FA5E80" Association="eNegModel.Store.FK__Negotiati__Appli__59FA5E80">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="NegotiationApplicationStatus" EntitySet="NegotiationApplicationStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__Negot__5AEE82B9" Association="eNegModel.Store.FK__Negotiati__Negot__5AEE82B9">
+            <End Role="Negotiation" EntitySet="Negotiation" />
+            <End Role="NegotiationApplicationStatus" EntitySet="NegotiationApplicationStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__Statu__59063A47" Association="eNegModel.Store.FK__Negotiati__Statu__59063A47">
+            <End Role="NegotiationStatus" EntitySet="NegotiationStatus" />
+            <End Role="Negotiation" EntitySet="Negotiation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__UserI__5BE2A6F2" Association="eNegModel.Store.FK__Negotiati__UserI__5BE2A6F2">
+            <End Role="User" EntitySet="User" />
+            <End Role="NegotiationApplicationStatus" EntitySet="NegotiationApplicationStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profile__UserID__5CD6CB2B" Association="eNegModel.Store.FK__Profile__UserID__5CD6CB2B">
+            <End Role="User" EntitySet="User" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleRight__Right__5DCAEF64" Association="eNegModel.Store.FK__RoleRight__Right__5DCAEF64">
+            <End Role="Right" EntitySet="Right" />
+            <End Role="RoleRight" EntitySet="RoleRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleRight__RoleI__5EBF139D" Association="eNegModel.Store.FK__RoleRight__RoleI__5EBF139D">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleRight" EntitySet="RoleRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__AccountTyp__5FB337D6" Association="eNegModel.Store.FK__User__AccountTyp__5FB337D6">
+            <End Role="AccountType" EntitySet="AccountType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__CountryID__628FA481" Association="eNegModel.Store.FK__User__CountryID__628FA481">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__LCID__619B8048" Association="eNegModel.Store.FK__User__LCID__619B8048">
+            <End Role="PreferedLanguage" EntitySet="PreferedLanguage" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__SecurityQu__60A75C0F" Association="eNegModel.Store.FK__User__SecurityQu__60A75C0F">
+            <End Role="SecurityQuestion" EntitySet="SecurityQuestion" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__RoleID__6477ECF3" Association="eNegModel.Store.FK__UserRole__RoleID__6477ECF3">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__UserID__6383C8BA" Association="eNegModel.Store.FK__UserRole__UserID__6383C8BA">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="AccountTypeID" />
+          </Key>
+          <Property Name="AccountTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="TypeDescription" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ActionType">
+          <Key>
+            <PropertyRef Name="ActionTypeID" />
+          </Key>
+          <Property Name="ActionTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ActionDescription" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationTitle" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Attachement">
+          <Key>
+            <PropertyRef Name="AttachementID" />
+          </Key>
+          <Property Name="AttachementID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AttachementName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AttachementContent" Type="varbinary(max)" />
+          <Property Name="MessageID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="ChannelID" />
+          </Key>
+          <Property Name="ChannelID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChannelName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ChannelTypeID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ChannelType">
+          <Key>
+            <PropertyRef Name="ChannelTypeID" />
+          </Key>
+          <Property Name="ChannelTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Conversation">
+          <Key>
+            <PropertyRef Name="ConversationID" />
+          </Key>
+          <Property Name="ConversationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConversationName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="NegotiationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="uniqueidentifier" />
+          <Property Name="DeletedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="HistoryID" />
+          </Key>
+          <Property Name="HistoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OldValue" Type="xml" />
+          <Property Name="NewValue" Type="xml" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActionTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ActionDate" Type="datetime" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ConversationID" Type="uniqueidentifier" />
+          <Property Name="MessageContent" Type="ntext" Nullable="false" />
+          <Property Name="MessageSubject" Type="nvarchar" MaxLength="200" />
+          <Property Name="MessageSender" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="MessageReceiver" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="MessageDate" Type="datetime" />
+          <Property Name="ChannelID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="uniqueidentifier" />
+          <Property Name="DeletedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Negotiation">
+          <Key>
+            <PropertyRef Name="NegotiationID" />
+          </Key>
+          <Property Name="NegotiationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NegotiationName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="StatusID" Type="uniqueidentifier" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NegotiationApplicationStatus">
+          <Key>
+            <PropertyRef Name="NegotiationApplicationStatusID" />
+          </Key>
+          <Property Name="NegotiationApplicationStatusID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NegotiationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NegotiationStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StatusDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PreferedLanguage">
+          <Key>
+            <PropertyRef Name="LCID" />
+          </Key>
+          <Property Name="LCID" Type="int" Nullable="false" />
+          <Property Name="PreferedLanguage" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ProfileID" />
+          </Key>
+          <Property Name="ProfileID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CurrentTheme" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="RightID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RightName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RightDescription" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="RoleDescription" Type="nvarchar" Nullable="false" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="RoleRight">
+          <Key>
+            <PropertyRef Name="RoleRightID" />
+          </Key>
+          <Property Name="RoleRightID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RightID" Type="uniqueidentifier" />
+          <Property Name="RoleID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="SecurityQuestionID" />
+          </Key>
+          <Property Name="SecurityQuestionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="LockedDate" Type="datetime" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="AccountTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SecurityQuestionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SecurityAnswer" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="Online" Type="bit" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LCID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="CountryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" />
+          <Property Name="RoleID" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK__Attacheme__Messa__5070F446">
+          <End Role="Message" Type="eNegModel.Store.Message" Multiplicity="0..1" />
+          <End Role="Attachement" Type="eNegModel.Store.Attachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="MessageID" />
+            </Principal>
+            <Dependent Role="Attachement">
+              <PropertyRef Name="MessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Channel__Channel__5165187F">
+          <End Role="ChannelType" Type="eNegModel.Store.ChannelType" Multiplicity="0..1" />
+          <End Role="Channel" Type="eNegModel.Store.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChannelType">
+              <PropertyRef Name="ChannelTypeID" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="ChannelTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__Delet__534D60F1">
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="0..1" />
+          <End Role="Conversation" Type="eNegModel.Store.Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="DeletedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__Negot__52593CB8">
+          <End Role="Negotiation" Type="eNegModel.Store.Negotiation" Multiplicity="1" />
+          <End Role="Conversation" Type="eNegModel.Store.Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Negotiation">
+              <PropertyRef Name="NegotiationID" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="NegotiationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__ActionT__5441852A">
+          <End Role="ActionType" Type="eNegModel.Store.ActionType" Multiplicity="1" />
+          <End Role="History" Type="eNegModel.Store.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionType">
+              <PropertyRef Name="ActionTypeID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="ActionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__UserID__5535A963">
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="1" />
+          <End Role="History" Type="eNegModel.Store.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Channel__571DF1D5">
+          <End Role="Channel" Type="eNegModel.Store.Channel" Multiplicity="1" />
+          <End Role="Message" Type="eNegModel.Store.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channel">
+              <PropertyRef Name="ChannelID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ChannelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Convers__5629CD9C">
+          <End Role="Conversation" Type="eNegModel.Store.Conversation" Multiplicity="0..1" />
+          <End Role="Message" Type="eNegModel.Store.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversation">
+              <PropertyRef Name="ConversationID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Deleted__5812160E">
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="0..1" />
+          <End Role="Message" Type="eNegModel.Store.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="DeletedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__Appli__59FA5E80">
+          <End Role="Application" Type="eNegModel.Store.Application" Multiplicity="1" />
+          <End Role="NegotiationApplicationStatus" Type="eNegModel.Store.NegotiationApplicationStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationID" />
+            </Principal>
+            <Dependent Role="NegotiationApplicationStatus">
+              <PropertyRef Name="ApplicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__Negot__5AEE82B9">
+          <End Role="Negotiation" Type="eNegModel.Store.Negotiation" Multiplicity="1" />
+          <End Role="NegotiationApplicationStatus" Type="eNegModel.Store.NegotiationApplicationStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Negotiation">
+              <PropertyRef Name="NegotiationID" />
+            </Principal>
+            <Dependent Role="NegotiationApplicationStatus">
+              <PropertyRef Name="NegotiationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__Statu__59063A47">
+          <End Role="NegotiationStatus" Type="eNegModel.Store.NegotiationStatus" Multiplicity="0..1" />
+          <End Role="Negotiation" Type="eNegModel.Store.Negotiation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NegotiationStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Negotiation">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__UserI__5BE2A6F2">
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="1" />
+          <End Role="NegotiationApplicationStatus" Type="eNegModel.Store.NegotiationApplicationStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="NegotiationApplicationStatus">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profile__UserID__5CD6CB2B">
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="0..1" />
+          <End Role="Profile" Type="eNegModel.Store.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleRight__Right__5DCAEF64">
+          <End Role="Right" Type="eNegModel.Store.Right" Multiplicity="0..1" />
+          <End Role="RoleRight" Type="eNegModel.Store.RoleRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right">
+              <PropertyRef Name="RightID" />
+            </Principal>
+            <Dependent Role="RoleRight">
+              <PropertyRef Name="RightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleRight__RoleI__5EBF139D">
+          <End Role="Role" Type="eNegModel.Store.Role" Multiplicity="0..1" />
+          <End Role="RoleRight" Type="eNegModel.Store.RoleRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="RoleRight">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__AccountTyp__5FB337D6">
+          <End Role="AccountType" Type="eNegModel.Store.AccountType" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="AccountTypeID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="AccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__CountryID__628FA481">
+          <End Role="Country" Type="eNegModel.Store.Country" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__LCID__619B8048">
+          <End Role="PreferedLanguage" Type="eNegModel.Store.PreferedLanguage" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PreferedLanguage">
+              <PropertyRef Name="LCID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__SecurityQu__60A75C0F">
+          <End Role="SecurityQuestion" Type="eNegModel.Store.SecurityQuestion" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityQuestion">
+              <PropertyRef Name="SecurityQuestionID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="SecurityQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__RoleID__6477ECF3">
+          <End Role="Role" Type="eNegModel.Store.Role" Multiplicity="0..1" />
+          <End Role="UserRole" Type="eNegModel.Store.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__UserID__6383C8BA">
+          <End Role="User" Type="eNegModel.Store.User" Multiplicity="0..1" />
+          <End Role="UserRole" Type="eNegModel.Store.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eNegModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="eNegEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountTypes" EntityType="eNegModel.AccountType" />
+          <EntitySet Name="ActionTypes" EntityType="eNegModel.ActionType" />
+          <EntitySet Name="Applications" EntityType="eNegModel.Application" />
+          <EntitySet Name="Attachements" EntityType="eNegModel.Attachement" />
+          <EntitySet Name="Channels" EntityType="eNegModel.Channel" />
+          <EntitySet Name="ChannelTypes" EntityType="eNegModel.ChannelType" />
+          <EntitySet Name="Conversations" EntityType="eNegModel.Conversation" />
+          <EntitySet Name="Countries" EntityType="eNegModel.Country" />
+          <EntitySet Name="Histories" EntityType="eNegModel.History" />
+          <EntitySet Name="Messages" EntityType="eNegModel.Message" />
+          <EntitySet Name="Negotiations" EntityType="eNegModel.Negotiation" />
+          <EntitySet Name="NegotiationApplicationStatus" EntityType="eNegModel.NegotiationApplicationStatu" />
+          <EntitySet Name="NegotiationStatus" EntityType="eNegModel.NegotiationStatu" />
+          <EntitySet Name="PreferedLanguages" EntityType="eNegModel.PreferedLanguage" />
+          <EntitySet Name="Profiles" EntityType="eNegModel.Profile" />
+          <EntitySet Name="Rights" EntityType="eNegModel.Right" />
+          <EntitySet Name="Roles" EntityType="eNegModel.Role" />
+          <EntitySet Name="RoleRights" EntityType="eNegModel.RoleRight" />
+          <EntitySet Name="SecurityQuestions" EntityType="eNegModel.SecurityQuestion" />
+          <EntitySet Name="Users" EntityType="eNegModel.User" />
+          <EntitySet Name="UserRoles" EntityType="eNegModel.UserRole" />
+          <AssociationSet Name="FK__User__AccountTyp__5FB337D6" Association="eNegModel.FK__User__AccountTyp__5FB337D6">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__ActionT__5441852A" Association="eNegModel.FK__History__ActionT__5441852A">
+            <End Role="ActionType" EntitySet="ActionTypes" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__Appli__59FA5E80" Association="eNegModel.FK__Negotiati__Appli__59FA5E80">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="NegotiationApplicationStatus" EntitySet="NegotiationApplicationStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attacheme__Messa__5070F446" Association="eNegModel.FK__Attacheme__Messa__5070F446">
+            <End Role="Message" EntitySet="Messages" />
+            <End Role="Attachement" EntitySet="Attachements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Channel__Channel__5165187F" Association="eNegModel.FK__Channel__Channel__5165187F">
+            <End Role="ChannelType" EntitySet="ChannelTypes" />
+            <End Role="Channel" EntitySet="Channels" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Channel__571DF1D5" Association="eNegModel.FK__Message__Channel__571DF1D5">
+            <End Role="Channel" EntitySet="Channels" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__Delet__534D60F1" Association="eNegModel.FK__Conversat__Delet__534D60F1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Conversation" EntitySet="Conversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversat__Negot__52593CB8" Association="eNegModel.FK__Conversat__Negot__52593CB8">
+            <End Role="Negotiation" EntitySet="Negotiations" />
+            <End Role="Conversation" EntitySet="Conversations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Convers__5629CD9C" Association="eNegModel.FK__Message__Convers__5629CD9C">
+            <End Role="Conversation" EntitySet="Conversations" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__CountryID__628FA481" Association="eNegModel.FK__User__CountryID__628FA481">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__UserID__5535A963" Association="eNegModel.FK__History__UserID__5535A963">
+            <End Role="User" EntitySet="Users" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Message__Deleted__5812160E" Association="eNegModel.FK__Message__Deleted__5812160E">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__Negot__5AEE82B9" Association="eNegModel.FK__Negotiati__Negot__5AEE82B9">
+            <End Role="Negotiation" EntitySet="Negotiations" />
+            <End Role="NegotiationApplicationStatus" EntitySet="NegotiationApplicationStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__Statu__59063A47" Association="eNegModel.FK__Negotiati__Statu__59063A47">
+            <End Role="NegotiationStatus" EntitySet="NegotiationStatus" />
+            <End Role="Negotiation" EntitySet="Negotiations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Negotiati__UserI__5BE2A6F2" Association="eNegModel.FK__Negotiati__UserI__5BE2A6F2">
+            <End Role="User" EntitySet="Users" />
+            <End Role="NegotiationApplicationStatus" EntitySet="NegotiationApplicationStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__LCID__619B8048" Association="eNegModel.FK__User__LCID__619B8048">
+            <End Role="PreferedLanguage" EntitySet="PreferedLanguages" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profile__UserID__5CD6CB2B" Association="eNegModel.FK__Profile__UserID__5CD6CB2B">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleRight__Right__5DCAEF64" Association="eNegModel.FK__RoleRight__Right__5DCAEF64">
+            <End Role="Right" EntitySet="Rights" />
+            <End Role="RoleRight" EntitySet="RoleRights" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleRight__RoleI__5EBF139D" Association="eNegModel.FK__RoleRight__RoleI__5EBF139D">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RoleRight" EntitySet="RoleRights" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__RoleID__6477ECF3" Association="eNegModel.FK__UserRole__RoleID__6477ECF3">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__SecurityQu__60A75C0F" Association="eNegModel.FK__User__SecurityQu__60A75C0F">
+            <End Role="SecurityQuestion" EntitySet="SecurityQuestions" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRole__UserID__6383C8BA" Association="eNegModel.FK__UserRole__UserID__6383C8BA">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="AccountTypeID" />
+          </Key>
+          <Property Name="AccountTypeID" Type="Guid" Nullable="false" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="TypeDescription" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="eNegModel.FK__User__AccountTyp__5FB337D6" FromRole="AccountType" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ActionType">
+          <Key>
+            <PropertyRef Name="ActionTypeID" />
+          </Key>
+          <Property Name="ActionTypeID" Type="Guid" Nullable="false" />
+          <Property Name="ActionDescription" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Histories" Relationship="eNegModel.FK__History__ActionT__5441852A" FromRole="ActionType" ToRole="History" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationTitle" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="NegotiationApplicationStatus" Relationship="eNegModel.FK__Negotiati__Appli__59FA5E80" FromRole="Application" ToRole="NegotiationApplicationStatus" />
+        </EntityType>
+        <EntityType Name="Attachement">
+          <Key>
+            <PropertyRef Name="AttachementID" />
+          </Key>
+          <Property Name="AttachementID" Type="Guid" Nullable="false" />
+          <Property Name="AttachementName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AttachementContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MessageID" Type="Guid" />
+          <NavigationProperty Name="Message" Relationship="eNegModel.FK__Attacheme__Messa__5070F446" FromRole="Attachement" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="ChannelID" />
+          </Key>
+          <Property Name="ChannelID" Type="Guid" Nullable="false" />
+          <Property Name="ChannelName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ChannelTypeID" Type="Guid" />
+          <NavigationProperty Name="ChannelType" Relationship="eNegModel.FK__Channel__Channel__5165187F" FromRole="Channel" ToRole="ChannelType" />
+          <NavigationProperty Name="Messages" Relationship="eNegModel.FK__Message__Channel__571DF1D5" FromRole="Channel" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="ChannelType">
+          <Key>
+            <PropertyRef Name="ChannelTypeID" />
+          </Key>
+          <Property Name="ChannelTypeID" Type="Guid" Nullable="false" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Channels" Relationship="eNegModel.FK__Channel__Channel__5165187F" FromRole="ChannelType" ToRole="Channel" />
+        </EntityType>
+        <EntityType Name="Conversation">
+          <Key>
+            <PropertyRef Name="ConversationID" />
+          </Key>
+          <Property Name="ConversationID" Type="Guid" Nullable="false" />
+          <Property Name="ConversationName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="NegotiationID" Type="Guid" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="Guid" />
+          <Property Name="DeletedOn" Type="DateTime" />
+          <NavigationProperty Name="User" Relationship="eNegModel.FK__Conversat__Delet__534D60F1" FromRole="Conversation" ToRole="User" />
+          <NavigationProperty Name="Negotiation" Relationship="eNegModel.FK__Conversat__Negot__52593CB8" FromRole="Conversation" ToRole="Negotiation" />
+          <NavigationProperty Name="Messages" Relationship="eNegModel.FK__Message__Convers__5629CD9C" FromRole="Conversation" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Guid" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="eNegModel.FK__User__CountryID__628FA481" FromRole="Country" ToRole="User" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="HistoryID" />
+          </Key>
+          <Property Name="HistoryID" Type="Guid" Nullable="false" />
+          <Property Name="OldValue" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NewValue" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ActionTypeID" Type="Guid" Nullable="false" />
+          <Property Name="ActionDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="ActionType" Relationship="eNegModel.FK__History__ActionT__5441852A" FromRole="History" ToRole="ActionType" />
+          <NavigationProperty Name="User" Relationship="eNegModel.FK__History__UserID__5535A963" FromRole="History" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Guid" Nullable="false" />
+          <Property Name="ConversationID" Type="Guid" />
+          <Property Name="MessageContent" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MessageSubject" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="MessageSender" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MessageReceiver" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MessageDate" Type="DateTime" />
+          <Property Name="ChannelID" Type="Guid" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="Guid" />
+          <Property Name="DeletedOn" Type="DateTime" />
+          <NavigationProperty Name="Attachements" Relationship="eNegModel.FK__Attacheme__Messa__5070F446" FromRole="Message" ToRole="Attachement" />
+          <NavigationProperty Name="Channel" Relationship="eNegModel.FK__Message__Channel__571DF1D5" FromRole="Message" ToRole="Channel" />
+          <NavigationProperty Name="Conversation" Relationship="eNegModel.FK__Message__Convers__5629CD9C" FromRole="Message" ToRole="Conversation" />
+          <NavigationProperty Name="User" Relationship="eNegModel.FK__Message__Deleted__5812160E" FromRole="Message" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Negotiation">
+          <Key>
+            <PropertyRef Name="NegotiationID" />
+          </Key>
+          <Property Name="NegotiationID" Type="Guid" Nullable="false" />
+          <Property Name="NegotiationName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="StatusID" Type="Guid" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedDate" Type="DateTime" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Conversations" Relationship="eNegModel.FK__Conversat__Negot__52593CB8" FromRole="Negotiation" ToRole="Conversation" />
+          <NavigationProperty Name="NegotiationApplicationStatus" Relationship="eNegModel.FK__Negotiati__Negot__5AEE82B9" FromRole="Negotiation" ToRole="NegotiationApplicationStatus" />
+          <NavigationProperty Name="NegotiationStatu" Relationship="eNegModel.FK__Negotiati__Statu__59063A47" FromRole="Negotiation" ToRole="NegotiationStatus" />
+        </EntityType>
+        <EntityType Name="NegotiationApplicationStatu">
+          <Key>
+            <PropertyRef Name="NegotiationApplicationStatusID" />
+          </Key>
+          <Property Name="NegotiationApplicationStatusID" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationID" Type="Guid" Nullable="false" />
+          <Property Name="NegotiationID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="eNegModel.FK__Negotiati__Appli__59FA5E80" FromRole="NegotiationApplicationStatus" ToRole="Application" />
+          <NavigationProperty Name="Negotiation" Relationship="eNegModel.FK__Negotiati__Negot__5AEE82B9" FromRole="NegotiationApplicationStatus" ToRole="Negotiation" />
+          <NavigationProperty Name="User" Relationship="eNegModel.FK__Negotiati__UserI__5BE2A6F2" FromRole="NegotiationApplicationStatus" ToRole="User" />
+        </EntityType>
+        <EntityType Name="NegotiationStatu">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Guid" Nullable="false" />
+          <Property Name="StatusDescription" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Negotiations" Relationship="eNegModel.FK__Negotiati__Statu__59063A47" FromRole="NegotiationStatus" ToRole="Negotiation" />
+        </EntityType>
+        <EntityType Name="PreferedLanguage">
+          <Key>
+            <PropertyRef Name="LCID" />
+          </Key>
+          <Property Name="LCID" Type="Int32" Nullable="false" />
+          <Property Name="PreferedLanguage1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="eNegModel.FK__User__LCID__619B8048" FromRole="PreferedLanguage" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ProfileID" />
+          </Key>
+          <Property Name="ProfileID" Type="Guid" Nullable="false" />
+          <Property Name="CurrentTheme" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="Guid" />
+          <NavigationProperty Name="User" Relationship="eNegModel.FK__Profile__UserID__5CD6CB2B" FromRole="Profile" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Right">
+          <Key>
+            <PropertyRef Name="RightID" />
+          </Key>
+          <Property Name="RightID" Type="Guid" Nullable="false" />
+          <Property Name="RightName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RightDescription" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RoleRights" Relationship="eNegModel.FK__RoleRight__Right__5DCAEF64" FromRole="Right" ToRole="RoleRight" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="RoleDescription" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RoleRights" Relationship="eNegModel.FK__RoleRight__RoleI__5EBF139D" FromRole="Role" ToRole="RoleRight" />
+          <NavigationProperty Name="UserRoles" Relationship="eNegModel.FK__UserRole__RoleID__6477ECF3" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="RoleRight">
+          <Key>
+            <PropertyRef Name="RoleRightID" />
+          </Key>
+          <Property Name="RoleRightID" Type="Guid" Nullable="false" />
+          <Property Name="RightID" Type="Guid" />
+          <Property Name="RoleID" Type="Guid" />
+          <NavigationProperty Name="Right" Relationship="eNegModel.FK__RoleRight__Right__5DCAEF64" FromRole="RoleRight" ToRole="Right" />
+          <NavigationProperty Name="Role" Relationship="eNegModel.FK__RoleRight__RoleI__5EBF139D" FromRole="RoleRight" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="SecurityQuestionID" />
+          </Key>
+          <Property Name="SecurityQuestionID" Type="Guid" Nullable="false" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="eNegModel.FK__User__SecurityQu__60A75C0F" FromRole="SecurityQuestion" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="LockedDate" Type="DateTime" />
+          <Property Name="LastLoginDate" Type="DateTime" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="AccountTypeID" Type="Guid" Nullable="false" />
+          <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SecurityQuestionID" Type="Guid" Nullable="false" />
+          <Property Name="SecurityAnswer" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Online" Type="Boolean" Nullable="false" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LCID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CountryID" Type="Guid" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="AccountType" Relationship="eNegModel.FK__User__AccountTyp__5FB337D6" FromRole="User" ToRole="AccountType" />
+          <NavigationProperty Name="Conversations" Relationship="eNegModel.FK__Conversat__Delet__534D60F1" FromRole="User" ToRole="Conversation" />
+          <NavigationProperty Name="Country" Relationship="eNegModel.FK__User__CountryID__628FA481" FromRole="User" ToRole="Country" />
+          <NavigationProperty Name="Histories" Relationship="eNegModel.FK__History__UserID__5535A963" FromRole="User" ToRole="History" />
+          <NavigationProperty Name="Messages" Relationship="eNegModel.FK__Message__Deleted__5812160E" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="NegotiationApplicationStatus" Relationship="eNegModel.FK__Negotiati__UserI__5BE2A6F2" FromRole="User" ToRole="NegotiationApplicationStatus" />
+          <NavigationProperty Name="PreferedLanguage" Relationship="eNegModel.FK__User__LCID__619B8048" FromRole="User" ToRole="PreferedLanguage" />
+          <NavigationProperty Name="Profiles" Relationship="eNegModel.FK__Profile__UserID__5CD6CB2B" FromRole="User" ToRole="Profile" />
+          <NavigationProperty Name="SecurityQuestion" Relationship="eNegModel.FK__User__SecurityQu__60A75C0F" FromRole="User" ToRole="SecurityQuestion" />
+          <NavigationProperty Name="UserRoles" Relationship="eNegModel.FK__UserRole__UserID__6383C8BA" FromRole="User" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserRoleID" />
+          </Key>
+          <Property Name="UserRoleID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Guid" />
+          <Property Name="RoleID" Type="Guid" />
+          <NavigationProperty Name="Role" Relationship="eNegModel.FK__UserRole__RoleID__6477ECF3" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="eNegModel.FK__UserRole__UserID__6383C8BA" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__User__AccountTyp__5FB337D6">
+          <End Role="AccountType" Type="eNegModel.AccountType" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="AccountTypeID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="AccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__ActionT__5441852A">
+          <End Role="ActionType" Type="eNegModel.ActionType" Multiplicity="1" />
+          <End Role="History" Type="eNegModel.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionType">
+              <PropertyRef Name="ActionTypeID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="ActionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__Appli__59FA5E80">
+          <End Role="Application" Type="eNegModel.Application" Multiplicity="1" />
+          <End Role="NegotiationApplicationStatus" Type="eNegModel.NegotiationApplicationStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationID" />
+            </Principal>
+            <Dependent Role="NegotiationApplicationStatus">
+              <PropertyRef Name="ApplicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attacheme__Messa__5070F446">
+          <End Role="Message" Type="eNegModel.Message" Multiplicity="0..1" />
+          <End Role="Attachement" Type="eNegModel.Attachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="MessageID" />
+            </Principal>
+            <Dependent Role="Attachement">
+              <PropertyRef Name="MessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Channel__Channel__5165187F">
+          <End Role="ChannelType" Type="eNegModel.ChannelType" Multiplicity="0..1" />
+          <End Role="Channel" Type="eNegModel.Channel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChannelType">
+              <PropertyRef Name="ChannelTypeID" />
+            </Principal>
+            <Dependent Role="Channel">
+              <PropertyRef Name="ChannelTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Channel__571DF1D5">
+          <End Role="Channel" Type="eNegModel.Channel" Multiplicity="1" />
+          <End Role="Message" Type="eNegModel.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Channel">
+              <PropertyRef Name="ChannelID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ChannelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__Delet__534D60F1">
+          <End Role="User" Type="eNegModel.User" Multiplicity="0..1" />
+          <End Role="Conversation" Type="eNegModel.Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="DeletedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversat__Negot__52593CB8">
+          <End Role="Negotiation" Type="eNegModel.Negotiation" Multiplicity="1" />
+          <End Role="Conversation" Type="eNegModel.Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Negotiation">
+              <PropertyRef Name="NegotiationID" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="NegotiationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Convers__5629CD9C">
+          <End Role="Conversation" Type="eNegModel.Conversation" Multiplicity="0..1" />
+          <End Role="Message" Type="eNegModel.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversation">
+              <PropertyRef Name="ConversationID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__CountryID__628FA481">
+          <End Role="Country" Type="eNegModel.Country" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__UserID__5535A963">
+          <End Role="User" Type="eNegModel.User" Multiplicity="1" />
+          <End Role="History" Type="eNegModel.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Message__Deleted__5812160E">
+          <End Role="User" Type="eNegModel.User" Multiplicity="0..1" />
+          <End Role="Message" Type="eNegModel.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="DeletedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__Negot__5AEE82B9">
+          <End Role="Negotiation" Type="eNegModel.Negotiation" Multiplicity="1" />
+          <End Role="NegotiationApplicationStatus" Type="eNegModel.NegotiationApplicationStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Negotiation">
+              <PropertyRef Name="NegotiationID" />
+            </Principal>
+            <Dependent Role="NegotiationApplicationStatus">
+              <PropertyRef Name="NegotiationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__Statu__59063A47">
+          <End Role="NegotiationStatus" Type="eNegModel.NegotiationStatu" Multiplicity="0..1" />
+          <End Role="Negotiation" Type="eNegModel.Negotiation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NegotiationStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Negotiation">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Negotiati__UserI__5BE2A6F2">
+          <End Role="User" Type="eNegModel.User" Multiplicity="1" />
+          <End Role="NegotiationApplicationStatus" Type="eNegModel.NegotiationApplicationStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="NegotiationApplicationStatus">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__LCID__619B8048">
+          <End Role="PreferedLanguage" Type="eNegModel.PreferedLanguage" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PreferedLanguage">
+              <PropertyRef Name="LCID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="LCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profile__UserID__5CD6CB2B">
+          <End Role="User" Type="eNegModel.User" Multiplicity="0..1" />
+          <End Role="Profile" Type="eNegModel.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleRight__Right__5DCAEF64">
+          <End Role="Right" Type="eNegModel.Right" Multiplicity="0..1" />
+          <End Role="RoleRight" Type="eNegModel.RoleRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Right">
+              <PropertyRef Name="RightID" />
+            </Principal>
+            <Dependent Role="RoleRight">
+              <PropertyRef Name="RightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleRight__RoleI__5EBF139D">
+          <End Role="Role" Type="eNegModel.Role" Multiplicity="0..1" />
+          <End Role="RoleRight" Type="eNegModel.RoleRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="RoleRight">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__RoleID__6477ECF3">
+          <End Role="Role" Type="eNegModel.Role" Multiplicity="0..1" />
+          <End Role="UserRole" Type="eNegModel.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__SecurityQu__60A75C0F">
+          <End Role="SecurityQuestion" Type="eNegModel.SecurityQuestion" Multiplicity="1" />
+          <End Role="User" Type="eNegModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecurityQuestion">
+              <PropertyRef Name="SecurityQuestionID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="SecurityQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRole__UserID__6383C8BA">
+          <End Role="User" Type="eNegModel.User" Multiplicity="0..1" />
+          <End Role="UserRole" Type="eNegModel.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eNegModelStoreContainer" CdmEntityContainer="eNegEntities">
+          <EntitySetMapping Name="AccountTypes"><EntityTypeMapping TypeName="eNegModel.AccountType"><MappingFragment StoreEntitySet="AccountType">
+            <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+            <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+            <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ActionTypes"><EntityTypeMapping TypeName="eNegModel.ActionType"><MappingFragment StoreEntitySet="ActionType">
+            <ScalarProperty Name="ActionTypeID" ColumnName="ActionTypeID" />
+            <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Applications"><EntityTypeMapping TypeName="eNegModel.Application"><MappingFragment StoreEntitySet="Application">
+            <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+            <ScalarProperty Name="ApplicationTitle" ColumnName="ApplicationTitle" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Attachements"><EntityTypeMapping TypeName="eNegModel.Attachement"><MappingFragment StoreEntitySet="Attachement">
+            <ScalarProperty Name="AttachementID" ColumnName="AttachementID" />
+            <ScalarProperty Name="AttachementName" ColumnName="AttachementName" />
+            <ScalarProperty Name="AttachementContent" ColumnName="AttachementContent" />
+            <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Channels"><EntityTypeMapping TypeName="eNegModel.Channel"><MappingFragment StoreEntitySet="Channel">
+            <ScalarProperty Name="ChannelID" ColumnName="ChannelID" />
+            <ScalarProperty Name="ChannelName" ColumnName="ChannelName" />
+            <ScalarProperty Name="ChannelTypeID" ColumnName="ChannelTypeID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ChannelTypes"><EntityTypeMapping TypeName="eNegModel.ChannelType"><MappingFragment StoreEntitySet="ChannelType">
+            <ScalarProperty Name="ChannelTypeID" ColumnName="ChannelTypeID" />
+            <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Conversations"><EntityTypeMapping TypeName="eNegModel.Conversation"><MappingFragment StoreEntitySet="Conversation">
+            <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+            <ScalarProperty Name="ConversationName" ColumnName="ConversationName" />
+            <ScalarProperty Name="NegotiationID" ColumnName="NegotiationID" />
+            <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+            <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+            <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Countries"><EntityTypeMapping TypeName="eNegModel.Country"><MappingFragment StoreEntitySet="Country">
+            <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+            <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Histories"><EntityTypeMapping TypeName="eNegModel.History"><MappingFragment StoreEntitySet="History">
+            <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+            <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+            <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+            <ScalarProperty Name="TableName" ColumnName="TableName" />
+            <ScalarProperty Name="ActionTypeID" ColumnName="ActionTypeID" />
+            <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Messages"><EntityTypeMapping TypeName="eNegModel.Message"><MappingFragment StoreEntitySet="Message">
+            <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+            <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+            <ScalarProperty Name="MessageContent" ColumnName="MessageContent" />
+            <ScalarProperty Name="MessageSubject" ColumnName="MessageSubject" />
+            <ScalarProperty Name="MessageSender" ColumnName="MessageSender" />
+            <ScalarProperty Name="MessageReceiver" ColumnName="MessageReceiver" />
+            <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+            <ScalarProperty Name="ChannelID" ColumnName="ChannelID" />
+            <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+            <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+            <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Negotiations"><EntityTypeMapping TypeName="eNegModel.Negotiation"><MappingFragment StoreEntitySet="Negotiation">
+            <ScalarProperty Name="NegotiationID" ColumnName="NegotiationID" />
+            <ScalarProperty Name="NegotiationName" ColumnName="NegotiationName" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+            <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+            <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NegotiationApplicationStatus"><EntityTypeMapping TypeName="eNegModel.NegotiationApplicationStatu"><MappingFragment StoreEntitySet="NegotiationApplicationStatus">
+            <ScalarProperty Name="NegotiationApplicationStatusID" ColumnName="NegotiationApplicationStatusID" />
+            <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+            <ScalarProperty Name="NegotiationID" ColumnName="NegotiationID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NegotiationStatus"><EntityTypeMapping TypeName="eNegModel.NegotiationStatu"><MappingFragment StoreEntitySet="NegotiationStatus">
+            <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+            <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PreferedLanguages"><EntityTypeMapping TypeName="eNegModel.PreferedLanguage"><MappingFragment StoreEntitySet="PreferedLanguage">
+            <ScalarProperty Name="LCID" ColumnName="LCID" />
+            <ScalarProperty Name="PreferedLanguage1" ColumnName="PreferedLanguage" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Profiles"><EntityTypeMapping TypeName="eNegModel.Profile"><MappingFragment StoreEntitySet="Profile">
+            <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+            <ScalarProperty Name="CurrentTheme" ColumnName="CurrentTheme" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Rights"><EntityTypeMapping TypeName="eNegModel.Right"><MappingFragment StoreEntitySet="Right">
+            <ScalarProperty Name="RightID" ColumnName="RightID" />
+            <ScalarProperty Name="RightName" ColumnName="RightName" />
+            <ScalarProperty Name="RightDescription" ColumnName="RightDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Roles"><EntityTypeMapping TypeName="eNegModel.Role"><MappingFragment StoreEntitySet="Role">
+            <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+            <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+            <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RoleRights"><EntityTypeMapping TypeName="eNegModel.RoleRight"><MappingFragment StoreEntitySet="RoleRight">
+            <ScalarProperty Name="RoleRightID" ColumnName="RoleRightID" />
+            <ScalarProperty Name="RightID" ColumnName="RightID" />
+            <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SecurityQuestions"><EntityTypeMapping TypeName="eNegModel.SecurityQuestion"><MappingFragment StoreEntitySet="SecurityQuestion">
+            <ScalarProperty Name="SecurityQuestionID" ColumnName="SecurityQuestionID" />
+            <ScalarProperty Name="Question" ColumnName="Question" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="eNegModel.User"><MappingFragment StoreEntitySet="User">
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="Locked" ColumnName="Locked" />
+            <ScalarProperty Name="LockedDate" ColumnName="LockedDate" />
+            <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
+            <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+            <ScalarProperty Name="SecurityQuestionID" ColumnName="SecurityQuestionID" />
+            <ScalarProperty Name="SecurityAnswer" ColumnName="SecurityAnswer" />
+            <ScalarProperty Name="Online" ColumnName="Online" />
+            <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+            <ScalarProperty Name="LCID" ColumnName="LCID" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserRoles"><EntityTypeMapping TypeName="eNegModel.UserRole"><MappingFragment StoreEntitySet="UserRole">
+            <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="eNeg">
+        <EntityTypeShape EntityType="eNegModel.AccountType" Width="1.5" PointX="0.75" PointY="8.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.ActionType" Width="1.5" PointX="6" PointY="1.875" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Application" Width="1.5" PointX="3" PointY="3" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Attachement" Width="1.5" PointX="12.75" PointY="8.625" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Channel" Width="1.5" PointX="8.25" PointY="15.625" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.ChannelType" Width="1.5" PointX="6" PointY="15.875" Height="1.5956835937500014" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Conversation" Width="1.5" PointX="5.25" PointY="8.25" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Country" Width="1.5" PointX="0.75" PointY="5.5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.History" Width="1.5" PointX="8.25" PointY="8.25" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Message" Width="1.5" PointX="10.5" PointY="7.625" Height="3.9033007812500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Negotiation" Width="1.5" PointX="3" PointY="17.375" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.NegotiationApplicationStatu" Width="1.5" PointX="5.25" PointY="4.375" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.NegotiationStatu" Width="1.5" PointX="0.75" PointY="18" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.PreferedLanguage" Width="1.5" PointX="0.75" PointY="11.875" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Profile" Width="1.5" PointX="5.25" PointY="19" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Right" Width="1.5" PointX="3" PointY="24.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.Role" Width="1.5" PointX="3" PointY="21.625" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.RoleRight" Width="1.5" PointX="5.25" PointY="21.625" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.SecurityQuestion" Width="1.5" PointX="0.75" PointY="14.125" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.User" Width="1.5" PointX="3" PointY="6" Height="7.1724251302083282" IsExpanded="true" />
+        <EntityTypeShape EntityType="eNegModel.UserRole" Width="1.5" PointX="5.25" PointY="12.625" Height="1.9802864583333388" IsExpanded="true" />
+        <AssociationConnector Association="eNegModel.FK__User__AccountTyp__5FB337D6" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.6439925130208337" />
+          <ConnectorPoint PointX="3" PointY="9.6439925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__History__ActionT__5441852A" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="2.672841796875" />
+          <ConnectorPoint PointX="9" PointY="2.672841796875" />
+          <ConnectorPoint PointX="9" PointY="8.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Negotiati__Appli__59FA5E80" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="3.9540912968749997" />
+          <ConnectorPoint PointX="5.59375" PointY="3.9540912968749997" />
+          <ConnectorPoint PointX="5.59375" PointY="4.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Attacheme__Messa__5070F446" ManuallyRouted="false">
+          <ConnectorPoint PointX="12" PointY="9.6151432291666659" />
+          <ConnectorPoint PointX="12.75" PointY="9.6151432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Channel__Channel__5165187F" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="16.672841796875" />
+          <ConnectorPoint PointX="8.25" PointY="16.672841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Message__Channel__571DF1D5" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="16.615143229166666" />
+          <ConnectorPoint PointX="11.25" PointY="16.615143229166666" />
+          <ConnectorPoint PointX="11.25" PointY="11.528300781250003" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Conversat__Delet__534D60F1" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="9.62474609375" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.62474609375" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.62474609375" />
+          <ConnectorPoint PointX="5.25" PointY="9.62474609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Conversat__Negot__52593CB8" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="17.432691307692306" />
+          <ConnectorPoint PointX="4.8785744349011209" PointY="17.054116872791184" />
+          <ConnectorPoint PointX="4.9964255650988791" PointY="16.936265742593427" />
+          <ConnectorPoint PointX="5.03125" PointY="16.901441307692306" />
+          <ConnectorPoint PointX="5.03125" PointY="10.343371140625" />
+          <ConnectorPoint PointX="5.25" PointY="10.343371140625" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Message__Convers__5629CD9C" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="10.9994921875" />
+          <ConnectorPoint PointX="6" PointY="11.263896984375002" />
+          <ConnectorPoint PointX="8.9166666666666661" PointY="11.263896984375002" />
+          <ConnectorPoint PointX="9.0833333333333339" PointY="11.263896984375002" />
+          <ConnectorPoint PointX="10.5" PointY="11.263896984375002" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__User__CountryID__628FA481" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.547841796875" />
+          <ConnectorPoint PointX="3" PointY="6.547841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__History__UserID__5535A963" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.913198492187501" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="11.9131984921875" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="11.913198492187501" />
+          <ConnectorPoint PointX="9" PointY="11.913198492187501" />
+          <ConnectorPoint PointX="9" PointY="10.9994921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Message__Deleted__5812160E" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.90625" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="7.9062499999999991" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="7.90625" />
+          <ConnectorPoint PointX="8.9166666666666661" PointY="7.9062499999999991" />
+          <ConnectorPoint PointX="9.0833333333333339" PointY="7.90625" />
+          <ConnectorPoint PointX="10.5" PointY="7.90625" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Negotiati__Negot__5AEE82B9" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.47576923076923" PointY="17.375" />
+          <ConnectorPoint PointX="4.875" PointY="16.975769230769231" />
+          <ConnectorPoint PointX="4.875" PointY="5.6535953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="5.6535953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Negotiati__Statu__59063A47" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="18.797841796875" />
+          <ConnectorPoint PointX="3" PointY="18.797841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Negotiati__UserI__5BE2A6F2" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.4660953776041659" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="6.466095377604165" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="6.4660953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="6.4660953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__User__LCID__619B8048" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="12.523712565104164" />
+          <ConnectorPoint PointX="3" PointY="12.523712565104164" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__Profile__UserID__5CD6CB2B" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="13.110116437900636" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="13.426190872801756" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="13.544042002999515" />
+          <ConnectorPoint PointX="4.9375" PointY="13.547616437900636" />
+          <ConnectorPoint PointX="4.9375" PointY="19.893992513020834" />
+          <ConnectorPoint PointX="5.010416666666667" PointY="19.893992513020834" />
+          <ConnectorPoint PointX="5.177083333333333" PointY="19.893992513020834" />
+          <ConnectorPoint PointX="5.25" PointY="19.893992513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__RoleRight__Right__5DCAEF64" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="25.643992513020834" />
+          <ConnectorPoint PointX="6" PointY="25.643992513020834" />
+          <ConnectorPoint PointX="6" PointY="23.605286458333339" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__RoleRight__RoleI__5EBF139D" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="22.615143229166669" />
+          <ConnectorPoint PointX="5.25" PointY="22.615143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__UserRole__RoleID__6477ECF3" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="21.657306692307689" />
+          <ConnectorPoint PointX="5.09375" PointY="21.063556692307689" />
+          <ConnectorPoint PointX="5.09375" PointY="13.615143229166669" />
+          <ConnectorPoint PointX="5.25" PointY="13.615143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__User__SecurityQu__60A75C0F" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="14.922841796875002" />
+          <ConnectorPoint PointX="3.75" PointY="14.922841796875002" />
+          <ConnectorPoint PointX="3.75" PointY="13.172425130208328" />
+        </AssociationConnector>
+        <AssociationConnector Association="eNegModel.FK__UserRole__UserID__6383C8BA" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="12.836305718950325" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="12.836305718950323" />
+          <ConnectorPoint PointX="5.114583333333333" PointY="12.836305718950325" />
+          <ConnectorPoint PointX="5.25" PointY="12.836305718950325" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

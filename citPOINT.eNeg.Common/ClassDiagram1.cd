@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="citPOINT.eNeg.Common.ControlTypes">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>ModelHelpers\ControlTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.eNeg.Common.WebContext" Collapsed="true">
+    <Position X="1.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelHelpers\WebContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.eNeg.Common.eNegConstant" Collapsed="true">
+    <Position X="2" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ModelHelpers\eNegConstant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.eNeg.Common.ViewModelTypes">
+    <Position X="4.75" Y="3.75" Width="2.5" />
+    <Members>
+      <Field Name="ConfirmMailViewModel" Hidden="true" />
+      <Field Name="LoginFormViewModel" Hidden="true" />
+      <Field Name="MainPageViewModel" Hidden="true" />
+      <Field Name="ManageUserOrganizationViewModel" Hidden="true" />
+      <Field Name="ManageUsersViewModel" Hidden="true" />
+      <Field Name="NegotiationViewModel" Hidden="true" />
+      <Field Name="PublishedProfileDetailsViewModel" Hidden="true" />
+      <Field Name="UpdateUserProfileViewModel" Hidden="true" />
+      <Field Name="UserRegisterViewModel" Hidden="true" />
+      <Field Name="UserRequestResetViewModel" Hidden="true" />
+      <Field Name="UserResetViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAIAIAAEAAAAEAAAgkAAAAAACJE=</HashCode>
+      <FileName>ModelHelpers\ViewModelTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.eNeg.Common.ViewTypes">
+    <Position X="4.75" Y="2.25" Width="2.5" />
+    <Members>
+      <Field Name="AcceptToBeOwner_RemoveOriginalView" Hidden="true" />
+      <Field Name="AcceptToBeOwnerView" Hidden="true" />
+      <Field Name="AddMultiReceivers" Hidden="true" />
+      <Field Name="AddonView" Hidden="true" />
+      <Field Name="ClosePopupView" Hidden="true" />
+      <Field Name="ConfirmMailView" Hidden="true" />
+      <Field Name="ConversationDetailsView" Hidden="true" />
+      <Field Name="ForgetLoginView" Hidden="true" />
+      <Field Name="FullRegisterView" Hidden="true" />
+      <Field Name="LoadUser" Hidden="true" />
+      <Field Name="LoginView" Hidden="true" />
+      <Field Name="MainNegotiationView" Hidden="true" />
+      <Field Name="MessagesInAddon" Hidden="true" />
+      <Field Name="MyProfile" Hidden="true" />
+      <Field Name="NavigateForgetLoginView" Hidden="true" />
+      <Field Name="NavigateFullRegisterView" Hidden="true" />
+      <Field Name="NavigateQuickRegisterView" Hidden="true" />
+      <Field Name="NegotiationsView" Hidden="true" />
+      <Field Name="ProfileDetails" Hidden="true" />
+      <Field Name="PublishedProfiles" Hidden="true" />
+      <Field Name="QuickRegisterView" Hidden="true" />
+      <Field Name="RefuseToBeOwnerView" Hidden="true" />
+      <Field Name="RemoveMultiReceivers" Hidden="true" />
+      <Field Name="ResetRequestView" Hidden="true" />
+      <Field Name="ResetView" Hidden="true" />
+      <Field Name="UserDetails" Hidden="true" />
+      <Field Name="UsersOverview" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>B0QAAAAIBAQBQgAAAIABBAEIACAAAACAAA5EAABEEAg=</HashCode>
+      <FileName>ModelHelpers\ViewTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.eNeg.Common.AppConfigurations">
+    <Position X="4.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Property Name="ActionTypeParameter" Hidden="true" />
+      <Property Name="AddonIsPostBack" Hidden="true" />
+      <Property Name="CanUserDoOperation" Hidden="true" />
+      <Property Name="ConversationIDParameter" Hidden="true" />
+      <Property Name="CurrentLoginUser" Hidden="true" />
+      <Property Name="eNegApps" Hidden="true" />
+      <Property Name="HostBaseAddress" Hidden="true" />
+      <Property Name="IsAddon" Hidden="true" />
+      <Property Name="IsCheckOnNegotiationRepeatDone" Hidden="true" />
+      <Property Name="IsOffLineMode" Hidden="true" />
+      <Property Name="IsRunningOutOfBrowser" Hidden="true" />
+      <Property Name="IsStartNewNegotiation" Hidden="true" />
+      <Property Name="IsStatusParamterIsOpen" Hidden="true" />
+      <Field Name="mCanUserDoOperation" Hidden="true" />
+      <Property Name="MessageIDParameter" Hidden="true" />
+      <Property Name="NegotiationIDParameter" Hidden="true" />
+      <Property Name="OpType" Hidden="true" />
+      <Property Name="ProfileUserID" Hidden="true" />
+      <Property Name="StatusParameter" Hidden="true" />
+      <Property Name="TargetApp" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EEAAQIAAAAAAEUAAEAASAAAAAAAAAAhAARBQAAEAQJA=</HashCode>
+      <FileName>Helpers\Utilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="citPOINT.eNeg.Common.Serialization" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Utilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="citPOINT.eNeg.Common.IManageOrganizationModel">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAoAAAAIgAIAEAAAAAAAEBAgAAAABAAAEEJAAAEAAA=</HashCode>
+      <FileName>Models\IManageOrganizationModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

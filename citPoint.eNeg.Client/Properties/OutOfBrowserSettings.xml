@@ -1,0 +1,15 @@
+<OutOfBrowserSettings ShortName="eNeg Negotiation Addon" EnableGPUAcceleration="True" ShowInstallMenuItem="False">
+  <OutOfBrowserSettings.Blurb>citPOINT.eNeg.Client Application on your desktop; at home, at work or on the go.</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="Add-on" Height="700" Width="800" Top="300" Left="500" WindowStartupLocation="CenterScreen" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.SecuritySettings>
+    <SecuritySettings ElevatedPermissions="NotRequired" />
+  </OutOfBrowserSettings.SecuritySettings>
+  <OutOfBrowserSettings.Icons>
+    <Icon Size="16,16">icons/16x16.png</Icon>
+    <Icon Size="32,32">icons/32x32.png</Icon>
+    <Icon Size="48,48">icons/48x48.png</Icon>
+    <Icon Size="128,128">icons/128x128.png</Icon>
+  </OutOfBrowserSettings.Icons>
+</OutOfBrowserSettings>

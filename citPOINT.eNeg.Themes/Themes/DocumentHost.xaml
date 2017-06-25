@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+		xmlns:dock="clr-namespace:Telerik.Windows.Controls.Docking;assembly=Telerik.Windows.Controls.Docking"
+		xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls">
+
+	<!--<telerik:ResourceDictionary.MergedDictionaries>
+		<telerik:ResourceDictionary Keys=""
+				Source="/Telerik.Windows.Controls.Docking;component/Themes/Brushes.xaml" />
+	</telerik:ResourceDictionary.MergedDictionaries>-->
+
+	<?BODY BEGIN?>
+	<SolidColorBrush x:Key="DocumentHostBackground" Color="#ABABAB" />
+	
+	<!--DocumentHost Style-->
+	<Style TargetType="dock:DocumentHost">
+		<Setter Property="Background" Value="{StaticResource DocumentHostBackground}" />
+		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		<Setter Property="VerticalContentAlignment" Value="Stretch" />
+		<Setter Property="MinWidth" Value="25" />
+		<Setter Property="MinHeight" Value="25" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="dock:DocumentHost">
+					<Border Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							Padding="{TemplateBinding Padding}">
+						<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+								Content="{TemplateBinding Content}"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<?BODY END?>
+</ResourceDictionary>

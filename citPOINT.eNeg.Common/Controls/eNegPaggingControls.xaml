@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Common.eNegPaggingControls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="25"
+             d:DesignWidth="224">
+
+    <StackPanel HorizontalAlignment="Center"
+                Orientation="Horizontal">
+   
+
+        <!-- 
+        Move Next Button
+        -->
+        <Button Name="uxcmdFirts"
+                Width="20"
+                Height="20"
+                Margin="1,0,0,0"
+                CommandParameter="FIRST"
+                Click="uxcmd_Click">
+            <Button.Content>
+                <Image Source="/citPOINT.eNeg.Common;component/Images/MoveFirst.png"
+                       Stretch="Fill"
+                        />
+            </Button.Content>
+        </Button>
+
+        <!-- 
+        Move Next Button
+        -->
+        <Button Name="uxcmdPrev"
+                Width="20"
+                Height="20"
+                Margin="1,0,0,0"
+                CommandParameter="PREV"
+                Click="uxcmd_Click">
+            <Button.Content>
+                <Image Source="/citPOINT.eNeg.Common;component/Images/MovePrevious.png"
+                       Stretch="Fill" />
+            </Button.Content>
+        </Button>
+        <Grid  MinWidth="80">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="1" x:Name="uxPnlPagesNumbers"
+                    Orientation="Horizontal" 
+                    VerticalAlignment="Center"/>
+</Grid>
+        <!-- 
+        Move Next Button
+        -->
+        <Button Name="uxcmdNext"
+                Width="20"
+                Height="20"
+                Margin="1,0,0,0"
+                CommandParameter="NEXT"
+                Click="uxcmd_Click">
+            <Button.Content>
+                <Image Source="/citPOINT.eNeg.Common;component/Images/MoveNext.png"
+                       Stretch="Fill" />
+            </Button.Content>
+        </Button>
+        
+        <!-- 
+        Move Last Button
+        -->
+        <Button Name="uxcmdLast"
+                Width="20"
+                Height="20"
+                Margin="1,0,0,0"
+                CommandParameter="LAST"
+                Click="uxcmd_Click">
+            <Button.Content>
+                <Image Source="/citPOINT.eNeg.Common;component/Images/MoveLast.png"
+                       Stretch="Fill" />
+            </Button.Content>
+
+        </Button>
+       
+    </StackPanel>
+
+</UserControl>

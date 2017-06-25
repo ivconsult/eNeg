@@ -1,0 +1,23 @@
+﻿<configuration>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IClogService"
+                 maxBufferSize="65536"
+                 maxReceivedMessageSize="65536">
+          <security mode="None" />
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+
+      <!-- This requires changing when deployed to a web server. -->
+
+      <endpoint address="http://localhost:9000/ClogService.svc"
+                binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IClogService"
+                contract="DanielVaughan.Logging.ClientLogging.IClogService"
+                name="BasicHttpBinding_IClogService" />
+    </client>
+  </system.serviceModel>
+</configuration>

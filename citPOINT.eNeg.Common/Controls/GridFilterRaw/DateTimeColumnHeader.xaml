@@ -1,0 +1,26 @@
+﻿<local:ColumnFilterCell x:Class="citPOINT.eNeg.Common.DateTimeColumnHeader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:telerik="clr-namespace:Telerik.Windows.Controls.DragDrop;assembly=Telerik.Windows.Controls"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+	xmlns:telerikNavigation="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Navigation"
+	xmlns:local="clr-namespace:citPOINT.eNeg.Common"
+                        IsFilterActive="True">
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <telerikInput:RadDatePicker x:Name="radDatePicker" 
+                                        Grid.Column="0" 
+                                        SelectedDate="{Binding FilterDescriptor.Value, Mode=TwoWay}"
+                                        DateTimeWatermarkContent="Select Date"/>
+            <ContentControl Grid.Column="1" Content="{Binding FilterVisibility}">
+                <telerikNavigation:RadContextMenu.ContextMenu>
+                    <telerikNavigation:RadContextMenu ItemsSource="{Binding FilterOperators}" EventName="MouseLeftButtonUp" />
+                </telerikNavigation:RadContextMenu.ContextMenu>
+            </ContentControl>
+        </Grid>
+    </Border>
+</local:ColumnFilterCell>

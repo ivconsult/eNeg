@@ -1,0 +1,207 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.ManageOrganizationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:common="clr-namespace:citPOINT.eNeg.Common;assembly=citPOINT.eNeg.Common"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:my="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.SL4"
+             mc:Ignorable="d"
+             d:DesignHeight="400"
+             d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <common:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <common:NotBooleanToVisibilityConverter x:Key="notBooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10"
+                    Orientation="Horizontal">
+            <TextBlock Text="Organization Name :"
+                       FontWeight="Bold"
+                       FontSize="12" />
+            <TextBlock Text="{Binding CurrentOrganization.OrganizationName,FallbackValue=..}"
+                       FontWeight="Bold"
+                       Margin="5,0"
+                       FontSize="12"
+                       Foreground="SteelBlue" />
+        </StackPanel>
+
+
+        <common:eNegMessageControl HorizontalAlignment="Center"
+                                   MessageText="Manage finished Success."
+                                   Name="uxSPSucessMessage"
+                                   Opacity="1"
+                                   Visibility="Collapsed" />
+
+
+        <common:eNegMessageControl HorizontalAlignment="Left"
+                                   Margin="5,0"
+                                   MessageText="You will choose another owner for this organization and you will leave this organization."
+                                   Name="uxSPSucessMessage2"
+                                   Opacity="1"
+                                   MessageType="Warning"
+                                   Visibility="{Binding IsForChooseAnotherOwner,Converter={StaticResource booleanToVisibilityConverter}}"
+                                   Grid.Row="1"
+                                   Foreground="Brown" />
+
+
+        <telerik:RadGridView Grid.Row="3"
+                             AutoGenerateColumns="False"
+                             GridLinesVisibility="Horizontal"
+                             IsFilteringAllowed="False"
+                             IsReadOnly="True"
+                             ItemsSource="{Binding OrganizationMembersStatus}"
+                             Margin="4"
+                             Name="uxgrdOrganizations"
+                             ReorderColumnsMode="DropIndicator"
+                             ScrollMode="Deferred"
+                             ShowGroupPanel="False"
+                             ShowInsertRow="False"
+                             ShowGroupFooters="False"
+                             ShowColumnHeaders="True"
+                             ShowColumnFooters="False"
+                             RowIndicatorVisibility="Collapsed"
+                             Visibility="{Binding IsUsersSourceEmpty,Converter={StaticResource notBooleanToVisibilityConverter}}">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding User.FirstName}"
+                                            Header="Fisrt Name"
+                                            IsFilterable="False"
+                                            IsGroupable="False"
+                                            Width="Auto"
+                                            MinWidth="150" />
+
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding User.LastName}"
+                                            Header="Last Name"
+                                            IsFilterable="False"
+                                            IsGroupable="False"
+                                            Width="Auto"
+                                            MinWidth="150" />
+
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding RoleName}"
+                                            Header="Role"
+                                            IsFilterable="False"
+                                            IsGroupable="False"
+                                            Width="Auto"
+                                            MinWidth="120" />
+
+                <telerik:GridViewDataColumn Header="Member"
+                                            IsSortable="False"
+                                            IsReorderable="False"
+                                            IsResizable="False"
+                                            Width="Auto">
+
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="4,0">
+                                <CheckBox VerticalAlignment="Top"
+                                          HorizontalAlignment="Center"
+                                          x:Name="uxchkIsMember"
+                                          Content=""
+                                          IsChecked="{Binding IsMember,Mode=TwoWay}"
+                                          Visibility="{Binding CanChangeMemberStatus,Converter={StaticResource booleanToVisibilityConverter}}"
+                                          Tag="{Binding}" />
+                                <Image Source="/citPOINT.eNeg.Client;component/Images/check-mark-th.png"
+                                       Visibility="{Binding UserHasGetStatus,Converter={StaticResource booleanToVisibilityConverter}}"
+                                       Stretch="Uniform"
+                                       Width="20"
+                                       Height="20"
+                                       ToolTipService.ToolTip="This person is a member, to cancel his membership click 'Remove' link" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn Header="Owner"
+                                            IsSortable="False"
+                                            IsReorderable="False"
+                                            IsResizable="False"
+                                            Width="Auto">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="4,0">
+                                <CheckBox VerticalAlignment="Top"
+                                          HorizontalAlignment="Center"
+                                          x:Name="uxchkIsOwner"
+                                          Content=""
+                                          IsChecked="{Binding IsOwner,Mode=TwoWay}"
+                                          Visibility="{Binding CanUserOwnOrganization,Converter={StaticResource booleanToVisibilityConverter}}"
+                                          Tag="{Binding}" />
+                                <Image Source="/citPOINT.eNeg.Client;component/Images/Close.png"
+                                       Visibility="{Binding UserOwnerForAnotherOrganization,Converter={StaticResource booleanToVisibilityConverter}}"
+                                       Stretch="Uniform"
+                                       Width="20"
+                                       Height="20"
+                                       ToolTipService.ToolTip="This member is already admin in another organization, so you can not give him this role" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+
+                </telerik:GridViewDataColumn>
+
+                <telerik:GridViewDataColumn IsSortable="False"
+                                            IsReorderable="False"
+                                            IsResizable="False"
+                                            Width="*"
+                                            Header="Actions">
+
+
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <HyperlinkButton VerticalAlignment="Top"
+                                             HorizontalAlignment="Left"
+                                             x:Name="uxcmdRemove"
+                                             Content="Remove"
+                                             Margin="4,0"
+                                             Click="uxcmdRemove_Click"
+                                             Tag="{Binding}" />
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+
+                </telerik:GridViewDataColumn>
+
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+
+        <common:eNegMessageControl Grid.Row="2"
+                                   HorizontalAlignment="Left"
+                                   Margin="5,5"
+                                   MessageText="No members in this Organization."
+                                   Name="uxSPSucessMe2ssage2"
+                                   Opacity="1"
+                                   MessageType="Info"
+                                   Visibility="{Binding IsUsersSourceEmpty,Converter={StaticResource booleanToVisibilityConverter}}" />
+
+        <telerik:RadBusyIndicator Grid.Row="4"
+                                  BusyContent="Please wait..."
+                                  HorizontalAlignment="Center"
+                                  IsBusy="{Binding IsBusy,FallbackValue=True}"
+                                  VerticalAlignment="Center" />
+
+
+        <telerik:RadButton Name="uxcmdSave"
+                Grid.Row="5"
+                Height="25"
+                Width="100"
+                Content="Save"
+                VerticalAlignment="Top"
+                Margin="10"
+                HorizontalAlignment="Left"
+                Command="{Binding SubmitChangeCommand}"
+                Visibility="{Binding IsUsersSourceEmpty,Converter={StaticResource notBooleanToVisibilityConverter}}" />
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,177 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+		xmlns:dock="clr-namespace:Telerik.Windows.Controls.Docking;assembly=Telerik.Windows.Controls.Docking">
+
+	<!--<telerik:ResourceDictionary.MergedDictionaries>
+        <telerik:ResourceDictionary Keys=""
+                                    Source="/Telerik.Windows.Controls.Docking;component/Themes/Brushes.xaml" />
+    </telerik:ResourceDictionary.MergedDictionaries>-->
+	<?BODY BEGIN?>
+	<LinearGradientBrush x:Key="HighlightBrush" EndPoint="0,0.5" StartPoint="1,0.5">
+		<GradientStop Color="#FF4889FB" />
+		<GradientStop Color="#FFD0E0FB" Offset="0.165" />
+		<GradientStop Color="#FFDBE7FB" Offset="0.853" />
+		<GradientStop Color="#FF5793FD" Offset="0.996" />
+	</LinearGradientBrush>
+
+	<!--Compass Style-->
+	<Style TargetType="dock:Compass">
+		<Setter Property="Background" Value="#FEFEFE" />
+		<Setter Property="Width" Value="103" />
+		<Setter Property="Height" Value="101" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="dock:Compass">
+					<Grid Background="Transparent">
+						<vsm:VisualStateManager.VisualStateGroups>
+							<vsm:VisualStateGroup x:Name="CommonStates">
+								<vsm:VisualState x:Name="Normal" />
+								<vsm:VisualState x:Name="HighlightLeftIndicator">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames
+												Storyboard.TargetName="PART_LeftIndicator"
+												Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0"
+													Value="{StaticResource HighlightBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</vsm:VisualState>
+								<vsm:VisualState x:Name="HighlightTopIndicator">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames
+												Storyboard.TargetName="PART_TopIndicator"
+												Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0"
+													Value="{StaticResource HighlightBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</vsm:VisualState>
+								<vsm:VisualState x:Name="HighlightRightIndicator">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames
+												Storyboard.TargetName="PART_RightIndicator"
+												Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0"
+													Value="{StaticResource HighlightBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</vsm:VisualState>
+								<vsm:VisualState x:Name="HighlightBottomIndicator">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames
+												Storyboard.TargetName="PART_BottomIndicator"
+												Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0"
+													Value="{StaticResource HighlightBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</vsm:VisualState>
+								<vsm:VisualState x:Name="HighlightCenterIndicator">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames
+												Storyboard.TargetName="PART_CenterIndicator"
+												Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0"
+													Value="{StaticResource HighlightBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</vsm:VisualState>
+							</vsm:VisualStateGroup>
+						</vsm:VisualStateManager.VisualStateGroups>
+
+						<Border Margin="15" Background="{TemplateBinding Background}"
+								BorderBrush="#FFABACAC" BorderThickness="1" CornerRadius="10" x:Name="PART_Center"/>
+						<Border Margin="0,35,71,35" Background="#C0FEFEFE" BorderBrush="#FFABACAC"
+								BorderThickness="1" CornerRadius="2" x:Name="PART_LeftIndicator">
+							<Path Width="7" Height="11"
+									Data="F1 M -2.54313e-006,-12L 1.33333,-12L 1.33333,-10.6667L 2.66667,-10.6667L 2.66667,-9.3334L 4,-9.3334L 4,-8.00001L 5.33333,-8.00001L 5.33333,-6.66667L 6.66667,-6.66667L 6.66667,-5.33334L 5.33333,-5.33334L 5.33333,-4.00001L 4,-4.00001L 4,-2.66673L 2.66667,-2.66673L 2.66667,-1.33341L 1.33333,-1.33341L 1.33333,0L -2.54313e-006,0L -2.54313e-006,-12 Z"
+									RenderTransformOrigin="0.5,0.5">
+								<Path.Fill>
+									<LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+										<GradientStop Color="#FF000000" Offset="0.071" />
+										<GradientStop Color="#FF65B9FF" Offset="0.848" />
+									</LinearGradientBrush>
+								</Path.Fill>
+								<Path.RenderTransform>
+									<TransformGroup>
+										<ScaleTransform ScaleX="-1" />
+										<SkewTransform />
+										<RotateTransform />
+										<TranslateTransform X="8" Y="12" />
+									</TransformGroup>
+								</Path.RenderTransform>
+							</Path>
+						</Border>
+						<Border Margin="36,0,36,69" Background="#C0FEFEFE" BorderBrush="#FFABACAC"
+								BorderThickness="1" CornerRadius="2" x:Name="PART_TopIndicator">
+							<Path Width="7" Height="11"
+									Data="F1 M -2.54313e-006,-12L 1.33333,-12L 1.33333,-10.6667L 2.66667,-10.6667L 2.66667,-9.3334L 4,-9.3334L 4,-8.00001L 5.33333,-8.00001L 5.33333,-6.66667L 6.66667,-6.66667L 6.66667,-5.33334L 5.33333,-5.33334L 5.33333,-4.00001L 4,-4.00001L 4,-2.66673L 2.66667,-2.66673L 2.66667,-1.33341L 1.33333,-1.33341L 1.33333,0L -2.54313e-006,0L -2.54313e-006,-12 Z"
+									RenderTransformOrigin="0.5,0.5">
+								<Path.Fill>
+									<LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+										<GradientStop Color="#FF000000" Offset="0.071" />
+										<GradientStop Color="#FF65B9FF" Offset="0.848" />
+									</LinearGradientBrush>
+								</Path.Fill>
+								<Path.RenderTransform>
+									<TransformGroup>
+										<ScaleTransform ScaleX="-1" />
+										<SkewTransform />
+										<RotateTransform Angle="90" />
+										<TranslateTransform X="-12" Y="8" />
+									</TransformGroup>
+								</Path.RenderTransform>
+							</Path>
+						</Border>
+						<Border Margin="71,35,0,35" Background="#C0FEFEFE" BorderBrush="#FFABACAC"
+								BorderThickness="1" CornerRadius="2" x:Name="PART_RightIndicator">
+							<Path Width="7" Height="11"
+									Data="F1 M -2.54313e-006,-12L 1.33333,-12L 1.33333,-10.6667L 2.66667,-10.6667L 2.66667,-9.3334L 4,-9.3334L 4,-8.00001L 5.33333,-8.00001L 5.33333,-6.66667L 6.66667,-6.66667L 6.66667,-5.33334L 5.33333,-5.33334L 5.33333,-4.00001L 4,-4.00001L 4,-2.66673L 2.66667,-2.66673L 2.66667,-1.33341L 1.33333,-1.33341L 1.33333,0L -2.54313e-006,0L -2.54313e-006,-12 Z"
+									RenderTransformOrigin="0.5,0.5">
+								<Path.Fill>
+									<LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+										<GradientStop Color="#FF000000" Offset="0.071" />
+										<GradientStop Color="#FF65B9FF" Offset="0.848" />
+									</LinearGradientBrush>
+								</Path.Fill>
+								<Path.RenderTransform>
+									<TransformGroup>
+										<ScaleTransform ScaleX="1" />
+										<SkewTransform />
+										<RotateTransform />
+										<TranslateTransform X="-9" Y="12" />
+									</TransformGroup>
+								</Path.RenderTransform>
+							</Path>
+						</Border>
+						<Border Margin="36,69,36,0" Background="#C0FEFEFE" BorderBrush="#FFABACAC"
+								BorderThickness="1" CornerRadius="2" x:Name="PART_BottomIndicator">
+							<Path Width="7" Height="11"
+									Data="F1 M -2.54313e-006,-12L 1.33333,-12L 1.33333,-10.6667L 2.66667,-10.6667L 2.66667,-9.3334L 4,-9.3334L 4,-8.00001L 5.33333,-8.00001L 5.33333,-6.66667L 6.66667,-6.66667L 6.66667,-5.33334L 5.33333,-5.33334L 5.33333,-4.00001L 4,-4.00001L 4,-2.66673L 2.66667,-2.66673L 2.66667,-1.33341L 1.33333,-1.33341L 1.33333,0L -2.54313e-006,0L -2.54313e-006,-12 Z"
+									RenderTransformOrigin="0.5,0.5">
+								<Path.Fill>
+									<LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+										<GradientStop Color="#FF000000" Offset="0.071" />
+										<GradientStop Color="#FF65B9FF" Offset="0.848" />
+									</LinearGradientBrush>
+								</Path.Fill>
+								<Path.RenderTransform>
+									<TransformGroup>
+										<ScaleTransform ScaleX="-1" />
+										<SkewTransform />
+										<RotateTransform Angle="-90" />
+										<TranslateTransform X="11" Y="-9" />
+									</TransformGroup>
+								</Path.RenderTransform>
+							</Path>
+						</Border>
+						<Border Margin="36,35,36,35" Background="#FEFEFE" BorderBrush="#FFABACAC"
+								BorderThickness="1" CornerRadius="2" x:Name="PART_CenterIndicator" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<?BODY END?>
+</ResourceDictionary>

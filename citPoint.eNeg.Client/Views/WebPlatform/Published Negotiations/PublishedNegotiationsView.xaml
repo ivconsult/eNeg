@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.PublishedNegotiationsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             d:DesignHeight="300"
+             d:DesignWidth="250"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.SL4"
+             xmlns:eNegControls="clr-namespace:citPOINT.eNeg.Common;assembly=citPOINT.eNeg.Common"
+             xmlns:local="clr-namespace:citPOINT.eNeg.Client"
+             d:DataContext="{d:DesignInstance Type=local:MainViewModelDesignTime,IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+
+        <eNegControls:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        <eNegControls:NotBooleanToVisibilityConverter x:Key="notBooleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="ConversationChildrenTemplate">
+
+            <!--  Conversation ID  -->
+            <TextBlock Text="{Binding Name}"
+                       TextWrapping="Wrap">
+            </TextBlock>
+
+        </DataTemplate>
+
+        <telerik:HierarchicalDataTemplate x:Key="NegotiationChildrenTemplate"
+                                          ItemsSource="{Binding Children}"
+                                          ItemTemplate="{StaticResource ConversationChildrenTemplate}">
+            <!--   Negotiation ID  -->
+            <TextBlock Text="{Binding Name}"
+                       TextWrapping="Wrap" />
+
+        </telerik:HierarchicalDataTemplate>
+
+        <telerik:HierarchicalDataTemplate x:Key="MonthChildrenTemplate"
+                                          ItemsSource="{Binding Children}"
+                                          ItemTemplate="{StaticResource NegotiationChildrenTemplate}">
+            <!--   Month ID  -->
+            <TextBlock Text="{Binding Name}"
+                       TextWrapping="Wrap" />
+
+        </telerik:HierarchicalDataTemplate>
+
+        <telerik:HierarchicalDataTemplate x:Key="YearArchiveTemplate"
+                                          ItemsSource="{Binding Children}"
+                                          ItemTemplate="{StaticResource MonthChildrenTemplate}">
+            <!--   Year ID  -->
+            <TextBlock Text="{Binding Name}"
+                       TextWrapping="Wrap" />
+
+        </telerik:HierarchicalDataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Border Grid.Column="0"
+                BorderBrush="Black"
+                BorderThickness="1">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left">
+                    <telerik:RadComboBox x:Name="uxNegotiationStatusFilter"
+                                         Grid.Column="0"
+                                         Margin="2"
+                                         Height="25"
+                                         Width="90"
+                                         SelectedIndex="0"
+                                         ItemsSource="{Binding NegotiationStatusFilterSource}"
+                                         SelectedItem="{Binding NegotiationStatusFilterID,Mode=TwoWay}" />
+
+                    <telerik:RadComboBox x:Name="uxNegotiationOwnerFilter"
+                                         Grid.Column="1"
+                                         Height="25"
+                                         Width="120"
+                                         SelectedIndex="0"
+                                         ItemsSource="{Binding NegotiationOwnerFilterSource}"
+                                         SelectedItem="{Binding NegotiationOwnerFilterID,Mode=TwoWay}"
+                                         Margin="2" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            Grid.ColumnSpan="2"></StackPanel>
+
+                <eNegControls:eNegMessageControl Grid.Row="1"
+                                                 x:Name="uxInfoMessage"
+                                                 Opacity="1"
+                                                 MessageText="No published negotiations found."
+                                                 Visibility="{Binding IsPublishedNegotiationsSourceEmpty, Converter={StaticResource booleanToVisibilityConverter}}"
+                                                 HorizontalAlignment="Left"
+                                                 MessageType="Info"
+                                                 Margin="5,5,0,5"
+                                                 Grid.ColumnSpan="2" />
+
+                <telerik:RadTreeView Grid.Row="2"
+                                     Name="uxTreePublishedNegs"
+                                     IsEditable="True"
+                                     IsLineEnabled="True"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     ItemsSource="{Binding Path=NegotiationArchiveSource,Mode=TwoWay}"
+                                     ItemTemplate="{StaticResource YearArchiveTemplate}"
+                                     SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                                     IsLoadOnDemandEnabled="True"
+                                     Visibility="{Binding IsPublishedNegotiationsSourceEmpty, Converter={StaticResource notBooleanToVisibilityConverter}}"
+                                     Grid.ColumnSpan="2" 
+                                     IsExpandOnSingleClickEnabled="True"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>

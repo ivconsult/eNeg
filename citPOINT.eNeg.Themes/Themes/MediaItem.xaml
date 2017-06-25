@@ -1,0 +1,150 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+        xmlns:player="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.MediaPlayer"
+        xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls">
+    <!--<telerik:ResourceDictionary.MergedDictionaries>
+        <telerik:ResourceDictionary Keys="ItemOutBorder 
+									DisabledBrush
+                                    ItemOutBackground
+                                    ItemInnerBorder
+                                    ItemInnerBackground
+                                    BackroundImage
+                                    RightBorder
+                                    TitleTextBlock
+                                    DescriptionTextBlock
+                                    ItemInnerBackgroundMouseOver1
+                                    ItemInnerBackgroundMouseOver2
+                                    ItemInnerBackgroundMouseOver3
+                                    ItemInnerBackgroundMouseOver4
+                                    ItemInnerBackgroundMouseOver5"
+                Source="/Telerik.Windows.Controls;component/Themes/Common.xaml" />
+    </telerik:ResourceDictionary.MergedDictionaries>-->
+	<?BODY BEGIN?>
+    <!--MediaItem-->
+    <Style TargetType="player:RadMediaItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="player:RadMediaItem">
+                    <Grid Height="72" x:Name="LayoutRoot" Margin="10,5,10,5">
+                        <vsm:VisualStateManager.VisualStateGroups>
+                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                <vsm:VisualState x:Name="Normal">
+                                    <Storyboard />
+                                </vsm:VisualState>
+                                <vsm:VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                Duration="00:00:0.5000000"
+                                                Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                            <SplineColorKeyFrame KeyTime="00:00:00"
+                                                    Value="{StaticResource ItemInnerBackgroundMouseOver1}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                Duration="00:00:0.5000000"
+                                                Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                            <SplineColorKeyFrame KeyTime="00:00:00"
+                                                    Value="{StaticResource ItemInnerBackgroundMouseOver2}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                Duration="00:00:0.5000000"
+                                                Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[2].(GradientStop.Color)">
+                                            <SplineColorKeyFrame KeyTime="00:00:00"
+                                                    Value="{StaticResource ItemInnerBackgroundMouseOver3}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                Duration="00:00:0.5000000"
+                                                Storyboard.TargetName="border"
+                                                Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[3].(GradientStop.Color)">
+                                            <SplineColorKeyFrame KeyTime="00:00:00"
+                                                    Value="{StaticResource ItemInnerBackgroundMouseOver4}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                Duration="00:00:0.5000000"
+                                                Storyboard.TargetName="textBlock"
+                                                Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)">
+                                            <SplineColorKeyFrame KeyTime="00:00:00"
+                                                    Value="{StaticResource ItemInnerBackgroundMouseOver5}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+								<vsm:VisualState x:Name="Disabled">
+									<Storyboard Duration="0">
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="DisabledVisual" Storyboard.TargetProperty="Visibility">
+											<DiscreteObjectKeyFrame KeyTime="0">
+												<DiscreteObjectKeyFrame.Value>
+													<Visibility>Visible</Visibility>
+												</DiscreteObjectKeyFrame.Value>
+											</DiscreteObjectKeyFrame>
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</vsm:VisualState>
+							</vsm:VisualStateGroup>
+                        </vsm:VisualStateManager.VisualStateGroups>
+                        <Border Background="{StaticResource ItemOutBackground}" CornerRadius="6"
+                                BorderBrush="{StaticResource ItemOutBorder}" BorderThickness="1"
+                                VerticalAlignment="Stretch" Height="72">
+                            <Border Background="{StaticResource ItemInnerBackground}"
+                                    CornerRadius="5" BorderBrush="{StaticResource ItemInnerBorder}"
+                                    x:Name="border">
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform />
+                                        <SkewTransform />
+                                        <RotateTransform />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                                <Grid>
+                                    <ItemsPresenter Opacity="0" Width="Auto"
+                                            HorizontalAlignment="Stretch" />
+
+                                    <Border Width="100" CornerRadius="0"
+                                            Background="{StaticResource BackroundImage}"
+                                            HorizontalAlignment="Left" Margin="5,5,0,5"
+                                            BorderThickness="3">
+                                        <Image Source="{TemplateBinding ImageSource}" />
+                                    </Border>
+
+                                    <Rectangle Height="Auto" Width="1"
+                                            Fill="{StaticResource RightBorder}"
+                                            HorizontalAlignment="Left" Margin="110,10,0,10" />
+
+                                    <Grid Margin="135,10,5,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <!--Title TextBlock-->
+                                        <TextBlock TextWrapping="Wrap" FontFamily="Verdana"
+                                                Text="{TemplateBinding Title}"
+                                                VerticalAlignment="Stretch"
+                                                Foreground="{StaticResource TitleTextBlock}"
+                                                FontSize="14" />
+
+                                        <!--Description TextBlock-->
+                                        <TextBlock Grid.Row="1" TextWrapping="Wrap" Margin="0,7,0,0"
+                                                FontFamily="Verdana"
+                                                Text="{TemplateBinding Description}"
+                                                VerticalAlignment="Stretch" FontSize="12"
+                                                Foreground="{StaticResource DescriptionTextBlock}"
+                                                x:Name="textBlock" />
+                                    </Grid>
+
+                                    <Button x:Name="PlayButton" Opacity="0" />
+                                </Grid>
+                            </Border>
+                        </Border>
+						<Rectangle x:Name="DisabledVisual" Fill="{StaticResource DisabledBrush}" RadiusX="6" RadiusY="6"
+									Height="72" Visibility="Collapsed"/>
+					</Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+	<?BODY END?>
+</ResourceDictionary>

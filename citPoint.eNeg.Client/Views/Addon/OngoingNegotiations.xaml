@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.OngoingNegotiations"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             mc:Ignorable="d"
+             xmlns:mySelector="clr-namespace:citPOINT.eNeg.Common;assembly=citPOINT.eNeg.Common"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             d:DesignHeight="312"
+             d:DesignWidth="300"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.SL4"
+             xmlns:eNegControls="clr-namespace:citPOINT.eNeg.Common;assembly=citPOINT.eNeg.Common"
+             xmlns:local="clr-namespace:citPOINT.eNeg.Client"
+             d:DataContext="{d:DesignInstance Type=local:MainViewModelDesignTime,IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+
+        <eNegControls:NullableToVisibilityConverter x:Key="nullableToVisibilityConverter" />
+        <eNegControls:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="ConversationTemplate">
+            <StackPanel Orientation="Horizontal">
+                <!--<i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <cmd:EventToCommand Command="{Binding DataContext.NavigationCommand,Mode=OneWay,ElementName=uxTreeOngoing}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
+
+                <TextBlock Text="{Binding ConversationName}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <telerik:HierarchicalDataTemplate x:Key="NegotationTemplate"
+                                          ItemsSource="{Binding OrderedConversations}"
+                                          ItemTemplate="{StaticResource ConversationTemplate}">
+            <StackPanel Orientation="Horizontal">
+                <!--<i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <cmd:EventToCommand Command="{Binding DataContext.NavigationCommand,Mode=OneWay,ElementName=uxTreeOngoing}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
+
+                <TextBlock Text="{Binding NegotiationName}" />
+            </StackPanel>
+        </telerik:HierarchicalDataTemplate >
+
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <telerik:RadTreeView  Grid.Row="0"
+                              Name="uxTreeOngoing"
+                              IsLineEnabled="True"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ItemsSource="{Binding Path=OnGoingNegotiationSource,Mode=TwoWay}"
+                              ItemTemplate="{StaticResource NegotationTemplate}"
+                              IsEditable="False"
+                              IsDragDropEnabled="True"
+                              IsDropPreviewLineEnabled="False"
+                              BorderThickness="1"
+                              BorderBrush="Black"
+                              SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                              IsExpandOnSingleClickEnabled="True">
+
+            <telerik:RadContextMenu.ContextMenu>
+                <telerik:RadContextMenu x:Name="contextMenu"
+                                        ItemClick="contextMenu_Clicked"
+                                        Opened="contextMenu_Opened"
+                                        IconColumnWidth="24">
+
+                    <telerik:RadMenuItem Header="Rename"
+                                         Command="{Binding NavigationByViewNameCommand}"
+                                         CommandParameter="RenameNegotiationConversationPopup">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="/citPOINT.eNeg.Client;component/Images/Rename-icon.png"
+                                   Stretch="Fill" />
+                        </telerik:RadMenuItem.Icon>
+                    </telerik:RadMenuItem>
+
+                    <telerik:RadMenuItem Header="Delete"
+                                         Command="{Binding DeleteItemCommand}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="/citPOINT.eNeg.Client;component/Images/Delete-icon.png"
+                                   Stretch="Uniform" />
+                        </telerik:RadMenuItem.Icon>
+                    </telerik:RadMenuItem>
+
+                    <telerik:RadMenuItem Header="Add New Message"
+                                         Command="{Binding NavigationCommand}"
+                                         CommandParameter="Add New Message"
+                                         Visibility="{Binding ShowAddMessageMenu,Converter={StaticResource booleanToVisibilityConverter}}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="/citPOINT.eNeg.Client;component/Images/email_envelope.png"
+                                   Stretch="Uniform" />
+                        </telerik:RadMenuItem.Icon>
+                    </telerik:RadMenuItem>
+
+                    <telerik:RadMenuItem Header="Apps Settings"
+                                         Command="{Binding NavigationByViewNameCommand}"
+                                         CommandParameter="ApplicationSettingsPopup"
+                                         Visibility="{Binding CurrentNegotiation,Converter={StaticResource nullableToVisibilityConverter}}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="/citPOINT.eNeg.Client;component/Images/settings_32.png"
+                                   Stretch="Fill" />
+                        </telerik:RadMenuItem.Icon>
+                    </telerik:RadMenuItem>
+
+                    <telerik:RadMenuItem IsSeparator="True"
+                                         Visibility="{Binding CurrentNegotiation,Converter={StaticResource nullableToVisibilityConverter}}" />
+
+                    <telerik:RadMenuItem Header="Start New Conversation"
+                                         Command="{Binding StartNewConversationCommand}"
+                                         Visibility="{Binding CurrentNegotiation,Converter={StaticResource nullableToVisibilityConverter}}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="/citPOINT.eNeg.Client;component/Images/Add-icon.png"
+                                   Stretch="Uniform" />
+                        </telerik:RadMenuItem.Icon>
+                    </telerik:RadMenuItem>
+
+                    <telerik:RadMenuItem IsSeparator="True"
+                                         Visibility="{Binding CurrentNegotiation,Converter={StaticResource nullableToVisibilityConverter}}" />
+                    
+                    <telerik:RadMenuItem Header="Close Negotiation"
+                                         Command="{Binding CloseReOpenSelectedNegotiationCommand}"
+                                         Visibility="{Binding CurrentNegotiation,Converter={StaticResource nullableToVisibilityConverter}}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="/citPOINT.eNeg.Client;component/Images/Close.png"
+                                   Stretch="Uniform" />
+                        </telerik:RadMenuItem.Icon>
+                    </telerik:RadMenuItem>
+
+                    <telerik:RadMenuItem Header="Publish Negotiation"
+                                         Command="{Binding PublishNegotiationCommand}"
+                                         Visibility="{Binding IsPublishNegItemVisible,Converter={StaticResource booleanToVisibilityConverter}}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="/citPOINT.eNeg.Client;component/Images/copy.png"
+                                   Stretch="Uniform" />
+                        </telerik:RadMenuItem.Icon>
+                    </telerik:RadMenuItem>
+
+                </telerik:RadContextMenu>
+            </telerik:RadContextMenu.ContextMenu>
+        </telerik:RadTreeView>
+
+
+    </Grid>
+</UserControl>

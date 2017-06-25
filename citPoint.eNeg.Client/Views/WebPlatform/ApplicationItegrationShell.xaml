@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.ApplicationItegrationShell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Regions="http://www.codeplex.com/prism"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
+             MinHeight="300"
+             MinWidth="500"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:eNegControls="clr-namespace:citPOINT.eNeg.Common.Controls;assembly=citPOINT.eNeg.Common"
+             xmlns:my="clr-namespace:System;assembly=mscorlib">
+
+    <UserControl.Resources>
+        <telerik:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Border Height="26" VerticalAlignment="Top"
+                BorderBrush="#FFC1C1C1"
+                BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1"
+                                     StartPoint="0.5,0">
+                    <GradientStop Color="#FFE5E5E5"
+                                  Offset="0" />
+                    <GradientStop Color="#9AD4D4D4"
+                                  Offset="0.471" />
+                    <GradientStop Color="#FFE5E5E5"
+                                  Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+            <!--x:Name="Teste"-->
+
+        <eNegControls:eNegTabControl ApplicationSource="{Binding eNegApplicationSource,Mode=OneTime}"
+                                     HorizontalAlignment="Stretch"
+                                     Name="uxtabApplication"
+                                     Margin="0"
+                                     VerticalAlignment="Stretch"
+                                     HorizontalContentAlignment="Stretch"
+                                     VerticalContentAlignment="Stretch"
+                                     BackgroundVisibility="Collapsed"
+                                     Grid.Row="1"
+                                     BorderThickness="1,0,1,1"
+                                     BorderBrush="DarkGray">
+            <!--<Rect></Rect>-->
+           
+        </eNegControls:eNegTabControl>
+        <Grid Grid.Row="1"
+              Opacity="0.8"
+              Visibility="{Binding ShowDownloadProgress,Converter={StaticResource booleanToVisibilityConverter}}">
+            <ItemsControl ItemsSource="{Binding eNegApplicationSource}"
+                          Margin="10"
+                          HorizontalAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          HorizontalContentAlignment="Center"
+                          VerticalAlignment="Center">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical"
+                                    Visibility="{Binding ShowDownloadProgress,Converter={StaticResource booleanToVisibilityConverter}}">
+                            <TextBlock Text="{Binding ApplicationTitle}"
+                                       Margin="1" />
+                            <telerik:RadProgressBar Grid.Column="0"
+                                                    Height="15"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1"
+                                                    Name="prgBar2"
+                                                    UseLayoutRounding="True"
+                                                    Value="{Binding DownloadingPercentage}"
+                                                    Width="200" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+
+
+    </Grid>
+</UserControl>

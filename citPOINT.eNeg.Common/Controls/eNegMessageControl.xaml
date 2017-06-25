@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Common.eNegMessageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+             d:DesignHeight="40"
+             d:DesignWidth="500"
+             FontSize="12">
+
+    <StackPanel Name="uxSPSucessMessage"
+                Grid.Row="0"
+                Opacity="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+              >
+        
+        <StackPanel Orientation="Horizontal" Margin="3,0">
+            <Image Source="/citPOINT.eNeg.Common;component/Images/Success.png"
+                   Stretch="Uniform"
+                   MaxHeight="25"
+                   MaxWidth="25"
+                   Name="uxImgSuccess"/>
+            <Image Source="/citPOINT.eNeg.Common;component/Images/Info.png"
+                   Stretch="Uniform"
+                   MaxHeight="25"
+                   MaxWidth="25"
+                   Visibility="Collapsed"
+                   Name="uxImgInfo"/>
+            <Image Source="/citPOINT.eNeg.Common;component/Images/Error.png"
+                   Stretch="Uniform"
+                   MaxHeight="25"
+                   MaxWidth="25"
+                   Visibility="Collapsed"
+                   Name="uxImgErrors"/>
+            <Image Source="/citPOINT.eNeg.Common;component/Images/Warning.png"
+                   Stretch="Uniform"
+                   MaxHeight="25"
+                   MaxWidth="25"
+                   Visibility="Collapsed"
+                   Name="uxImgWarning" />
+        </StackPanel>
+        
+        <TextBlock Grid.Row="0"
+                   Name="uxlblUpdateMessage"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"
+                   
+                   Text="You will receive now an email with a link to activate your account." />
+    </StackPanel>
+</UserControl>

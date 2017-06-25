@@ -1,0 +1,2151 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls"
+					xmlns:gauge="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Gauge"
+					xmlns:gauges="clr-namespace:Telerik.Windows.Controls.Gauges;assembly=Telerik.Windows.Controls.Gauge">
+
+	<?BODY BEGIN?>
+	<!-- Default scale bar apperance -->
+	<SolidColorBrush x:Key="ScaleBarForeground" Color="White" />
+	<SolidColorBrush x:Key="ScaleBarBackground" Color="Transparent" />
+	<SolidColorBrush x:Key="ScaleBarBorderBrush" Color="Beige" />
+
+	<Style TargetType="gauges:RangeList">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RangeList">
+					<ItemsPresenter />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Default range appearance -->
+	<SolidColorBrush x:Key="RangeBackground" Color="Transparent" />
+	<SolidColorBrush x:Key="RangeBorderBrush" Color="CadetBlue" />
+
+	<Style TargetType="gauges:RadialRange">
+		<Setter Property="StartWidth" Value="0.01" />
+		<Setter Property="EndWidth" Value="0.1" />
+		<Setter Property="Location" Value="Inside" />
+		<Setter Property="Background" Value="White" />
+		<Setter Property="BorderBrush" Value="{StaticResource RangeBorderBrush}" />
+		<Setter Property="StrokeThickness" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialRange">
+					<Path x:Name="PART_RangePath" 
+			              Fill="{TemplateBinding Background}" 
+			              Stroke="{TemplateBinding BorderBrush}"
+			              StrokeThickness="{TemplateBinding StrokeThickness}"/>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:LinearRange">
+		<Setter Property="StartWidth" Value="0.01" />
+		<Setter Property="EndWidth" Value="0.1" />
+		<Setter Property="Location" Value="Inside" />
+		<Setter Property="Background" Value="White" />
+		<Setter Property="BorderBrush" Value="{StaticResource RangeBorderBrush}" />
+		<Setter Property="StrokeThickness" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:LinearRange">
+					<Path x:Name="PART_RangePath" 
+			              Fill="{TemplateBinding Background}" 
+			              Stroke="{TemplateBinding BorderBrush}"
+			              StrokeThickness="{TemplateBinding StrokeThickness}"/>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Needle Pin Point -->
+	<LinearGradientBrush x:Key="NeedlePinPointBottom" 
+						 StartPoint="0.5,0" 
+						 EndPoint="0.5,1" 
+						 MappingMode="RelativeToBoundingBox">
+		<GradientStop Color="#FFFEFFFE" Offset="0"/>
+		<GradientStop Color="#FFFEFFFE" Offset="0.505493"/>
+		<GradientStop Color="#FFD8DADB" Offset="0.527466"/>
+		<GradientStop Color="#FFB2B5B7" Offset="1"/>
+	</LinearGradientBrush>
+
+	<RadialGradientBrush x:Key="NeedlePinPointTop" 
+						 RadiusX="0.499858" 
+						 RadiusY="0.499837" 
+						 Center="0.499939,0.499956" 
+						 GradientOrigin="0.499939,0.499956">
+		<RadialGradientBrush.RelativeTransform>
+			<TransformGroup>
+				<RotateTransform CenterX="0.499939" CenterY="0.499956" Angle="68.2337"/>
+			</TransformGroup>
+		</RadialGradientBrush.RelativeTransform>
+		<GradientStop Color="#CDFF1F00" Offset="0"/>
+		<GradientStop Color="#CD900C00" Offset="1"/>
+	</RadialGradientBrush>
+
+	<!-- Needle -->
+	<LinearGradientBrush x:Key="NeedleArrowBrush" StartPoint="0.767139,-0.0611001" EndPoint="0.767139,1.0387">
+		<GradientStop Color="#FFFEFFFE" Offset="0"/>
+		<GradientStop Color="#FFFEFFFE" Offset="0.505493"/>
+		<GradientStop Color="#FFD8DADB" Offset="0.527466"/>
+		<GradientStop Color="#FFB2B5B7" Offset="1"/>
+	</LinearGradientBrush>
+
+	<Style TargetType="gauges:Needle">
+		<Setter Property="Location" Value="OverCenter" />
+		<Setter Property="RelativeHeight" Value="0.2" />
+		<Setter Property="RelativeShift" Value="0.8" />
+		<Setter Property="Background" Value="{StaticResource NeedleArrowBrush}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:Needle">
+					<Grid x:Name="PART_Grid" 
+						  HorizontalAlignment="Stretch" 
+						  VerticalAlignment="Stretch">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<!-- Column 0 - tail -->
+							<ColumnDefinition Width="*"/>
+							<!-- Column 1 - pin point -->
+							<ColumnDefinition Width="*"/>
+							<!-- Column 2 - arrow -->
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+
+						<Grid x:Name="PART_Shape" 
+							  Grid.ColumnSpan="3" 
+							  Margin="0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="0.3*" />
+								<RowDefinition Height="0.4*" />
+								<RowDefinition Height="0.3*" />
+							</Grid.RowDefinitions>
+
+							<Path Grid.Row="1"
+								  Grid.Column="0"
+								  Stretch="Fill" 
+								  Data="F1 M 0.169559,0.0163666L 0.223558,0.00818365L 0.169559,6.10352e-008L 0.158926,0.00496332L 0.00148178,0.00770581L 6.33129e-009,0.00818304L 0.00148113,0.00866058L 0.158925,0.0114028L 0.169559,0.0163666 Z " 
+								  Fill="{TemplateBinding Background}"
+								  Stroke="{TemplateBinding BorderBrush}"
+								  StrokeThickness="1">
+							</Path>
+						</Grid>
+
+						<Grid Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="0.125*" />
+								<RowDefinition Height="0.75*" />
+								<RowDefinition Height="0.125*" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="0.125*" />
+								<ColumnDefinition Width="0.75*" />
+								<ColumnDefinition Width="0.125*" />
+							</Grid.ColumnDefinitions>
+							<Ellipse Grid.Column="1"
+			                         Grid.Row="1"
+			                         Stretch="Uniform"
+									 Fill="{StaticResource NeedlePinPointBottom}">
+							</Ellipse>
+						</Grid>
+
+						<Grid Grid.Column="1">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="0.25*" />
+								<RowDefinition Height="0.5*" />
+								<RowDefinition Height="0.25*" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="0.25*" />
+								<ColumnDefinition Width="0.5*" />
+								<ColumnDefinition Width="0.25*" />
+							</Grid.ColumnDefinitions>
+							<Ellipse Grid.Column="1"
+			                         Grid.Row="1"
+			                         Stretch="Uniform"
+									 Fill="{StaticResource NeedlePinPointTop}">
+							</Ellipse>
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Default state indicator appearance -->
+	<RadialGradientBrush x:Key="StateIndicatorBackground">
+		<GradientStop Offset="0" Color="Yellow" />
+		<GradientStop Offset="0.6" Color="Orange" />
+		<GradientStop Offset="1" Color="OrangeRed" />
+	</RadialGradientBrush>
+
+	<Style TargetType="gauges:StateIndicator">
+		<Setter Property="Top" Value="0.25" />
+		<Setter Property="Left" Value="0.45" />
+		<Setter Property="RelativeWidth" Value="0.2" />
+		<Setter Property="RelativeHeight" Value="0.2" />
+		<Setter Property="IsAnimated" Value="True" />
+		<Setter Property="Background" Value="{StaticResource StateIndicatorBackground}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:StateIndicator">
+					<Border BorderBrush="Transparent" BorderThickness="2">
+						<Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+							<Ellipse Stretch="Fill" 
+								 Fill="{TemplateBinding Background}" 
+								 Stroke="{TemplateBinding BorderBrush}"
+								 StrokeThickness="{TemplateBinding StrokeThickness}" />
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Default tick background -->
+	<SolidColorBrush x:Key="DefaultTickBackground" Color="White" />
+
+	<!-- Default custom tick mark background -->
+	<SolidColorBrush x:Key="DefaultCustomTickBackground" Color="Red" />
+
+	<Style TargetType="gauges:CustomTickMark">
+		<Setter Property="Location" Value="OverCenter" />
+		<Setter Property="Offset" Value="0" />
+		<Setter Property="Format" Value="{}{0:F0}" />
+		<Setter Property="Length" Value="0.1" />
+		<Setter Property="TickWidth" Value="1" />
+		<Setter Property="Background" Value="{StaticResource DefaultCustomTickBackground}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:CustomTickMark">
+					<Grid>
+						<Polygon Points="0,5 5,0 10,5 5,10"
+								 Stretch="Fill" 
+								 HorizontalAlignment="Stretch"
+								 VerticalAlignment="Stretch"
+								 Fill="{TemplateBinding Background}" 
+								 Stroke="{TemplateBinding BorderBrush}" 
+								 StrokeThickness="{TemplateBinding BorderThickness}" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<TextBlock HorizontalAlignment="Center"
+							   FontFamily="{Binding Path=Properties.FontFamily}"
+							   FontSize="{Binding Path=Properties.FontSize}"
+							   Foreground="{Binding Path=Properties.Foreground}"
+							   Margin="4,2,4,2">
+						<TextBlock.Text>
+							<Binding>
+								<Binding.Converter>
+									<gauges:LabelFormatConverter />
+								</Binding.Converter>
+							</Binding>
+						</TextBlock.Text>
+					</TextBlock>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:TickList">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:TickList">
+					<ItemsPresenter />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemTemplateSelector">
+			<Setter.Value>
+				<gauges:TickTemplateSelector />
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:TickProperties">
+		<Setter Property="Location" Value="OverCenter" />
+		<Setter Property="Offset" Value="0" />
+		<Setter Property="Length" Value="0.1" />
+		<Setter Property="TickWidth" Value="0.1" />
+		<Setter Property="Background" Value="{StaticResource DefaultTickBackground}" />
+		<Setter Property="ItemTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<Rectangle Fill="{Binding Path=Properties.Background}" 
+							   Stroke="{Binding Path=Properties.BorderBrush}"
+							   StrokeThickness="{Binding Path=Properties.BorderThickness.Left}"
+							   Stretch="Fill" />
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="TriangleTickStyle" TargetType="gauges:TickProperties">
+		<Setter Property="Location" Value="OverOutside" />
+		<Setter Property="Offset" Value="0" />
+		<Setter Property="Length" Value="0.07" />
+		<Setter Property="TickWidth" Value="0.7" />
+		<Setter Property="Background" Value="{StaticResource DefaultTickBackground}" />
+		<Setter Property="ItemTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<Polygon Points="0.5,0 1,1 0,1"
+							 Stretch="Fill"
+							 Fill="{Binding Path=Properties.Background}" 
+							 Stroke="{Binding Path=Properties.BorderBrush}"
+							 StrokeThickness="{Binding Path=Properties.BorderThickness.Left}" />
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:Tick">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:Tick">
+					<Grid>
+						<ContentPresenter Content="{TemplateBinding Content}"
+										  HorizontalAlignment="Stretch"
+										  VerticalAlignment="Stretch" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:LabelList">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:LabelList">
+					<ItemsPresenter />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:TickLabel">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:TickLabel">
+					<ContentPresenter Content="{TemplateBinding Content}" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:LabelProperties">
+		<Setter Property="Location" Value="Outside" />
+		<Setter Property="FontFamily" Value="Segoe UI" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="Offset" Value="0" />
+		<Setter Property="Format" Value="{}{0:F0}" />
+		<Setter Property="ItemTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<TextBlock HorizontalAlignment="Center"
+							   FontFamily="{Binding Path=Properties.FontFamily}"
+							   FontSize="{Binding Path=Properties.FontSize}"
+							   Foreground="{Binding Path=Properties.Foreground}"
+							   Margin="4,2,4,2">
+						<TextBlock.Text>
+							<Binding>
+								<Binding.Converter>
+									<gauges:LabelFormatConverter />
+								</Binding.Converter>
+							</Binding>
+						</TextBlock.Text>
+					</TextBlock>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Default bar-indicator appearance -->
+	<SolidColorBrush x:Key="BarBackground" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="BarBorderBrush" Color="Blue" />
+
+	<Style TargetType="gauges:LinearBar">
+		<Setter Property="Offset" Value="0" />
+		<Setter Property="Location" Value="OverCenter" />
+		<Setter Property="StartWidth" Value="0.025" />
+		<Setter Property="EndWidth" Value="0.025" />
+		<Setter Property="Background" Value="{StaticResource BarBackground}" />
+		<Setter Property="BorderBrush" Value="{StaticResource BarBorderBrush}" />
+		<Setter Property="StrokeThickness" Value="0" />
+		<Setter Property="IsAnimated" Value="True" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:LinearBar">
+					<Grid>
+						<Path x:Name="PART_BarPath" 
+							  Fill="{TemplateBinding Background}" 
+							  Stroke="{TemplateBinding BorderBrush}"
+							  StrokeThickness="{TemplateBinding StrokeThickness}"/>
+						<Path x:Name="PART_EmptyPath" 
+							  Fill="{TemplateBinding EmptyFill}" 
+							  Stroke="{TemplateBinding BorderBrush}"
+							  StrokeThickness="{TemplateBinding StrokeThickness}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:RadialBar">
+		<Setter Property="Offset" Value="0" />
+		<Setter Property="Location" Value="OverCenter" />
+		<Setter Property="StartWidth" Value="0.1" />
+		<Setter Property="EndWidth" Value="0.1" />
+		<Setter Property="Background" Value="{StaticResource BarBackground}" />
+		<Setter Property="BorderBrush" Value="{StaticResource BarBorderBrush}" />
+		<Setter Property="StrokeThickness" Value="0" />
+		<Setter Property="IsAnimated" Value="True" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialBar">
+					<Grid>
+						<Path x:Name="PART_BarPath" 
+							  Fill="{TemplateBinding Background}" 
+							  Stroke="{TemplateBinding BorderBrush}"
+							  StrokeThickness="{TemplateBinding StrokeThickness}"/>
+						<Path x:Name="PART_EmptyPath" 
+							  Fill="{TemplateBinding EmptyFill}" 
+							  Stroke="{TemplateBinding BorderBrush}"
+							  StrokeThickness="{TemplateBinding StrokeThickness}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!-- Marker -->
+	<LinearGradientBrush x:Key="MarkerBackground" StartPoint="0.767139,-0.0611001" EndPoint="0.767139,1.0387">
+		<GradientStop Color="#FFFEFFFE" Offset="0"/>
+		<GradientStop Color="#FFFEFFFE" Offset="0.505493"/>
+		<GradientStop Color="#FFD8DADB" Offset="0.527466"/>
+		<GradientStop Color="#FFB2B5B7" Offset="1"/>
+	</LinearGradientBrush>
+
+	<Style TargetType="gauges:Marker">
+		<Setter Property="Location" Value="Inside" />
+		<Setter Property="Offset" Value="0" />
+		<Setter Property="RelativeHeight" Value="0.1" />
+		<Setter Property="RelativeWidth" Value="0.1" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="BorderBrush" Value="White" />
+		<Setter Property="Background" Value="{StaticResource MarkerBackground}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:Marker">
+					<Grid HorizontalAlignment="Stretch" 
+						  VerticalAlignment="Stretch">
+						<Polygon Points="0.5,0 1,0.5 0.5,1 0,0.5"
+								 Stretch="Fill"
+								 Fill="{TemplateBinding Background}"
+								 Stroke="{TemplateBinding BorderBrush}"
+								 StrokeThickness="{TemplateBinding BorderThickness}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:IndicatorList">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:IndicatorList">
+					<ItemsPresenter />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:RadialScale">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialScale">
+					<Grid x:Name="PART_ScaleGrid">
+						<ToolTipService.ToolTip>
+							<ToolTip Content="" IsEnabled="False" Visibility="Collapsed"/>
+						</ToolTipService.ToolTip>
+						<Path x:Name="PART_ScalePath" 
+								  Stroke="{TemplateBinding BorderBrush}"
+								  StrokeThickness="{TemplateBinding StrokeThickness}"
+								  Fill="{TemplateBinding Background}"
+								  VerticalAlignment="Stretch"
+								  HorizontalAlignment="Stretch" />
+						<ItemsPresenter />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Center" Value="0.5, 0.5" />
+		<Setter Property="Radius" Value="0.87" />
+		<Setter Property="StartAngle" Value="120" />
+		<Setter Property="SweepAngle" Value="300" />
+		<Setter Property="StartWidth" Value="0.1" />
+		<Setter Property="EndWidth" Value="0.1" />
+		<Setter Property="Foreground" Value="{StaticResource ScaleBarForeground}" />
+		<Setter Property="Background" Value="{StaticResource ScaleBarBackground}" />
+		<Setter Property="BorderBrush" Value="{StaticResource ScaleBarBorderBrush}" />
+		<Setter Property="StrokeThickness" Value="1" />
+		<Setter Property="LogarithmicBase" Value="10" />
+		<Setter Property="Min" Value="0" />
+		<Setter Property="Max" Value="100" />
+		<Setter Property="MajorTicks" Value="10" />
+		<Setter Property="MiddleTicks" Value="2" />
+		<Setter Property="MinorTicks" Value="2" />
+		<Setter Property="IsLabelRotated" Value="True" />
+		<Setter Property="Multiplier" Value="1" />
+	</Style>
+
+	<Style TargetType="gauges:LinearScale">
+		<Setter Property="Left" Value="0.5" />
+		<Setter Property="Top" Value="0.1" />
+		<Setter Property="RelativeHeight" Value="0.8" />
+		<Setter Property="StartWidth" Value="0.1" />
+		<Setter Property="EndWidth" Value="0.1" />
+		<Setter Property="Foreground" Value="{StaticResource ScaleBarForeground}" />
+		<Setter Property="Background" Value="{StaticResource ScaleBarBackground}" />
+		<Setter Property="BorderBrush" Value="{StaticResource ScaleBarBorderBrush}" />
+		<Setter Property="StrokeThickness" Value="1" />
+		<Setter Property="LogarithmicBase" Value="10" />
+		<Setter Property="Min" Value="0" />
+		<Setter Property="Max" Value="100" />
+		<Setter Property="MajorTicks" Value="4" />
+		<Setter Property="MiddleTicks" Value="2" />
+		<Setter Property="MinorTicks" Value="3" />
+		<Setter Property="Multiplier" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:LinearScale">
+					<Grid>
+						<ToolTipService.ToolTip>
+							<ToolTip Content="" IsEnabled="False" Visibility="Collapsed"/>
+						</ToolTipService.ToolTip>
+						<Path x:Name="PART_ScalePath" 
+								  Stroke="{TemplateBinding BorderBrush}"
+								  StrokeThickness="{TemplateBinding StrokeThickness}"
+								  Fill="{TemplateBinding Background}"
+								  VerticalAlignment="Stretch"
+								  HorizontalAlignment="Stretch" />
+						<ItemsPresenter />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:NumericScale">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Multiplier" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:NumericScale">
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						<ToolTipService.ToolTip>
+							<ToolTip Content="" IsEnabled="False" Visibility="Collapsed"/>
+						</ToolTipService.ToolTip>
+						<ItemsPresenter />
+					</Canvas>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:NumericIndicator">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:NumericIndicator">
+					<Border Background="{TemplateBinding Background}"                            
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ItemsPresenter />
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:NumberPosition">
+		<Setter Property="Foreground" Value="White" />
+		<Setter Property="FontFamily" Value="Arial" />
+		<Setter Property="FontSize" Value="11" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="Padding" Value="1,0,1,0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:NumberPosition">
+					<Border BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							Background="{TemplateBinding Background}">
+						<Grid Margin="1,1,1,1">
+							<ContentPresenter VerticalAlignment="{TemplateBinding VerticalAlignment}"
+											  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauge:RadGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauge:RadGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid x:Name="PART_ContainerGrid">
+							<ContentPresenter Content="{TemplateBinding Content}"/>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"                            
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl Height="{TemplateBinding CellSize}"
+											Width="{TemplateBinding CellSize}">
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.15*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.15*"/>
+											</Grid.RowDefinitions>
+											<Ellipse Stroke="#FFC4C3C2" 
+												 StrokeThickness="2" 
+												 Grid.ColumnSpan="5" 
+												 Grid.RowSpan="5">
+												<Ellipse.Fill>
+													<LinearGradientBrush StartPoint="0,0.500001" EndPoint="1,0.500001">
+														<GradientStop Color="#FFC8CACC" Offset="0"/>
+														<GradientStop Color="#FFABADAF" Offset="0.87"/>
+														<GradientStop Color="#FF8F9093" Offset="1"/>
+													</LinearGradientBrush>
+												</Ellipse.Fill>
+											</Ellipse>
+											<Ellipse Stretch="Uniform" 
+												 HorizontalAlignment="Stretch" 
+												 VerticalAlignment="Stretch" 
+												 Grid.Column="1" 
+												 Grid.ColumnSpan="3" 
+												 Grid.Row="1" 
+												 Grid.RowSpan="3">
+												<Ellipse.Fill>
+													<RadialGradientBrush RadiusX="0.548605" 
+																	 RadiusY="0.553172" 
+																	 Center="0.496522,0.498134" 
+																	 GradientOrigin="0.496522,0.498134">
+														<RadialGradientBrush.RelativeTransform>
+															<TransformGroup/>
+														</RadialGradientBrush.RelativeTransform>
+														<GradientStop Color="#FF000000" Offset="0"/>
+														<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+														<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+														<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+														<GradientStop Color="#FF780E00" Offset="0.939574"/>
+														<GradientStop Color="#FF000000" Offset="1"/>
+													</RadialGradientBrush>
+												</Ellipse.Fill>
+											</Ellipse>
+											<Ellipse Stretch="Uniform" 
+												 Opacity="0.5" 
+												 HorizontalAlignment="Stretch" 
+												 VerticalAlignment="Stretch" 
+												 Grid.Column="1" 
+												 Grid.ColumnSpan="3" 
+												 Grid.Row="1" 
+												 Grid.RowSpan="3">
+												<Ellipse.Fill>
+													<LinearGradientBrush StartPoint="0.499997,-0.00352026" EndPoint="0.499997,0.992959">
+														<GradientStop Color="#FFFF7000" Offset="0"/>
+														<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+														<GradientStop Color="#FFA30F00" Offset="0.554947"/>
+														<GradientStop Color="#FFA30F00" Offset="1"/>
+													</LinearGradientBrush>
+												</Ellipse.Fill>
+											</Ellipse>
+											<Ellipse Stretch="Fill" 
+												 StrokeThickness="1" 
+												 StrokeLineJoin="Round" 
+												 Stroke="#34DC1900" 
+												 Fill="#34000000"  
+												 HorizontalAlignment="Stretch" 
+												 VerticalAlignment="Stretch" 
+												 Grid.Column="2" 
+												 Grid.Row="2" />
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl Height="{TemplateBinding CellSize}"
+											Width="{TemplateBinding CellSize}">
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.15*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.15*"/>
+											</Grid.RowDefinitions>
+
+											<Path Stretch="Fill" 
+											  Height="Auto" 
+											  RenderTransformOrigin="0.5,1.31" 
+											  Data="M136.99973,92.000117 C60.784439,92.000117 1.6558759,113.43244 4.7598601,101.93656 20.616215,43.211116 74.261859,0 138,0 200.39567,0 251.72642,41.847141 270.18819,98.246777 275.99955,116.00015 213.21503,92.000117 136.99973,92.000117 z" 
+											  HorizontalAlignment="Stretch" 
+											  Margin="2,2,2,8" 
+											  Grid.Column="1" 
+											  Grid.ColumnSpan="3" 
+											  Grid.Row="1" 
+											  Grid.RowSpan="1">
+												<Path.Fill>
+													<LinearGradientBrush StartPoint="0.499997,-0.29169" EndPoint="0.499997,1.57502">
+														<GradientStop Color="#34FFF000" Offset="0"/>
+														<GradientStop Color="#34FFA100" Offset="0.482804"/>
+														<GradientStop Color="#34FF5300" Offset="0.554947"/>
+														<GradientStop Color="#34FF5300" Offset="1"/>
+													</LinearGradientBrush>
+												</Path.Fill>
+											</Path>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialGaugeHalfCircleNStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.15*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+											</Grid.RowDefinitions>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="5" Grid.RowSpan="3">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="297.128*"/>
+													<RowDefinition Height="2.872*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2" Data="M152,1 C235.395,1.0000002 303,68.605004 303,152 L302.87469,156.9559 302.79752,157.72031 C301.86813,162.25491 297.84955,165.666 293.03299,165.666 L10.966995,165.666 C6.1504542,165.666 2.1318794,162.25491 1.2024941,157.72031 L1.1253142,156.9559 1,152 C1.0000001,68.605004 68.605003,1.0000002 152,1 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0,0.500001" EndPoint="1,0.500001">
+															<GradientStop Color="#FFC8CACC" Offset="0"/>
+															<GradientStop Color="#FFABADAF" Offset="0.87"/>
+															<GradientStop Color="#FF8F9093" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="0.276*"/>
+													<ColumnDefinition Width="298.724*"/>
+													<ColumnDefinition Width="1*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="132.628*"/>
+													<RowDefinition Height="17.372*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Data="M134.18569,0 C199.16412,1.7745015E-07 253.3774,46.090992 265.91544,107.36285 L267.64722,118.71001 267.64722,127.628 C267.64722,131.49399 264.51322,134.62799 260.64722,134.62799 L6.7232374,134.62799 C3.8237413,134.62799 1.335989,132.86511 0.27333054,130.35271 L0,128.99886 0.41836748,120.71362 C7.3041438,52.91058 64.565957,1.7745015E-07 134.18569,0 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusX="0.525" RadiusY="1.051" Center="0.498,0.995" GradientOrigin="0.498,0.995">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="0.776*"/>
+													<ColumnDefinition Width="297.724*"/>
+													<ColumnDefinition Width="1.5*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="132.628*"/>
+													<RowDefinition Height="17.372*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Opacity="0.5" Data="M133.68553,0 C198.66396,-2.0234711E-07 252.87724,46.090992 265.41528,107.36285 L266.64706,115.43384 266.64706,126.62707 C266.64706,129.94078 263.96078,132.62707 260.64706,132.62707 L5.999997,132.62707 C2.6862898,132.62707 -1.6093254E-06,129.94078 0,126.62707 L0,120.17769 1.9557791,107.36285 C14.493815,46.090992 68.707115,-2.0234711E-07 133.68553,0 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.00352026" EndPoint="0.499997,0.992959">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.634"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="1">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="4.997*"/>
+													<ColumnDefinition Width="290.016*"/>
+													<ColumnDefinition Width="4.987*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="2*"/>
+													<RowDefinition Height="138.579*"/>
+													<RowDefinition Height="9.421*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" Grid.Column="1" Grid.Row="1" Data="M136.99973,71.379294 C60.784439,71.379294 4.6671826,113.43244 7.7711668,101.93656 23.627522,43.211116 74.261859,0 138,0 200.39567,0 248.71509,41.847141 267.17686,98.246777 272.98822,116.00015 213.21503,71.379294 136.99973,71.379294 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.29169" EndPoint="0.499997,1.57502">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="4.67*"/>
+													<ColumnDefinition Width="30*"/>
+													<ColumnDefinition Width="4.154*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="100*"/>
+													<RowDefinition Height="26*"/>
+													<RowDefinition Height="24*"/>
+												</Grid.RowDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" StrokeThickness="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Data="M34.576923,17.538462 C34.576923,26.948544 26.948544,34.576923 17.538462,34.576923 C8.1283791,34.576923 0.5,26.948544 0.5,17.538462 C0.5,8.1283791 8.1283791,0.5 17.538462,0.5 C26.948544,0.5 34.576923,8.1283791 34.576923,17.538462 z"/>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleHalfCircleNStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.5,0.78" />
+		<Setter Property="Radius" Value="1.1" />
+		<Setter Property="StartAngle" Value="180" />
+		<Setter Property="SweepAngle" Value="180" />
+		<Setter Property="LabelRotationMode" Value="SurroundOut" />
+	</Style>
+
+	<Style x:Key="RadialGaugeHalfCircleSStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+											<Grid.RenderTransform>
+												<TransformGroup>
+													<ScaleTransform ScaleX="1" ScaleY="-1"/>
+												</TransformGroup>
+											</Grid.RenderTransform>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.15*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+											</Grid.RowDefinitions>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="5" Grid.RowSpan="3">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="297.128*"/>
+													<RowDefinition Height="2.872*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2" Data="M152,1 C235.395,1.0000002 303,68.605004 303,152 L302.87469,156.9559 302.79752,157.72031 C301.86813,162.25491 297.84955,165.666 293.03299,165.666 L10.966995,165.666 C6.1504542,165.666 2.1318794,162.25491 1.2024941,157.72031 L1.1253142,156.9559 1,152 C1.0000001,68.605004 68.605003,1.0000002 152,1 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0,0.500001" EndPoint="1,0.500001">
+															<GradientStop Color="#FFC8CACC" Offset="0"/>
+															<GradientStop Color="#FFABADAF" Offset="0.87"/>
+															<GradientStop Color="#FF8F9093" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="0.276*"/>
+													<ColumnDefinition Width="298.724*"/>
+													<ColumnDefinition Width="1*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="132.628*"/>
+													<RowDefinition Height="17.372*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Data="M134.18569,0 C199.16412,1.7745015E-07 253.3774,46.090992 265.91544,107.36285 L267.64722,118.71001 267.64722,127.628 C267.64722,131.49399 264.51322,134.62799 260.64722,134.62799 L6.7232374,134.62799 C3.8237413,134.62799 1.335989,132.86511 0.27333054,130.35271 L0,128.99886 0.41836748,120.71362 C7.3041438,52.91058 64.565957,1.7745015E-07 134.18569,0 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusX="0.525" RadiusY="1.051" Center="0.498,0.995" GradientOrigin="0.498,0.995">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="0.776*"/>
+													<ColumnDefinition Width="297.724*"/>
+													<ColumnDefinition Width="1.5*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="132.628*"/>
+													<RowDefinition Height="17.372*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch" Opacity="0.5" Data="M133.68553,0 C198.66396,-2.0234711E-07 252.87724,46.090992 265.41528,107.36285 L266.64706,115.43384 266.64706,126.62707 C266.64706,129.94078 263.96078,132.62707 260.64706,132.62707 L5.999997,132.62707 C2.6862898,132.62707 -1.6093254E-06,129.94078 0,126.62707 L0,120.17769 1.9557791,107.36285 C14.493815,46.090992 68.707115,-2.0234711E-07 133.68553,0 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.00352026" EndPoint="0.499997,0.992959">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.634"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="1">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="4.997*"/>
+													<ColumnDefinition Width="290.016*"/>
+													<ColumnDefinition Width="4.987*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="2*"/>
+													<RowDefinition Height="138.579*"/>
+													<RowDefinition Height="9.421*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" Grid.Column="1" Grid.Row="1" Data="M136.99973,71.379294 C60.784439,71.379294 4.6671826,113.43244 7.7711668,101.93656 23.627522,43.211116 74.261859,0 138,0 200.39567,0 248.71509,41.847141 267.17686,98.246777 272.98822,116.00015 213.21503,71.379294 136.99973,71.379294 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.29169" EndPoint="0.499997,1.57502">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="4.67*"/>
+													<ColumnDefinition Width="30*"/>
+													<ColumnDefinition Width="4.154*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="100*"/>
+													<RowDefinition Height="26*"/>
+													<RowDefinition Height="24*"/>
+												</Grid.RowDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" StrokeThickness="1" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Data="M34.576923,17.538462 C34.576923,26.948544 26.948544,34.576923 17.538462,34.576923 C8.1283791,34.576923 0.5,26.948544 0.5,17.538462 C0.5,8.1283791 8.1283791,0.5 17.538462,0.5 C26.948544,0.5 34.576923,8.1283791 34.576923,17.538462 z"/>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleHalfCircleSStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.5,0.22" />
+		<Setter Property="Radius" Value="1.1" />
+		<Setter Property="StartAngle" Value="0" />
+		<Setter Property="SweepAngle" Value="180" />
+		<Setter Property="IsReversed" Value="True" />
+		<Setter Property="LabelRotationMode" Value="SurroundIn" />
+	</Style>
+
+	<Style x:Key="RadialGaugeHalfCircleEStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+											<Grid.RenderTransform>
+												<ScaleTransform ScaleX="-1" />
+											</Grid.RenderTransform>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.15*"/>
+											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+											</Grid.ColumnDefinitions>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="5" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="297.128*"/>
+													<ColumnDefinition Width="2.872*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2" Data="M1,152 C1.0000002,235.395 68.605004,303 152,303 L156.9559,302.87469 157.72031,302.79752 C162.25491,301.86813 165.666,297.84955 165.666,293.03299 L165.666,10.966995 C165.666,6.1504542 162.25491,2.1318794 157.72031,1.2024941 L156.9559,1.1253142 152,1 C68.605004,1.0000001 1.0000002,68.605003 1,152 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.500001,0" EndPoint="0.500001,1">
+															<GradientStop Color="#FFC8CACC" Offset="0"/>
+															<GradientStop Color="#FFABADAF" Offset="0.87"/>
+															<GradientStop Color="#FF8F9093" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="0.276*"/>
+													<RowDefinition Height="298.724*"/>
+													<RowDefinition Height="1*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="132.628*"/>
+													<ColumnDefinition Width="17.372*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Data="M0,134.18569 C1.7745015E-07,199.16412 46.090992,253.3774 107.36285,265.91544 L118.71001,267.64722 127.628,267.64722 C131.49399,267.64722 134.62799,264.51322 134.62799,260.64722 L134.62799,6.7232374 C134.62799,3.8237413 132.86511,1.335989 130.35271,0.27333054 L128.99886,0 120.71362,0.41836748 C52.91058,7.3041438 1.7745015E-07,64.565957 0,134.18569 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusY="0.525" RadiusX="1.051" Center="0.995,0.498" GradientOrigin="0.995,0.498">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="0.776*"/>
+													<RowDefinition Height="297.724*"/>
+													<RowDefinition Height="1.5*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="132.628*"/>
+													<ColumnDefinition Width="17.372*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Opacity="0.5" Data="M0,133.68553 C-2.0234711E-07,198.66396 46.090992,252.87724 107.36285,265.41528 L115.43384,266.64706 126.62707,266.64706 C129.94078,266.64706 132.62707,263.96078 132.62707,260.64706 L132.62707,5.999997 C132.62707,2.6862898 129.94078,-1.6093254E-06 126.62707,0 L120.17769,0 107.36285,1.9557791 C46.090992,14.493815 -2.0234711E-07,68.707115 0,133.68553 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="-0.00352026,0.499997" EndPoint="0.992959,0.499997">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.634"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="1">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="4.997*"/>
+													<RowDefinition Height="290.016*"/>
+													<RowDefinition Height="4.987*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="2*"/>
+													<ColumnDefinition Width="138.579*"/>
+													<ColumnDefinition Width="9.421*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" Grid.Row="1" Grid.Column="1" Data="M71.379294,136.99973 C71.379294,60.784439 113.43244,4.6671826 101.93656,7.7711668 43.211116,23.627522 0,74.261859 0,138 0,200.39567 41.847141,248.71509 98.246777,267.17686 116.00015,272.98822 71.379294,213.21503 71.379294,136.99973 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="-0.29169,0.499997" EndPoint="1.57502,0.499997">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="4.67*"/>
+													<RowDefinition Height="30*"/>
+													<RowDefinition Height="4.154*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="100*"/>
+													<ColumnDefinition Width="26*"/>
+													<ColumnDefinition Width="24*"/>
+												</Grid.ColumnDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" StrokeThickness="1" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Data="M17.538462,34.576923 C26.948544,34.576923 34.576923,26.948544 34.576923,17.538462 C34.576923,8.1283791 26.948544,0.5 17.538462,0.5 C8.1283791,0.5 0.5,8.1283791 0.5,17.538462 C0.5,26.948544 8.1283791,34.576923 17.538462,34.576923 z"/>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleHalfCircleEStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.22,0.5" />
+		<Setter Property="Radius" Value="1.1" />
+		<Setter Property="StartAngle" Value="270" />
+		<Setter Property="SweepAngle" Value="180" />
+		<Setter Property="IsReversed" Value="True" />
+	</Style>
+
+	<Style x:Key="RadialGaugeHalfCircleWStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.15*"/>
+											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+											</Grid.ColumnDefinitions>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="5" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="297.128*"/>
+													<ColumnDefinition Width="2.872*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2" Data="M1,152 C1.0000002,235.395 68.605004,303 152,303 L156.9559,302.87469 157.72031,302.79752 C162.25491,301.86813 165.666,297.84955 165.666,293.03299 L165.666,10.966995 C165.666,6.1504542 162.25491,2.1318794 157.72031,1.2024941 L156.9559,1.1253142 152,1 C68.605004,1.0000001 1.0000002,68.605003 1,152 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.500001,0" EndPoint="0.500001,1">
+															<GradientStop Color="#FFC8CACC" Offset="0"/>
+															<GradientStop Color="#FFABADAF" Offset="0.87"/>
+															<GradientStop Color="#FF8F9093" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="0.276*"/>
+													<RowDefinition Height="298.724*"/>
+													<RowDefinition Height="1*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="132.628*"/>
+													<ColumnDefinition Width="17.372*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Data="M0,134.18569 C1.7745015E-07,199.16412 46.090992,253.3774 107.36285,265.91544 L118.71001,267.64722 127.628,267.64722 C131.49399,267.64722 134.62799,264.51322 134.62799,260.64722 L134.62799,6.7232374 C134.62799,3.8237413 132.86511,1.335989 130.35271,0.27333054 L128.99886,0 120.71362,0.41836748 C52.91058,7.3041438 1.7745015E-07,64.565957 0,134.18569 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusY="0.525" RadiusX="1.051" Center="0.995,0.498" GradientOrigin="0.995,0.498">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="0.776*"/>
+													<RowDefinition Height="297.724*"/>
+													<RowDefinition Height="1.5*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="132.628*"/>
+													<ColumnDefinition Width="17.372*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Opacity="0.5" Data="M0,133.68553 C-2.0234711E-07,198.66396 46.090992,252.87724 107.36285,265.41528 L115.43384,266.64706 126.62707,266.64706 C129.94078,266.64706 132.62707,263.96078 132.62707,260.64706 L132.62707,5.999997 C132.62707,2.6862898 129.94078,-1.6093254E-06 126.62707,0 L120.17769,0 107.36285,1.9557791 C46.090992,14.493815 -2.0234711E-07,68.707115 0,133.68553 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="-0.00352026,0.499997" EndPoint="0.992959,0.499997">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.634"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="1">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="4.997*"/>
+													<RowDefinition Height="290.016*"/>
+													<RowDefinition Height="4.987*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="2*"/>
+													<ColumnDefinition Width="138.579*"/>
+													<ColumnDefinition Width="9.421*"/>
+												</Grid.ColumnDefinitions>
+												<Path Stretch="Fill" Grid.Row="1" Grid.Column="1" Data="M71.379294,136.99973 C71.379294,60.784439 113.43244,4.6671826 101.93656,7.7711668 43.211116,23.627522 0,74.261859 0,138 0,200.39567 41.847141,248.71509 98.246777,267.17686 116.00015,272.98822 71.379294,213.21503 71.379294,136.99973 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="-0.29169,0.499997" EndPoint="1.57502,0.499997">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+												<Grid.RowDefinitions>
+													<RowDefinition Height="4.67*"/>
+													<RowDefinition Height="30*"/>
+													<RowDefinition Height="4.154*"/>
+												</Grid.RowDefinitions>
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="100*"/>
+													<ColumnDefinition Width="26*"/>
+													<ColumnDefinition Width="24*"/>
+												</Grid.ColumnDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" StrokeThickness="1" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Data="M17.538462,34.576923 C26.948544,34.576923 34.576923,26.948544 34.576923,17.538462 C34.576923,8.1283791 26.948544,0.5 17.538462,0.5 C8.1283791,0.5 0.5,8.1283791 0.5,17.538462 C0.5,26.948544 8.1283791,34.576923 17.538462,34.576923 z"/>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleHalfCircleWStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.78,0.5" />
+		<Setter Property="Radius" Value="1.1" />
+		<Setter Property="StartAngle" Value="90" />
+		<Setter Property="SweepAngle" Value="180" />
+	</Style>
+
+	<Style x:Key="RadialGaugeQuarterCircleNWStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+											</Grid.RowDefinitions>
+											<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2"
+												  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Grid.RowSpan="3"
+												  Data="M152,1 L158.67404,1.168758 159.01535,1.2031639 C163.57217,2.135627 167,6.1675081 167,11.000001 L167,157 C167,162.52284 162.52284,167 157,167 L11.000001,167 C6.1675081,167 2.135627,163.57217 1.2031639,159.01535 L1.168758,158.67404 1,152 C1,68.605003 68.605003,1 152,1 z">
+												<Path.Fill>
+													<LinearGradientBrush StartPoint="0.034,0.023" EndPoint="0.973,0.967">
+														<GradientStop Color="#FFC8CACC" Offset="0"/>
+														<GradientStop Color="#FFABADAF" Offset="0.87"/>
+														<GradientStop Color="#FF8F9093" Offset="1"/>
+													</LinearGradientBrush>
+												</Path.Fill>
+											</Path>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M124.83458,0 L127.26632,0.49094433 C130.12614,1.7005476 132.13278,4.5323037 132.13278,7.8327364 L132.13278,124.16483 C132.13278,128.56541 128.56541,132.13278 124.16483,132.13278 L7.8327364,132.13278 C4.5323037,132.13278 1.7005476,130.12614 0.49094433,127.26632 L0,124.83458 0.23145777,120.25087 C6.6581796,56.968029 56.968029,6.6581796 120.25087,0.23145777 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusX="1.04" RadiusY="1.04" Center="0.973,0.969" GradientOrigin="0.973,0.969">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.5" Data="M115.87072,0 L122.57841,0 C126.91804,-2.3841858E-07 130.436,3.5179626 130.436,7.8575917 L130.436,122.57841 C130.436,126.91804 126.91804,130.436 122.57841,130.436 L7.8575917,130.436 C3.5179626,130.436 -2.3841858E-07,126.91804 0,122.57841 L0,115.87072 1.4882425,106.11931 C12.23513,53.600577 53.600577,12.23513 106.11931,1.4882425 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.00352026" EndPoint="0.5,1.798">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.554947"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="220*"/>
+													<ColumnDefinition Width="40*"/>
+													<ColumnDefinition Width="40*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="220*"/>
+													<RowDefinition Height="40*"/>
+													<RowDefinition Height="40*"/>
+												</Grid.RowDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" Grid.Column="1" Grid.Row="1" StrokeThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M34.576923,17.538462 C34.576923,26.948544 26.948544,34.576923 17.538462,34.576923 C8.1283791,34.576923 0.5,26.948544 0.5,17.538462 C0.5,8.1283791 8.1283791,0.5 17.538462,0.5 C26.948544,0.5 34.576923,8.1283791 34.576923,17.538462 z"/>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="7*"/>
+													<ColumnDefinition Width="280*"/>
+													<ColumnDefinition Width="35*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="3*"/>
+													<RowDefinition Height="260*"/>
+													<RowDefinition Height="100*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Height="Auto"
+												  Grid.Column="1" Grid.Row="1"
+												  RenderTransformOrigin="1.03830113789068,1.31110064633161"
+												  Data="M121.80052,0 L124.18627,1.6085102 C125.59822,3.0204707 126.47154,4.9710732 126.47154,7.1256481 L126.47154,65.584042 115.57179,65.772053 C46.800241,68.119641 -2.7781991,114.04461 0.12082433,103.10381 14.930165,47.213971 60.814557,5.1665073 118.81305,0.12889442 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.383,0.301" EndPoint="1.037,1.313">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleQuarterCircleNWStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.82,0.82" />
+		<Setter Property="Radius" Value="1.17" />
+		<Setter Property="StartAngle" Value="180" />
+		<Setter Property="SweepAngle" Value="90" />
+		<Setter Property="LabelRotationMode" Value="SurroundOut" />
+	</Style>
+
+	<Style x:Key="RadialGaugeQuarterCircleNEStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+											<Grid.RenderTransform>
+												<ScaleTransform ScaleX="-1" ScaleY="1"/>
+											</Grid.RenderTransform>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+											</Grid.RowDefinitions>
+											<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2"
+												  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Grid.RowSpan="3"
+												  Data="M152,1 L158.67404,1.168758 159.01535,1.2031639 C163.57217,2.135627 167,6.1675081 167,11.000001 L167,157 C167,162.52284 162.52284,167 157,167 L11.000001,167 C6.1675081,167 2.135627,163.57217 1.2031639,159.01535 L1.168758,158.67404 1,152 C1,68.605003 68.605003,1 152,1 z">
+												<Path.Fill>
+													<LinearGradientBrush StartPoint="0.034,0.023" EndPoint="0.973,0.967">
+														<GradientStop Color="#FFC8CACC" Offset="0"/>
+														<GradientStop Color="#FFABADAF" Offset="0.87"/>
+														<GradientStop Color="#FF8F9093" Offset="1"/>
+													</LinearGradientBrush>
+												</Path.Fill>
+											</Path>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M124.83458,0 L127.26632,0.49094433 C130.12614,1.7005476 132.13278,4.5323037 132.13278,7.8327364 L132.13278,124.16483 C132.13278,128.56541 128.56541,132.13278 124.16483,132.13278 L7.8327364,132.13278 C4.5323037,132.13278 1.7005476,130.12614 0.49094433,127.26632 L0,124.83458 0.23145777,120.25087 C6.6581796,56.968029 56.968029,6.6581796 120.25087,0.23145777 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusX="1.04" RadiusY="1.04" Center="0.973,0.969" GradientOrigin="0.973,0.969">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.5" Data="M115.87072,0 L122.57841,0 C126.91804,-2.3841858E-07 130.436,3.5179626 130.436,7.8575917 L130.436,122.57841 C130.436,126.91804 126.91804,130.436 122.57841,130.436 L7.8575917,130.436 C3.5179626,130.436 -2.3841858E-07,126.91804 0,122.57841 L0,115.87072 1.4882425,106.11931 C12.23513,53.600577 53.600577,12.23513 106.11931,1.4882425 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.00352026" EndPoint="0.5,1.798">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.554947"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="220*"/>
+													<ColumnDefinition Width="40*"/>
+													<ColumnDefinition Width="40*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="220*"/>
+													<RowDefinition Height="40*"/>
+													<RowDefinition Height="40*"/>
+												</Grid.RowDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" Grid.Column="1" Grid.Row="1" StrokeThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M34.576923,17.538462 C34.576923,26.948544 26.948544,34.576923 17.538462,34.576923 C8.1283791,34.576923 0.5,26.948544 0.5,17.538462 C0.5,8.1283791 8.1283791,0.5 17.538462,0.5 C26.948544,0.5 34.576923,8.1283791 34.576923,17.538462 z"/>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="7*"/>
+													<ColumnDefinition Width="280*"/>
+													<ColumnDefinition Width="35*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="3*"/>
+													<RowDefinition Height="260*"/>
+													<RowDefinition Height="100*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Height="Auto"
+												  Grid.Column="1" Grid.Row="1"
+												  RenderTransformOrigin="1.03830113789068,1.31110064633161"
+												  Data="M121.80052,0 L124.18627,1.6085102 C125.59822,3.0204707 126.47154,4.9710732 126.47154,7.1256481 L126.47154,65.584042 115.57179,65.772053 C46.800241,68.119641 -2.7781991,114.04461 0.12082433,103.10381 14.930165,47.213971 60.814557,5.1665073 118.81305,0.12889442 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.383,0.301" EndPoint="1.037,1.313">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleQuarterCircleNEStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.18,0.82" />
+		<Setter Property="Radius" Value="1.17" />
+		<Setter Property="StartAngle" Value="270" />
+		<Setter Property="SweepAngle" Value="90" />
+		<Setter Property="IsReversed" Value="True" />
+		<Setter Property="LabelRotationMode" Value="SurroundOut" />
+	</Style>
+
+	<Style x:Key="RadialGaugeQuarterCircleSEStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+											<Grid.RenderTransform>
+												<TransformGroup>
+													<ScaleTransform ScaleX="-1" ScaleY="-1"/>
+													<SkewTransform AngleX="0" AngleY="0"/>
+													<RotateTransform Angle="0"/>
+													<TranslateTransform X="0" Y="0"/>
+												</TransformGroup>
+											</Grid.RenderTransform>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+											</Grid.RowDefinitions>
+											<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2"
+												  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Grid.RowSpan="3"
+												  Data="M152,1 L158.67404,1.168758 159.01535,1.2031639 C163.57217,2.135627 167,6.1675081 167,11.000001 L167,157 C167,162.52284 162.52284,167 157,167 L11.000001,167 C6.1675081,167 2.135627,163.57217 1.2031639,159.01535 L1.168758,158.67404 1,152 C1,68.605003 68.605003,1 152,1 z">
+												<Path.Fill>
+													<LinearGradientBrush StartPoint="0.034,0.023" EndPoint="0.973,0.967">
+														<GradientStop Color="#FFC8CACC" Offset="0"/>
+														<GradientStop Color="#FFABADAF" Offset="0.87"/>
+														<GradientStop Color="#FF8F9093" Offset="1"/>
+													</LinearGradientBrush>
+												</Path.Fill>
+											</Path>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M124.83458,0 L127.26632,0.49094433 C130.12614,1.7005476 132.13278,4.5323037 132.13278,7.8327364 L132.13278,124.16483 C132.13278,128.56541 128.56541,132.13278 124.16483,132.13278 L7.8327364,132.13278 C4.5323037,132.13278 1.7005476,130.12614 0.49094433,127.26632 L0,124.83458 0.23145777,120.25087 C6.6581796,56.968029 56.968029,6.6581796 120.25087,0.23145777 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusX="1.04" RadiusY="1.04" Center="0.973,0.969" GradientOrigin="0.973,0.969">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.5" Data="M115.87072,0 L122.57841,0 C126.91804,-2.3841858E-07 130.436,3.5179626 130.436,7.8575917 L130.436,122.57841 C130.436,126.91804 126.91804,130.436 122.57841,130.436 L7.8575917,130.436 C3.5179626,130.436 -2.3841858E-07,126.91804 0,122.57841 L0,115.87072 1.4882425,106.11931 C12.23513,53.600577 53.600577,12.23513 106.11931,1.4882425 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.00352026" EndPoint="0.5,1.798">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.554947"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="220*"/>
+													<ColumnDefinition Width="40*"/>
+													<ColumnDefinition Width="40*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="220*"/>
+													<RowDefinition Height="40*"/>
+													<RowDefinition Height="40*"/>
+												</Grid.RowDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" Grid.Column="1" Grid.Row="1" StrokeThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M34.576923,17.538462 C34.576923,26.948544 26.948544,34.576923 17.538462,34.576923 C8.1283791,34.576923 0.5,26.948544 0.5,17.538462 C0.5,8.1283791 8.1283791,0.5 17.538462,0.5 C26.948544,0.5 34.576923,8.1283791 34.576923,17.538462 z"/>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="7*"/>
+													<ColumnDefinition Width="280*"/>
+													<ColumnDefinition Width="35*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="3*"/>
+													<RowDefinition Height="260*"/>
+													<RowDefinition Height="100*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Height="Auto"
+												  Grid.Column="1" Grid.Row="1"
+												  RenderTransformOrigin="1.03830113789068,1.31110064633161"
+												  Data="M121.80052,0 L124.18627,1.6085102 C125.59822,3.0204707 126.47154,4.9710732 126.47154,7.1256481 L126.47154,35.583218 115.57179,35.771229 C46.800241,38.118817 -2.7781991,114.04461 0.12082433,103.10381 14.930165,47.213971 60.814557,5.1665073 118.81305,0.12889442 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.383,0.301" EndPoint="1.037,1.313">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleQuarterCircleSEStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.18,0.18" />
+		<Setter Property="Radius" Value="1.17" />
+		<Setter Property="StartAngle" Value="0" />
+		<Setter Property="SweepAngle" Value="90" />
+		<Setter Property="IsReversed" Value="True" />
+		<Setter Property="LabelRotationMode" Value="SurroundIn" />
+	</Style>
+
+	<Style x:Key="RadialGaugeQuarterCircleSWStyle" TargetType="gauges:RadialGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:RadialGauge">
+					<Border Background="{TemplateBinding Background}"
+			                            BorderBrush="{TemplateBinding BorderBrush}"
+			                            BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+											<Grid.RenderTransform>
+												<TransformGroup>
+													<ScaleTransform ScaleX="1" ScaleY="-1"/>
+													<SkewTransform AngleX="0" AngleY="0"/>
+													<RotateTransform Angle="0"/>
+													<TranslateTransform X="0" Y="0"/>
+												</TransformGroup>
+											</Grid.RenderTransform>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="0.15*"/>
+												<ColumnDefinition/>
+												<ColumnDefinition Width="0.3*"/>
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="0.15*"/>
+												<RowDefinition/>
+												<RowDefinition Height="0.3*"/>
+											</Grid.RowDefinitions>
+											<Path Stretch="Fill" Stroke="#FFC4C3C2" StrokeThickness="2"
+												  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Grid.RowSpan="3"
+												  Data="M152,1 L158.67404,1.168758 159.01535,1.2031639 C163.57217,2.135627 167,6.1675081 167,11.000001 L167,157 C167,162.52284 162.52284,167 157,167 L11.000001,167 C6.1675081,167 2.135627,163.57217 1.2031639,159.01535 L1.168758,158.67404 1,152 C1,68.605003 68.605003,1 152,1 z">
+												<Path.Fill>
+													<LinearGradientBrush StartPoint="0.034,0.023" EndPoint="0.973,0.967">
+														<GradientStop Color="#FFC8CACC" Offset="0"/>
+														<GradientStop Color="#FFABADAF" Offset="0.87"/>
+														<GradientStop Color="#FF8F9093" Offset="1"/>
+													</LinearGradientBrush>
+												</Path.Fill>
+											</Path>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M124.83458,0 L127.26632,0.49094433 C130.12614,1.7005476 132.13278,4.5323037 132.13278,7.8327364 L132.13278,124.16483 C132.13278,128.56541 128.56541,132.13278 124.16483,132.13278 L7.8327364,132.13278 C4.5323037,132.13278 1.7005476,130.12614 0.49094433,127.26632 L0,124.83458 0.23145777,120.25087 C6.6581796,56.968029 56.968029,6.6581796 120.25087,0.23145777 z">
+													<Path.Fill>
+														<RadialGradientBrush RadiusX="1.04" RadiusY="1.04" Center="0.973,0.969" GradientOrigin="0.973,0.969">
+															<GradientStop Color="#FF000000" Offset="0"/>
+															<GradientStop Color="#FF6A0600" Offset="0.296707"/>
+															<GradientStop Color="#FFAD1100" Offset="0.449867"/>
+															<GradientStop Color="#FFF11C00" Offset="0.840652"/>
+															<GradientStop Color="#FF780E00" Offset="0.939574"/>
+															<GradientStop Color="#FF000000" Offset="1"/>
+														</RadialGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="270*"/>
+													<ColumnDefinition Width="30*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="270*"/>
+													<RowDefinition Height="30*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.5" Data="M115.87072,0 L122.57841,0 C126.91804,-2.3841858E-07 130.436,3.5179626 130.436,7.8575917 L130.436,122.57841 C130.436,126.91804 126.91804,130.436 122.57841,130.436 L7.8575917,130.436 C3.5179626,130.436 -2.3841858E-07,126.91804 0,122.57841 L0,115.87072 1.4882425,106.11931 C12.23513,53.600577 53.600577,12.23513 106.11931,1.4882425 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.499997,-0.00352026" EndPoint="0.5,1.798">
+															<GradientStop Color="#FFFF7000" Offset="0"/>
+															<GradientStop Color="#FFD13F00" Offset="0.482804"/>
+															<GradientStop Color="#FFA30F00" Offset="0.554947"/>
+															<GradientStop Color="#FFA30F00" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="220*"/>
+													<ColumnDefinition Width="40*"/>
+													<ColumnDefinition Width="40*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="220*"/>
+													<RowDefinition Height="40*"/>
+													<RowDefinition Height="40*"/>
+												</Grid.RowDefinitions>
+												<Path Fill="#34000000" Stretch="Fill" Stroke="#34DC1900" StrokeLineJoin="Round" Grid.Column="1" Grid.Row="1" StrokeThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="M34.576923,17.538462 C34.576923,26.948544 26.948544,34.576923 17.538462,34.576923 C8.1283791,34.576923 0.5,26.948544 0.5,17.538462 C0.5,8.1283791 8.1283791,0.5 17.538462,0.5 C26.948544,0.5 34.576923,8.1283791 34.576923,17.538462 z"/>
+											</Grid>
+											<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+												<Grid.ColumnDefinitions>
+													<ColumnDefinition Width="7*"/>
+													<ColumnDefinition Width="280*"/>
+													<ColumnDefinition Width="35*"/>
+												</Grid.ColumnDefinitions>
+												<Grid.RowDefinitions>
+													<RowDefinition Height="3*"/>
+													<RowDefinition Height="260*"/>
+													<RowDefinition Height="100*"/>
+												</Grid.RowDefinitions>
+												<Path Stretch="Fill" HorizontalAlignment="Stretch" Height="Auto"
+												  Grid.Column="1" Grid.Row="1"
+												  RenderTransformOrigin="1.03830113789068,1.31110064633161"
+												  Data="M121.80052,0 L124.18627,1.6085102 C125.59822,3.0204707 126.47154,4.9710732 126.47154,7.1256481 L126.47154,35.583218 115.57179,35.771229 C46.800241,38.118817 -2.7781991,114.04461 0.12082433,103.10381 14.930165,47.213971 60.814557,5.1665073 118.81305,0.12889442 z">
+													<Path.Fill>
+														<LinearGradientBrush StartPoint="0.383,0.301" EndPoint="1.037,1.313">
+															<GradientStop Color="#34FFF000" Offset="0"/>
+															<GradientStop Color="#34FFA100" Offset="0.482804"/>
+															<GradientStop Color="#34FF5300" Offset="0.554947"/>
+															<GradientStop Color="#34FF5300" Offset="1"/>
+														</LinearGradientBrush>
+													</Path.Fill>
+												</Path>
+											</Grid>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="RadialScaleQuarterCircleSWStyle" TargetType="gauges:RadialScale">
+		<Setter Property="Center" Value="0.82,0.18" />
+		<Setter Property="Radius" Value="1.17" />
+		<Setter Property="StartAngle" Value="90" />
+		<Setter Property="SweepAngle" Value="90" />
+		<Setter Property="LabelRotationMode" Value="SurroundIn" />
+	</Style>
+
+	<Style TargetType="gauges:LinearGauge">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="gauges:LinearGauge">
+					<Border Background="{TemplateBinding Background}"
+			                BorderBrush="{TemplateBinding BorderBrush}"
+			                BorderThickness="{TemplateBinding BorderThickness}">
+						<Grid>
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+											<Border HorizontalAlignment="Stretch" Width="Auto" CornerRadius="8,8,8,8" BorderThickness="1,1,1,1">
+												<Border.BorderBrush>
+													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+														<GradientStop Color="#FF8C8C8C" Offset="0"/>
+														<GradientStop Color="#FF9F9F9F" Offset="1"/>
+													</LinearGradientBrush>
+												</Border.BorderBrush>
+												<Border.Background>
+													<LinearGradientBrush StartPoint="0.500013,1.00335" EndPoint="0.500013,0.00335099">
+														<GradientStop Color="#FFC8CACC" Offset="0"/>
+														<GradientStop Color="#FFABADAF" Offset="0.870003"/>
+														<GradientStop Color="#FF8F9093" Offset="1"/>
+													</LinearGradientBrush>
+												</Border.Background>
+												<Border CornerRadius="0,0,5,5" BorderBrush="#FF800000" BorderThickness="1,0,1,1" Width="Auto" Height="Auto" Margin="10,0,10,10" HorizontalAlignment="Stretch">
+													<Border.Background>
+														<LinearGradientBrush StartPoint="-8.04861e-006,0.500001" EndPoint="1,0.500001">
+															<GradientStop Color="#FF8C0B00" Offset="0"/>
+															<GradientStop Color="#FFFF1F00" Offset="0.0879059"/>
+															<GradientStop Color="#FF570400" Offset="0.449997"/>
+															<GradientStop Color="#FF570400" Offset="0.550003"/>
+															<GradientStop Color="#FFFF1F00" Offset="0.92308"/>
+															<GradientStop Color="#FF8C0B00" Offset="1"/>
+														</LinearGradientBrush>
+													</Border.Background>
+													<Border CornerRadius="0,0,4,4" BorderBrush="#FFBB0000" BorderThickness="1,0,1,1" Width="Auto" Height="Auto" HorizontalAlignment="Stretch">
+														<Border.Background>
+															<LinearGradientBrush StartPoint="-1.07513,-0.282595" EndPoint="2.0734,-0.282595">
+																<LinearGradientBrush.RelativeTransform>
+																	<TransformGroup>
+																		<SkewTransform CenterX="-1.07513" CenterY="-0.282595" AngleX="-52.2322" AngleY="0"/>
+																		<RotateTransform CenterX="-1.07513" CenterY="-0.282595" Angle="26.2401"/>
+																	</TransformGroup>
+																</LinearGradientBrush.RelativeTransform>
+																<GradientStop Color="#80FF7000" Offset="0"/>
+																<GradientStop Color="#80D13F00" Offset="0.525831"/>
+																<GradientStop Color="#80A30F00" Offset="0.604401"/>
+																<GradientStop Color="#80000000" Offset="1"/>
+															</LinearGradientBrush>
+														</Border.Background>
+														<Grid VerticalAlignment="Stretch"
+														  HorizontalAlignment="Stretch">
+															<Grid.RowDefinitions>
+																<RowDefinition Height="29*"/>
+																<RowDefinition Height="71*"/>
+															</Grid.RowDefinitions>
+															<Grid Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+																<Path HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill" Data="M86.949316,72.628153 C86.949316,72.628153 72.617789,67.248286 43.954736,67.248286 15.291683,67.248286 -5.5982526E-05,72.628153 -5.5982526E-05,72.628153 L-5.5982526E-05,-5.2537765E-05 86.949316,-5.2537765E-05 86.949316,72.628153 z" Margin="-1,0,-1,0">
+																	<Path.Fill>
+																		<LinearGradientBrush StartPoint="0.5,0.085" EndPoint="0.5,2.352">
+																			<GradientStop Color="#53FFD200" Offset="0"/>
+																			<GradientStop Color="#34FF8B00" Offset="0.509"/>
+																			<GradientStop Color="#34FF5300" Offset="0.554947"/>
+																			<GradientStop Color="#34FF5300" Offset="0.996"/>
+																		</LinearGradientBrush>
+																	</Path.Fill>
+																</Path>
+															</Grid>
+														</Grid>
+													</Border>
+												</Border>
+											</Border>
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+							<ItemsPresenter />
+							<ContentControl>
+								<ContentControl.Template>
+									<ControlTemplate>
+										<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+										</Grid>
+									</ControlTemplate>
+								</ContentControl.Template>
+							</ContentControl>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Grid />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<?BODY END?>
+	
+</ResourceDictionary>

@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.NegotiationsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:citPOINT.eNeg.Client"
+             xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls"
+             xmlns:telerikNavigation="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Navigation"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="200">
+
+    <Grid x:Name="LayoutRoot"
+          Background="White"
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+        <telerik:RadPanelBar VerticalAlignment="Stretch"
+                             ExpandMode="Single"
+                             Margin="0,0,0,5"
+                             HorizontalContentAlignment="Stretch"
+                             HorizontalAlignment="Stretch">
+
+            <telerik:RadPanelBarItem IsExpanded="True">
+                <telerik:RadPanelBarItem.Header>
+                    <TextBlock Text="Open Negotiations"
+                               Margin="5,2" />
+                </telerik:RadPanelBarItem.Header>
+
+
+                <Border BorderThickness="1"
+                        Margin="-4"
+                        HorizontalAlignment="Stretch"
+                        Background="White">
+                    <!-- Ongoing Negotiations View -->
+                    <local:OngoingNegotiations />
+                </Border>
+
+
+
+            </telerik:RadPanelBarItem>
+
+            <telerik:RadPanelBarItem IsExpanded="False">
+                <telerik:RadPanelBarItem.Header>
+                    <TextBlock Text="Closed Negotiations"
+                               Margin="5,2" />
+                </telerik:RadPanelBarItem.Header>
+                <Border BorderThickness="1"
+                        Margin="-4"
+                        HorizontalAlignment="Stretch"
+                        Background="White">
+                    <!-- Closed Negotiations View -->
+                    <local:ClosedNegotiations />
+                </Border>
+
+            </telerik:RadPanelBarItem>
+
+            <telerik:RadPanelBarItem IsExpanded="False">
+                <telerik:RadPanelBarItem.Header>
+                    <TextBlock Text="Published Negotiations"
+                               Margin="5,2" />
+                </telerik:RadPanelBarItem.Header>
+
+                <Border BorderThickness="1"
+                        Margin="-4"
+                        HorizontalAlignment="Stretch"
+                        Background="White">
+                    <!-- Published Negotiations View -->
+                    <local:PublishedNegotiationsView />
+                </Border>
+            </telerik:RadPanelBarItem>
+        </telerik:RadPanelBar>
+    </Grid>
+</UserControl>

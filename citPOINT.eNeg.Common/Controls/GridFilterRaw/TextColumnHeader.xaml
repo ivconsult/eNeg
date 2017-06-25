@@ -1,0 +1,30 @@
+﻿<local:ColumnFilterCell x:Class="citPOINT.eNeg.Common.TextColumnHeader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:telerikDrag="clr-namespace:Telerik.Windows.Controls.DragDrop;assembly=Telerik.Windows.Controls"
+                        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:Navigation="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Navigation"
+	xmlns:local="clr-namespace:citPOINT.eNeg.Common"
+    IsFilterActive="True">
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <telerik:RadMaskedTextBox Grid.Column="0"
+                                      Name="uxTextFilter"
+                                      Value="{Binding FilterDescriptor.Value, Mode=TwoWay}" 
+                                      HorizontalAlignment="Stretch"
+                                      MaskType="None"                                      
+                                      EmptyContent="Enter Some Text"
+                                      UpdateValueEvent="PropertyChanged"/>
+            <ContentControl Grid.Column="1" Content="{Binding FilterVisibility}">
+                <Navigation:RadContextMenu.ContextMenu>
+                    <Navigation:RadContextMenu ItemsSource="{Binding FilterOperators}" EventName="MouseLeftButtonUp">
+                    </Navigation:RadContextMenu>
+                </Navigation:RadContextMenu.ContextMenu>
+            </ContentControl>
+        </Grid>
+    </Border>
+    </local:ColumnFilterCell>

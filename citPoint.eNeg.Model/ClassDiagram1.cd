@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="citPOINT.eNeg.Common.eNegConstant">
+    <Position X="3.75" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.Roles" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.NegotiationStatus" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.UserOperations" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.Channel" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.ChannelType" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.ActionParameterType" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.OrganizationMemberStatus" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="citPOINT.eNeg.Common.eNegConstant.UserProfileStatisticals">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

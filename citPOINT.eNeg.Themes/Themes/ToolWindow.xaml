@@ -1,0 +1,62 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+		xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls"
+		xmlns:primitives="clr-namespace:Telerik.Windows.Controls.Primitives;assembly=Telerik.Windows.Controls"
+		xmlns:dock="clr-namespace:Telerik.Windows.Controls.Docking;assembly=Telerik.Windows.Controls.Docking">
+
+	<!--<telerik:ResourceDictionary.MergedDictionaries>
+		<telerik:ResourceDictionary Keys=""
+				Source="/Telerik.Windows.Controls.Docking;component/Themes/Brushes.xaml" />
+	</telerik:ResourceDictionary.MergedDictionaries>-->
+	<?BODY BEGIN?>
+
+	<!--Close button style-->
+	<Style x:Key="ToolWindowCloseButtonStyle" TargetType="Button">
+		<Setter Property="Content" Value="X" />
+		<Setter Property="Width" Value="20" />
+		<Setter Property="Height" Value="20" />
+	</Style>
+
+	<!--ToolWindow Style-->
+	<Style TargetType="dock:ToolWindow">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="dock:ToolWindow">
+					<Border x:Name="VisualRoot" Background="DarkGray">
+						<Border.RenderTransform>
+							<TranslateTransform x:Name="DragTransform" />
+						</Border.RenderTransform>
+						<Grid Margin="4" Background="Yellow">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="*" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<primitives:TextClipper Grid.Row="0" Grid.Column="0"
+									Content="{TemplateBinding Header}"
+									ContentTemplate="{TemplateBinding HeaderTemplate}"
+									Foreground="{TemplateBinding Foreground}" />
+
+							<Rectangle x:Name="HeaderElement" Grid.Row="0" Grid.ColumnSpan="2"
+									Fill="Transparent" />
+
+							<Button x:Name="CloseButton" Grid.Row="0" Grid.Column="1"
+									Style="{StaticResource ToolWindowCloseButtonStyle}" />
+
+							<ContentPresenter Grid.Row="1" Grid.ColumnSpan="2" />
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="MinHeight" Value="28" />
+		<Setter Property="MinWidth" Value="85" />
+
+	</Style>
+	<?BODY END?>
+</ResourceDictionary>

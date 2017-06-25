@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.ManageUserOrganizationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:common="clr-namespace:citPOINT.eNeg.Common;assembly=citPOINT.eNeg.Common"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:my="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.SL4"
+             mc:Ignorable="d"
+             d:DesignHeight="60"
+             d:DesignWidth="300">
+
+    <UserControl.Resources>
+
+        <common:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="ComboBoxCustomTemplate">
+            <Grid Margin="0 3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.ColumnSpan="2"
+                           Text="{Binding OrganizationName}" />
+                <TextBlock Grid.Row="1"
+                           Text="Type:" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="4,0,0,0"
+                           Text="{Binding OrganizationType.OrganizationTypeName}" />
+            </Grid>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot2">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0,0,0,29"
+              Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="30*" />
+            </Grid.ColumnDefinitions>
+
+            <telerik:RadComboBox x:Name="uxcboOrganization"
+                                 IsEditable="True"
+                                 EmptyText="Select Organization..."
+                                 Margin="2"
+                               
+                                 SelectedIndex="-1"
+                                 ItemsSource="{Binding FilterdOrganizationSource}"
+                                 ItemTemplate="{StaticResource ComboBoxCustomTemplate}"
+                                 SelectedItem="{Binding SelectedOrganization,Mode=TwoWay}"
+                                 telerik:TextSearch.TextPath="OrganizationName" />
+            <StackPanel Grid.Column="1" VerticalAlignment="Top">
+                <HyperlinkButton x:Name="uxcmdJoinSeletedOrganization"
+                                 Content="Join"
+                                 HorizontalAlignment="Left"
+                                 Command="{Binding Path=JoinOrganizationCommand}"
+                                 Margin="4,0" />
+
+                <HyperlinkButton x:Name="uxcmdAddNewOrganization"
+                                 Content="Add New Organization."
+                                 HorizontalAlignment="Left"
+                                 Command="{Binding Path=AddNewOrganizationCommand}"
+                                 Margin="4,-2" />
+            </StackPanel>
+
+        </Grid>
+
+        <telerik:RadGridView AutoGenerateColumns="False"
+                             Grid.Row="1"
+                             GridLinesVisibility="Horizontal"
+                             IsFilteringAllowed="False"
+                             IsReadOnly="True"
+                             ItemsSource="{Binding UserOrganizationSource}"
+                             Margin="2,0"
+                             Name="uxgrdOrganizations"
+                             ReorderColumnsMode="DropIndicator"
+                             ScrollMode="Deferred"
+                             ShowGroupPanel="False"
+                             ShowInsertRow="False"
+                             ShowGroupFooters="False"
+                             ShowColumnHeaders="True"
+                             ShowColumnFooters="False"
+                             RowIndicatorVisibility="Collapsed"
+                             Visibility="{Binding IsUserJoinedToOrganization,Converter={StaticResource booleanToVisibilityConverter}}">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Organization.OrganizationName}"
+                                            Header="Organization"
+                                            IsFilterable="False"
+                                            IsGroupable="False"
+                                            MinWidth="100"
+                                            Width="*" />
+
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding RoleName}"
+                                            Header="User Role"
+                                            IsFilterable="False"
+                                            IsGroupable="False"
+                                            Width="*" />
+
+                <telerik:GridViewDataColumn IsSortable="False"
+                                            IsReorderable="False"
+                                            IsResizable="False"
+                                            Width="100"
+                                            Header="Want To Leave?">
+                    <telerik:GridViewDataColumn.CellTemplate>
+                        <DataTemplate>
+                            <HyperlinkButton VerticalAlignment="Top"
+                                             HorizontalAlignment="Left"
+                                             x:Name="uxcmdLeave"
+                                             Content="Leave"
+                                             Margin="4,0"
+                                             Click="uxcmdLeave_Click"
+                                             Tag="{Binding}" />
+                        </DataTemplate>
+                    </telerik:GridViewDataColumn.CellTemplate>
+
+                </telerik:GridViewDataColumn>
+
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+    </Grid>
+</UserControl>

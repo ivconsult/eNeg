@@ -1,0 +1,148 @@
+﻿<UserControl x:Class="citPOINT.eNeg.Client.ResetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="256"
+             d:DesignWidth="405"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             KeyDown="UserControl_KeyDown"
+             xmlns:eNegControls="clr-namespace:citPOINT.eNeg.Common;assembly=citPOINT.eNeg.Common">
+    <Border BorderBrush="Black"
+            BorderThickness="1"
+            Name="border1">
+        <Grid Margin="4"
+              x:Name="uxgridLayoutRoot"
+              Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="33" />
+                <RowDefinition Height="33" />
+                <RowDefinition Height="33" />
+                <RowDefinition Height="151*" />
+                <RowDefinition Height="41" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="60*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+
+            <eNegControls:eNegMessageControl Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   Grid.Row="0"
+                                   x:Name="uxSPSucessMessage"
+                                   Opacity="1"
+                                   Height="40"
+                                   MessageText="This is invalid reset mail or you have used it before."
+                                   Visibility="Collapsed"
+                                   HorizontalAlignment="Center" />
+
+            <Image Grid.Row="1"
+                   Grid.Column="0"
+                   Source="/citPOINT.eNeg.Client;component/Images/user.png" 
+                   Stretch="Uniform"
+                   MaxHeight="25"
+                   MaxWidth="25"
+                   HorizontalAlignment="Right"/>
+            
+            <TextBox Grid.Column="1"
+                     Grid.Row="1"
+                     Margin="4"
+                     IsEnabled="{Binding EnableTextBox}"
+                     x:Name="uxtxtEmailAddress"
+                     Text="{Binding Path=CurrentUser.EmailAddress, Mode=TwoWay,  ValidatesOnExceptions=True, NotifyOnValidationError=True}"
+                     IsReadOnly="True"
+                     FontWeight="Bold" />
+
+            <sdk:Label Grid.Column="2"
+                       Content="*"
+                       Grid.Row="1"
+                       Margin="4"
+                       Foreground="Red" />
+
+
+            <Image Grid.Row="2"
+                   Grid.Column="0"
+                   Source="/citPOINT.eNeg.Client;component/Images/key.png" 
+                   Stretch="Uniform"
+                   MaxHeight="25"
+                   MaxWidth="25"
+                   HorizontalAlignment="Right"/>
+            
+            <eNegControls:WaterMarkPasswordBox Grid.Column="1"
+                                   Grid.Row="2"
+                                   Margin="4"
+                                   IsEnabled="{Binding EnableTextBox}"
+                                   x:Name="uxtxtPassword"
+                                   WaterMark="Enter Password"
+                                   BindProperty="CurrentUser.Password" />
+
+            <sdk:Label Grid.Column="2"
+                       Grid.Row="2"
+                       Content="*"
+                       Margin="4"
+                       Foreground="Red" />
+
+            <!--Password Confirm-->
+            <Image Grid.Row="3"
+                   Grid.Column="0"
+                   Source="/citPOINT.eNeg.Client;component/Images/key.png" 
+                   Stretch="Uniform"
+                   MaxHeight="25"
+                   MaxWidth="25"
+                   HorizontalAlignment="Right"/>
+            
+            <eNegControls:WaterMarkPasswordBox Grid.Column="1"
+                                   Grid.Row="3"
+                                   Margin="4"
+                                   IsEnabled="{Binding EnableTextBox}"
+                                   x:Name="uxtxtPasswordConfirmation" 
+                                   WaterMark="Confirm Password"
+                                   BindProperty="CurrentUser.PasswordConfirmation" />
+
+            <sdk:Label Grid.Column="2"
+                       Grid.Row="3"
+                       Content="*"
+                       Margin="4"
+                       Foreground="Red" />
+
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <telerik:RadButton Width="75"
+                        Height="25"
+                                   
+                        Content="Save"
+                        Name="uxcmdReset"
+                        IsEnabled="{Binding EnableTextBox}"
+                        Command="{Binding Path=SubmitChangeCommand}" />
+
+                <telerik:RadButton x:Name="uxcmdBackToLogin"
+                                 Content="Back to Login"
+                                 Command="{Binding Path=CancelChangeCommand}"
+                                   Margin="2,0"
+                                   Height="25" />
+            </StackPanel>
+
+            <sdk:ValidationSummary Grid.Row="4"
+                                   Target="{Binding ElementName=LayoutRoot, ValidatesOnExceptions=True}"
+                                   Grid.ColumnSpan="3"
+                                   Margin="4" />
+
+            <telerik:RadBusyIndicator Grid.Column="0"
+                                   Grid.Row="4"
+                                   Grid.ColumnSpan="2"
+                                   BusyContent="Please Wait...."
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsBusy="{Binding IsBusy}" />
+        </Grid>
+    </Border>
+</UserControl>
