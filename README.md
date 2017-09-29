@@ -1,5 +1,7 @@
 # eNeg
 
+## Description
+
 eNeg is a system that has two main targets:
 
 *	Collect as much information as possible from different users‘ communication channels via Add-ons and store it centralized in one place.
