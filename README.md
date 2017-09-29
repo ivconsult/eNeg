@@ -8,6 +8,8 @@ eNeg is a silverlight web based platform with desktop add-on extension, MVVM fra
 * Excption Handling
 * MEF
 
+Please find the software requirements specification, the technical design specification and some videos explaining the uses cases of eNeg in [eNeg Documentation](https://github.com/ivconsult/eNeg/tree/master/eNeg%20Documentation)
+
 ## Features
 
 * Create a unlimited number of online negotiations.
