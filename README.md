@@ -1,6 +1,20 @@
 # eNeg
 
-...
+eNeg is a silverlight web based platform with desktop add-on extension, MVVM framework applied with n-tier layers.
+
+* RIA Services
+* Entity Framework
+* Logging
+* Excption Handling
+* MEF
+
+## Features
+
+* Create a unlimited number of online negotiations.
+* Multi communication channel support
+* Negotiate with different counterparts via different channels managed at one place
+* Track the whole history of a negotiation
+* Addionally 7 different apps for negotiation support integrated: [PrefApp](https://github.com/ivconsult/eNeg-PrefApp), Pref App, Issue App, Culture App ,Strategy App, Message App, eSource App, Offer App
 
 ## References
 ### Following open-source projects were used:
