@@ -1,5 +1,16 @@
 # eNeg
 
+eNeg is a system that has two main targets:
+
+*	Collect as much information as possible from different users‘ communication channels via Add-ons and store it centralized in one place.
+* Use this collected information as input for data analysis through Apps and allow these Apps to provide valuable support information to users.
+
+The FrameWork contains different sub-systems to achieve these targets:
+
+* Desktop Add-on that can collect information.
+* Web Platform that shows all collected information centralized at one place.
+* Apps that analyse the collected information in terms of preferences, strategy, cultural aspects and more.
+
 eNeg is a silverlight web based platform with desktop add-on extension, MVVM framework applied with n-tier layers.
 
 * RIA Services
@@ -8,14 +19,17 @@ eNeg is a silverlight web based platform with desktop add-on extension, MVVM fra
 * Excption Handling
 * MEF
 
-Please find the [Software Requirements Specification](https://github.com/ivconsult/eNeg/blob/master/eNeg%20Documentation/SRS_eNeg_Negotiation_Framework.docx), the [Technical Design Specification](https://github.com/ivconsult/eNeg/blob/master/eNeg%20Documentation/eNeg_TDS_KR.docx), the [Architecture](https://github.com/ivconsult/eNeg/blob/master/eNeg%20Documentation/eNEG%20Infrastructure%20logical%20Architecture.docx) and some videos explaining the uses cases of eNeg in [eNeg Documentation](https://github.com/ivconsult/eNeg/tree/master/eNeg%20Documentation).
+For more details please find the [Software Requirements Specification](https://github.com/ivconsult/eNeg/blob/master/eNeg%20Documentation/SRS_eNeg_Negotiation_Framework.docx), the [Technical Design Specification](https://github.com/ivconsult/eNeg/blob/master/eNeg%20Documentation/eNeg_TDS_KR.docx), the [Architecture](https://github.com/ivconsult/eNeg/blob/master/eNeg%20Documentation/eNEG%20Infrastructure%20logical%20Architecture.docx) and some videos explaining the uses cases of eNeg in [eNeg Documentation](https://github.com/ivconsult/eNeg/tree/master/eNeg%20Documentation).
 
 ## Features
 
+* Allow users to track and collect information messages from different communication channels
 * Create a unlimited number of online negotiations.
 * Multi communication channel support
 * Negotiate with different counterparts via different channels managed at one place
 * Track the whole history of a negotiation
+* View and manage negotiations (ongoing, past)
+* See all details of a negotiation event
 * Addionally 7 different apps for negotiation support integrated: [PrefApp](https://github.com/ivconsult/eNeg-PrefApp), [Issue App](https://github.com/ivconsult/eNeg-IssueApp), [CultureApp](https://github.com/ivconsult/eNeg-CultureApp), [StrategyApp](https://github.com/ivconsult/eNeg-StrategyApp), [MessageApp](https://github.com/ivconsult/eNeg-MessageApp), [eSourceApp](https://github.com/ivconsult/eNeg-eSourceApp), [OfferApp](https://github.com/ivconsult/eNeg-OfferApp)
 
 ## Setting Development Environment
